@@ -22,6 +22,7 @@ Helpful hotkeys:
 - F8 key - Reset both team score.
 
 How to use:
+0. Install csp_text.ttf font. (You will find it in "fonts" folder, you need to do it only once)
 1. Start CS2D (See CS2D Launcher Settigs)
 2. Run "Overlay Launcher.exe" (As administrator)
 3. Done.
