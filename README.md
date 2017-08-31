@@ -34,8 +34,8 @@ IMPORTANT: You will able to see overlay only if you are on spectator.
 
 Troubleshooting:
 
-- EXCEPTION_ACCESS_VIOLATION/EXCEPTION_ILLEGAL_INSTRUCTION:
+EXCEPTION_ACCESS_VIOLATION/EXCEPTION_ILLEGAL_INSTRUCTION:
 - Just try to run game again, if not helping then run CS2D in windowed mode.
 
-- I Cannot click anything in game menu!
+I Cannot click anything in game menu!
 - Minimize and maximize cs2d window.
