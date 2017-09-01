@@ -19,6 +19,7 @@ Helpful hotkeys:
 - ALT key - Hide/show overlay
 - INSERT key - Freelook on specmode
 - PAGE UP key - Nofow
+- PAGE Down key - Noflash
 - END key - Close CS2D immediately
 - F6 key - Increase Terrorist score by 1
 - F7 key - Increase Counter-Terrorist score by 1
