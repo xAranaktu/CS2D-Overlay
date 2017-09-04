@@ -1,7 +1,7 @@
 CS2D Overlay
 Github link: https://github.com/xAranaktu/CS2D-Overlay
 
-![alt text](http://i.imgur.com/mNG1jev.jpg)
+![alt text](https://i.imgur.com/9m3Xs1F.jpg)
 
 Supported resolutions:
 - 1920x1080 (recommended)
@@ -24,6 +24,7 @@ Helpful hotkeys:
 - F6 key - Increase Terrorist score by 1
 - F7 key - Increase Counter-Terrorist score by 1
 - F8 key - Reset both team score.
+- F9 key - Swap team names.
 
 How to use:
 0. Install csp_text.ttf font. (You will find it in "fonts" folder, you need to do it only once)
