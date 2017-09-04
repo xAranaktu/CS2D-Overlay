@@ -1,6 +1,5 @@
 #RequireAdmin
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-#AutoIt3Wrapper_Outfile=Overlay Launcher.exe
 #AutoIt3Wrapper_UseX64=n
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
@@ -197,6 +196,8 @@ Func RunCS2D()
 		MsgBox(16, "CS2D Overlay", "File not exists (CS2D.exe)" & @CRLF & $CS2DPath)
 		Return
 	EndIf
+
+	If $WindowMode == "fullscreen" Then $WindowMode = "full"
 
 	Local $params = "-nointro -32bit -dx -" & $WindowMode & " -w " & $Resolution[1] & " -h " & $Resolution[2]
 
