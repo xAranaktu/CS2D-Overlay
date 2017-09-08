@@ -1,7 +1,7 @@
 CS2D Overlay
 Github link: https://github.com/xAranaktu/CS2D-Overlay
 
-![alt text](https://i.imgur.com/9m3Xs1F.jpg)
+![alt text](https://i.imgur.com/cJvaVmM.jpg)
 
 Supported resolutions:
 - 1920x1080 (recommended)
