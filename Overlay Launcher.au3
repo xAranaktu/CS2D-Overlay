@@ -1,25 +1,32 @@
 #RequireAdmin
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_Outfile=Overlay Launcher.exe
 #AutoIt3Wrapper_UseX64=n
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
+#include <APISysConstants.au3>
+#include <WinAPISys.au3>
+#include <WinAPIvkeysConstants.au3>
 #include <GUIConstants.au3>
 
+Global Const $DefaultDllPath = @ScriptDir & "\CS2DOverlay.dll"
 Global Const $SettingsPath = @MyDocumentsDir & "\CS2D_Overlay"
 Global Const $fNameOverlaySettings = "\settings.ini"
 Global Const $fNameLauncherSettings = "\launcher_settings.ini"
 Global Const $fNameLogs = "\log.txt"
 
-$MainGUI = GUICreate("Overlay Launcher", 275, 105, (@DesktopWidth/2) - (275/2), (@DesktopHeight/2) - (105/2))
+$MainGUI = GUICreate("Overlay Launcher", 275, 135, (@DesktopWidth/2) - (275/2), (@DesktopHeight/2) - (105/2))
 
 $ButtonSettings = GUICtrlCreateButton("Settings", 10, 10, 75)
 $ButtonAdvencedSettings = GUICtrlCreateButton("Advenced Settings", 95, 10, 105)
 $ButtonRunCS2D = GUICtrlCreateButton("Run CS2D", 10, 40, 75)
 $ButtonInjectDll = GUICtrlCreateButton("Inject DLL", 95, 40, 105)
+$ButtonHotkeys = GUICtrlCreateButton("Hotkeys", 10, 70, 75)
+GUICtrlSetState($ButtonHotkeys, $GUI_DISABLE)
 GUICtrlSetState($ButtonInjectDll, $GUI_DISABLE)
 
-GUICtrlCreateLabel("Status:", 10, 85, 50, 17)
-$label_status = GUICtrlCreateLabel("", 65, 85, 200, 17)
+GUICtrlCreateLabel("Status:", 10, 105, 50, 17)
+$label_status = GUICtrlCreateLabel("", 65, 105, 200, 17)
 
 Init()
 GUISetState(@SW_SHOW)
@@ -42,6 +49,12 @@ While 1
 				GUI_AdvencedSettings()
 				GUISetState(@SW_ENABLE, $MainGUI)
 				WinActivate($MainGUI)
+		Case $ButtonHotkeys
+				GUISetState(@SW_DISABLE, $MainGUI)
+				GUISetState(@SW_MINIMIZE, $MainGUI)
+				GUI_Hotkeys()
+				GUISetState(@SW_ENABLE, $MainGUI)
+				WinActivate($MainGUI)
 		Case $ButtonRunCS2D
 			RunCS2D()
 		Case $ButtonInjectDll
@@ -49,7 +62,33 @@ While 1
 	EndSwitch
 WEnd
 
+Func GUI_Hotkeys()
+	Local $SettingsFullPath = $SettingsPath & $fNameOverlaySettings
 
+	Local $hGUI2 = GUICreate("Settings", 280, 200, (@DesktopWidth/2) - (280/2), (@DesktopHeight/2) - (200/2))
+
+	Local $Hotkey_ShowOverlay = IniRead($SettingsFullPath, "Hotkeys", "ShowOverlay", "0x12")
+
+	GUICtrlCreateGroup("Hotkeys", 10, 10, 250, 100)
+	GUICtrlCreateLabel("Show Overlay:", 15, 35)
+	Local $ShowOverlayCombo = GUICtrlCreateCombo("", 90, 31, 155)
+	GUICtrlSetData($ShowOverlayCombo, "VK_LBUTTON|VK_RBUTTON|VK_CANCEL|VK_MBUTTON|VK_XBUTTON1|VK_XBUTTON2|VK_BACK|VK_TAB|VK_CLEAR|VK_RETURN|VK_SHIFT|VK_CONTROL|VK_MENU|VK_PAUSE|VK_CAPITAL|VK_KANA|VK_HANGUL|VK_JUNJA|VK_FINAL|VK_HANJA|VK_KANJI|VK_ESCAPE|VK_CONVERT|VK_NONCONVERT|VK_ACCEPT|VK_MODECHANGE|VK_SPACE|VK_PRIOR|VK_NEXT|VK_END|VK_HOME|VK_LEFT|VK_UP|VK_RIGHT|VK_DOWN|VK_SELECT|VK_PRINT|VK_EXECUTE|VK_SNAPSHOT|VK_INSERT|VK_DELETE|VK_HELP|VK_0|VK_1|VK_2|VK_3|VK_4|VK_5|VK_6|VK_7|VK_8|VK_9|VK_A|VK_B|VK_C|VK_D|VK_E|VK_F|VK_G|VK_H|VK_I|VK_J|VK_K|VK_L|VK_M|VK_N|VK_O|VK_P|VK_Q|VK_R|VK_S|VK_T|VK_U|VK_V|VK_W|VK_X|VK_Y|VK_Z|VK_LWIN|VK_RWIN|VK_APPS|VK_SLEEP|VK_NUMPAD0|VK_NUMPAD1|VK_NUMPAD2|VK_NUMPAD3|VK_NUMPAD4|VK_NUMPAD5|VK_NUMPAD6|VK_NUMPAD7|VK_NUMPAD8|VK_NUMPAD9|VK_MULTIPLY|VK_ADD|VK_SEPARATOR|VK_SUBTRACT|VK_DECIMAL|VK_DIVIDE|VK_F1|VK_F2|VK_F3|VK_F4|VK_F5|VK_F6|VK_F7|VK_F8|VK_F9|VK_F10|VK_F11|VK_F12|VK_F13|VK_F14|VK_F15|VK_F16|VK_F17|VK_F18|VK_F19|VK_F20|VK_F21|VK_F22|VK_F23|VK_F24|VK_NUMLOCK|VK_SCROLL|VK_LSHIFT|VK_RSHIFT|VK_LCONTROL|VK_RCONTROL|VK_LMENU|VK_RMENU|VK_BROWSER_BACK|VK_BROWSER_FORWARD|VK_BROWSER_REFRESH|VK_BROWSER_STOP|VK_BROWSER_SEARCH|VK_BROWSER_FAVORITES|VK_BROWSER_HOME|VK_VOLUME_MUTE|VK_VOLUME_DOWN|VK_VOLUME_UP|VK_MEDIA_NEXT_TRACK|VK_MEDIA_PREV_TRACK|VK_MEDIA_STOP|VK_MEDIA_PLAY_PAUSE|VK_LAUNCH_MAIL|VK_LAUNCH_MEDIA_SELECT|VK_LAUNCH_APP1|VK_LAUNCH_APP2|VK_OEM_1|VK_OEM_PLUS|VK_OEM_COMMA|VK_OEM_MINUS|VK_OEM_PERIOD|VK_OEM_2|VK_OEM_3|VK_OEM_4|VK_OEM_5|VK_OEM_6|VK_OEM_7|VK_OEM_8|VK_OEM_102|VK_PROCESSKEY|VK_PACKET|VK_ATTN|VK_CRSEL|VK_EXSEL|VK_EREOF|VK_PLAY|VK_ZOOM|VK_NONAME|VK_PA1|VK_OEM_CLEAR", "VK_MENU")
+
+	GUICtrlCreateLabel("Free Look:", 15, 35)
+	Local $FreeLookCombo = GUICtrlCreateCombo("", 90, 31, 155)
+	GUICtrlSetData($FreeLookCombo, "VK_LBUTTON|VK_RBUTTON|VK_CANCEL|VK_MBUTTON|VK_XBUTTON1|VK_XBUTTON2|VK_BACK|VK_TAB|VK_CLEAR|VK_RETURN|VK_SHIFT|VK_CONTROL|VK_MENU|VK_PAUSE|VK_CAPITAL|VK_KANA|VK_HANGUL|VK_JUNJA|VK_FINAL|VK_HANJA|VK_KANJI|VK_ESCAPE|VK_CONVERT|VK_NONCONVERT|VK_ACCEPT|VK_MODECHANGE|VK_SPACE|VK_PRIOR|VK_NEXT|VK_END|VK_HOME|VK_LEFT|VK_UP|VK_RIGHT|VK_DOWN|VK_SELECT|VK_PRINT|VK_EXECUTE|VK_SNAPSHOT|VK_INSERT|VK_DELETE|VK_HELP|VK_0|VK_1|VK_2|VK_3|VK_4|VK_5|VK_6|VK_7|VK_8|VK_9|VK_A|VK_B|VK_C|VK_D|VK_E|VK_F|VK_G|VK_H|VK_I|VK_J|VK_K|VK_L|VK_M|VK_N|VK_O|VK_P|VK_Q|VK_R|VK_S|VK_T|VK_U|VK_V|VK_W|VK_X|VK_Y|VK_Z|VK_LWIN|VK_RWIN|VK_APPS|VK_SLEEP|VK_NUMPAD0|VK_NUMPAD1|VK_NUMPAD2|VK_NUMPAD3|VK_NUMPAD4|VK_NUMPAD5|VK_NUMPAD6|VK_NUMPAD7|VK_NUMPAD8|VK_NUMPAD9|VK_MULTIPLY|VK_ADD|VK_SEPARATOR|VK_SUBTRACT|VK_DECIMAL|VK_DIVIDE|VK_F1|VK_F2|VK_F3|VK_F4|VK_F5|VK_F6|VK_F7|VK_F8|VK_F9|VK_F10|VK_F11|VK_F12|VK_F13|VK_F14|VK_F15|VK_F16|VK_F17|VK_F18|VK_F19|VK_F20|VK_F21|VK_F22|VK_F23|VK_F24|VK_NUMLOCK|VK_SCROLL|VK_LSHIFT|VK_RSHIFT|VK_LCONTROL|VK_RCONTROL|VK_LMENU|VK_RMENU|VK_BROWSER_BACK|VK_BROWSER_FORWARD|VK_BROWSER_REFRESH|VK_BROWSER_STOP|VK_BROWSER_SEARCH|VK_BROWSER_FAVORITES|VK_BROWSER_HOME|VK_VOLUME_MUTE|VK_VOLUME_DOWN|VK_VOLUME_UP|VK_MEDIA_NEXT_TRACK|VK_MEDIA_PREV_TRACK|VK_MEDIA_STOP|VK_MEDIA_PLAY_PAUSE|VK_LAUNCH_MAIL|VK_LAUNCH_MEDIA_SELECT|VK_LAUNCH_APP1|VK_LAUNCH_APP2|VK_OEM_1|VK_OEM_PLUS|VK_OEM_COMMA|VK_OEM_MINUS|VK_OEM_PERIOD|VK_OEM_2|VK_OEM_3|VK_OEM_4|VK_OEM_5|VK_OEM_6|VK_OEM_7|VK_OEM_8|VK_OEM_102|VK_PROCESSKEY|VK_PACKET|VK_ATTN|VK_CRSEL|VK_EXSEL|VK_EREOF|VK_PLAY|VK_ZOOM|VK_NONAME|VK_PA1|VK_OEM_CLEAR", "VK_INSERT")
+	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
+	GUISetState()
+
+	While 1
+
+		Switch GUIGetMsg()
+			Case $GUI_EVENT_CLOSE
+				GUIDelete($hGUI2)
+				ExitLoop
+		EndSwitch
+	WEnd
+EndFunc
 
 
 Func GUI_Settings()
@@ -74,6 +113,9 @@ Func GUI_Settings()
 
 	Local $AutoUpdateScoreCB = GUICtrlCreateCheckbox("Update score automatically", 15, 120, 150, 20)
 	If IniRead($SettingsFullPath, "Overlay", "AutoUpdateScore", "1") == "1" Then GUICtrlSetState($AutoUpdateScoreCB, $GUI_CHECKED)
+
+	Local $PatternScanCB = GUICtrlCreateCheckbox("Pattern Scan", 15, 140, 150, 20)
+	If IniRead($SettingsFullPath, "Overlay", "PatternScan", "0") == "1" Then GUICtrlSetState($PatternScanCB, $GUI_CHECKED)
 
 	GUISetState()
 
@@ -103,6 +145,12 @@ Func GUI_Settings()
 				Else
 					IniWrite($SettingsFullPath, "Overlay", "AutoUpdateScore", 0)
 				EndIf
+			Case $PatternScanCB
+				If BitAND(GUICtrlRead($PatternScanCB), $GUI_CHECKED) = $GUI_CHECKED Then
+					IniWrite($SettingsFullPath, "Overlay", "PatternScan", 1)
+				Else
+					IniWrite($SettingsFullPath, "Overlay", "PatternScan", 0)
+				EndIf
 		EndSwitch
 	WEnd
 EndFunc
@@ -114,7 +162,7 @@ Func GUI_AdvencedSettings()
 	Local $Resolution = IniRead($SettingsFullPath, "CS2D", "Resolution", "1920x1080")
 	Local $WindowMode = IniRead($SettingsFullPath, "CS2D", "Window_Mode", "fullscreen")
 
-	Local $hGUI2 = GUICreate("Advenced Settings", 250, 200, (@DesktopWidth/2) - (250/2), (@DesktopHeight/2) - (200/2))
+	Local $hGUI2 = GUICreate("Advenced Settings", 250, 300, (@DesktopWidth/2) - (250/2), (@DesktopHeight/2) - (300/2))
 
 	GUICtrlCreateGroup("CS2D", 10, 10, 210, 100)
 	GUICtrlCreateLabel("CS2D Path:", 15, 30)
@@ -130,16 +178,26 @@ Func GUI_AdvencedSettings()
 	GUICtrlSetData($WindowModeCombo, "windowed|fullscreen", $WindowMode)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
+	Local $DLLPath = IniRead($SettingsFullPath, "Injecting", "DLLPath", @ScriptDir & "\CS2DOverlay.dll")
+	If $DLLPath = "" Then
+		$DLLPath = $DefaultDllPath
+		IniWrite($SettingsFullPath, "Injecting", "DLLPath", $DLLPath)
+	EndIf
+
 	Local $Injecting = IniRead($SettingsFullPath, "Injecting", "Injecting", "Auto")
 	Local $Delay = IniRead($SettingsFullPath, "Injecting", "Delay", "3s.")
 
-	GUICtrlCreateGroup("Injecting", 10, 110, 210, 70)
-	GUICtrlCreateLabel("Injecting:", 15, 130)
-	Local $InjectingCombo = GUICtrlCreateCombo("", 90, 126, 105)
+	GUICtrlCreateGroup("Injecting", 10, 110, 210, 110)
+	GUICtrlCreateLabel("DLL Path:", 15, 130)
+	Local $DLLPathInput = GUICtrlCreateInput($DLLPath, 90, 126, 105)
+	Local $DLLPathButton = GUICtrlCreateButton("...", 195, 124)
+
+	GUICtrlCreateLabel("Injecting:", 15, 155)
+	Local $InjectingCombo = GUICtrlCreateCombo("", 90, 151, 105)
 	GUICtrlSetData($InjectingCombo, "Auto|Manual", $Injecting)
 
-	GUICtrlCreateLabel("Delay:", 15, 155)
-	Local $DelayCombo = GUICtrlCreateCombo("", 90, 151, 105)
+	GUICtrlCreateLabel("Delay:", 15, 180)
+	Local $DelayCombo = GUICtrlCreateCombo("", 90, 176, 105)
 	GUICtrlSetData($DelayCombo, "0s.|1s.|3s.|5s.|10s.|20s.|30s.|60s.", $Delay)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
@@ -161,9 +219,13 @@ Func GUI_AdvencedSettings()
 				GUIDelete($hGUI2)
 				ExitLoop
 			Case $CS2DPathButton
-				$CS2DPath = FileOpenDialog("CS2D", @DesktopDir & "\", "CS2D (CS2D.exe)", 2, "CS2D.exe", $hGUI2)
+				$CS2DPath = FileOpenDialog("CS2D", @DesktopDir, "CS2D (CS2D.exe)", 2, "CS2D.exe", $hGUI2)
 				IniWrite($SettingsFullPath, "CS2D", "Path", $CS2DPath)
 				GUICtrlSetData($CS2DPathInput, $CS2DPath)
+			Case $DLLPathButton
+				$DLLPath = FileOpenDialog("CS2DOverlay.dll", @ScriptDir, "CS2DOverlay.dll (CS2DOverlay.dll)", 2, "CS2DOverlay.dll", $hGUI2)
+				IniWrite($SettingsFullPath, "Injecting", "DLLPath", $DLLPath)
+				GUICtrlSetData($DLLPathInput, $DLLPath)
 		EndSwitch
 	WEnd
 EndFunc
@@ -229,16 +291,14 @@ Func InjectOverlay()
 	Local $PID = ProcessExists("CS2D.exe")
 	If Not $PID Then Return
 
-	Local $DllPath = @ScriptDir & "\CS2DOverlay.dll"
+	Local $DllPath = IniRead($SettingsPath & $fNameLauncherSettings, "Injecting", "DLLPath", @ScriptDir & "\CS2DOverlay.dll")
 	If Not FileExists($DllPath) Then
 		DoLogs("File not found:" & @CRLF & $DllPath)
 		MsgBox(16, "CS2D Overlay", "File not found:" & @CRLF & $DllPath)
 		Exit
 	EndIf
 
-	Local $SettingsFullPath = $SettingsPath & $fNameLauncherSettings
-
-	Local $Delay = IniRead($SettingsFullPath, "Injecting", "Delay", "3s.")
+	Local $Delay = IniRead($SettingsPath & $fNameLauncherSettings, "Injecting", "Delay", "3s.")
 	GUICtrlSetData($label_status, "Injecting CS2DOverlay.dll within " & $Delay)
 
 	Sleep(Int(StringTrimRight($Delay, 2)) * 1000)
