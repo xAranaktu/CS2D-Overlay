@@ -18,7 +18,7 @@ Global Const $fNameLogs = "\log.txt"
 $MainGUI = GUICreate("Overlay Launcher", 275, 135, (@DesktopWidth/2) - (275/2), (@DesktopHeight/2) - (105/2))
 
 $ButtonSettings = GUICtrlCreateButton("Settings", 10, 10, 75)
-$ButtonAdvencedSettings = GUICtrlCreateButton("Advenced Settings", 95, 10, 105)
+$ButtonAdvancedSettings = GUICtrlCreateButton("Advanced Settings", 95, 10, 105)
 $ButtonRunCS2D = GUICtrlCreateButton("Run CS2D", 10, 40, 75)
 $ButtonInjectDll = GUICtrlCreateButton("Inject DLL", 95, 40, 105)
 $ButtonHotkeys = GUICtrlCreateButton("Hotkeys", 10, 70, 75)
@@ -43,10 +43,10 @@ While 1
 				GUI_Settings()
 				GUISetState(@SW_ENABLE, $MainGUI)
 				WinActivate($MainGUI)
-		Case $ButtonAdvencedSettings
+		Case $ButtonAdvancedSettings
 				GUISetState(@SW_DISABLE, $MainGUI)
 				GUISetState(@SW_MINIMIZE, $MainGUI)
-				GUI_AdvencedSettings()
+				GUI_AdvancedSettings()
 				GUISetState(@SW_ENABLE, $MainGUI)
 				WinActivate($MainGUI)
 		Case $ButtonHotkeys
@@ -155,14 +155,14 @@ Func GUI_Settings()
 	WEnd
 EndFunc
 
-Func GUI_AdvencedSettings()
+Func GUI_AdvancedSettings()
 	Local $SettingsFullPath = $SettingsPath & $fNameLauncherSettings
 
 	Local $CS2DPath = IniRead($SettingsFullPath, "CS2D", "Path", "")
 	Local $Resolution = IniRead($SettingsFullPath, "CS2D", "Resolution", "1920x1080")
 	Local $WindowMode = IniRead($SettingsFullPath, "CS2D", "Window_Mode", "fullscreen")
 
-	Local $hGUI2 = GUICreate("Advenced Settings", 250, 300, (@DesktopWidth/2) - (250/2), (@DesktopHeight/2) - (300/2))
+	Local $hGUI2 = GUICreate("Advanced Settings", 250, 300, (@DesktopWidth/2) - (250/2), (@DesktopHeight/2) - (300/2))
 
 	GUICtrlCreateGroup("CS2D", 10, 10, 210, 100)
 	GUICtrlCreateLabel("CS2D Path:", 15, 30)
