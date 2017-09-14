@@ -1,4 +1,5 @@
 ## CS2D Overlay ##
+![alt text](https://i.imgur.com/yfTfI1B.gifv)
 ![alt text](https://i.imgur.com/cJvaVmM.jpg)
 
 ---
@@ -12,7 +13,7 @@
 ---
 **Useful hotkeys:**
 
-- **ALT key** - Hide/show overlay
+- **ALT key** - Show/hide overlay
 - **INSERT key** - Free look on specmode
 - **Caps Lock key** - Damage dealt 
 - **PAGE UP key** - No fow
@@ -21,12 +22,12 @@
 - **F6 key** - Increase Terrorist score by 1
 - **F7 key** - Increase Counter-Terrorist score by 1
 - **F8 key** - Reset both team score.
-- **F9 key** - Swap team names.
+- **F9 key** - Show/hide overlay menu.
 
 ---
 **How to use:**
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ppSLAltnleA/0.jpg)](https://www.youtube.com/watch?v=ppSLAltnleA)
+[![IMAGE ALT TEXT HERE](https://i.imgur.com/MUWMVRn.jpg)](https://www.youtube.com/watch?v=ppSLAltnleA)
 
 1. Install csp_text.ttf font. (You will find it in "fonts" folder, you need to do it only once)
 2. Run "Overlay Launcher.exe" (As administrator)
