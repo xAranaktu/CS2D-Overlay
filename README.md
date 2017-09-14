@@ -1,5 +1,5 @@
 ## CS2D Overlay ##
-![alt text](https://i.imgur.com/yfTfI1B.gifv)
+![alt text](https://i.imgur.com/yfTfI1B.gif)
 ![alt text](https://i.imgur.com/cJvaVmM.jpg)
 
 ---
