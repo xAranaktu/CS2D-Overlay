@@ -8,6 +8,7 @@
  - Free look
  - No Flash
  - No Fow
+ - X-ray
  - Automatically updating match score
  - Showing damage dealt by each player
 ---
@@ -15,6 +16,7 @@
 
 - **ALT key** - Show/hide overlay
 - **INSERT key** - Free look on specmode
+- **X key** - X-ray
 - **Caps Lock key** - Damage dealt 
 - **PAGE UP key** - No fow
 - **PAGE Down key** - No flash
