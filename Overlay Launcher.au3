@@ -171,7 +171,7 @@ Func GUI_AdvancedSettings()
 
 	GUICtrlCreateLabel("Resolution:", 15, 55)
 	Local $ResolutionCombo = GUICtrlCreateCombo("", 90, 51, 105)
-	GUICtrlSetData($ResolutionCombo, "1920x1080|1600x900|1366x768|1280x720", $Resolution)
+	GUICtrlSetData($ResolutionCombo, "1920x1080|1600x900|1366x768|1280x720|640x480", $Resolution)
 
 	GUICtrlCreateLabel("Window Mode:", 15, 80)
 	Local $WindowModeCombo = GUICtrlCreateCombo("", 90, 76, 105)
