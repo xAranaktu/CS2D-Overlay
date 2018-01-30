@@ -74,3 +74,8 @@
 **Fixing problems**
 
 If you have any problems write on [github](https://github.com/xAranaktu/CS2D-Overlay/issues) or [in thread on cs2d.net](https://cs2d.net/viewtopic.php?f=871&t=6869)
+
+---
+**Credits**
+
+In this project I've used some parts of the code from this repo -> [DrNseven/Warframe](https://github.com/DrNseven/Warframe)
