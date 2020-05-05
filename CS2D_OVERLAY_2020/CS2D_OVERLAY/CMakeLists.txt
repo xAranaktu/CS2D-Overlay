@@ -23,6 +23,7 @@ SET(ALL_HEADERS
     "headers/patscanner.h"
     "headers/logger.h"
     "headers/AOBs.h"
+    "headers/sdk.h"
 
     "MinHook/include/MinHook.h"
     "MinHook/src/buffer.h"
@@ -32,15 +33,18 @@ SET(ALL_HEADERS
     "MinHook/src/HDE/pstdint.h"
     "MinHook/src/HDE/table32.h"
     "MinHook/src/HDE/table64.h"
-    
-    
 )
 
 
 # Add source to this project's dll.
-add_library (${PROJECT_NAME} SHARED ${ALL_CPP} ${ALL_HEADERS} ${ASM_FILES})
+add_library (${PROJECT_NAME} SHARED ${ALL_CPP} ${ALL_HEADERS})
+
+get_filename_component(DXSDK_DIR "DXSDK/x86/" ABSOLUTE)
+
+target_link_libraries(${PROJECT_NAME} ${DXSDK_DIR}/d3dx9.lib)
 target_link_libraries(${PROJECT_NAME} ${WinSDK})
 
+target_include_directories(${PROJECT_NAME} PRIVATE "DXSDK/")
 target_include_directories(${PROJECT_NAME} PRIVATE "MinHook/")
 target_include_directories(${PROJECT_NAME} PRIVATE "headers/")
 target_include_directories(${PROJECT_NAME} PRIVATE ${WinSDK})

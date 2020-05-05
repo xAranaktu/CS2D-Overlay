@@ -8,6 +8,7 @@
 void EjectDLL(HMODULE hModule) {
     logger.Write(LOG_INFO, "Ejecting...");
     Sleep(100);
+    d3d9hook::DeleteDirectXHooks();
 
     Sleep(1000);
     logger.Write(LOG_INFO, "Ejected...");
@@ -71,11 +72,24 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
     // Process input
     logger.Write(LOG_INFO, "Start main loop");
     for (;;) {
-        Sleep(100);
+        Sleep(50);
         if (GetAsyncKeyState(VK_END)) {
             Sleep(1000);
             break;
         }
+
+        if (GetAsyncKeyState(VK_MENU) & 1) {
+            ShowOverlay = !ShowOverlay;
+
+            ShowOverlay ? logger.Write(LOG_INFO, "ShowOverlay = true") : logger.Write(LOG_INFO, "ShowOverlay = false");
+        }
+
+        if (GetAsyncKeyState(VK_F9) & 1) {
+            ShowMenu = !ShowMenu;
+
+            ShowMenu ? logger.Write(LOG_INFO, "ShowMenu = true") : logger.Write(LOG_INFO, "ShowMenu = false");
+        }
+
     }
     EjectDLL(reinterpret_cast<HMODULE>(lpModule));
     return 0;
