@@ -4,6 +4,7 @@
 #include "../headers/d3d9hook.h"
 #include "dllmain.h"
 
+
 namespace d3d9hook {
 
     HRESULT Present_Hook(IDirect3DDevice9* pDevice, CONST RECT* pSrcRect, CONST RECT* pDestRect, HWND hDestWindow, CONST RGNDATA* pDirtyRegion) {
@@ -71,6 +72,56 @@ namespace d3d9hook {
     }
 
     void BuildOverlay(LPDIRECT3DDEVICE9 pDevice) {
+
+        // init vars
+        int maxPlayers = 32;
+
+        int countCT = 0;
+        int countTT = 0;
+
+        DWORD HPColor;
+        DWORD BarColor = HPBarBorder;
+
+        int bar_width = 230;
+        int bar_x = 10;
+        int bar_y = (int)screenCenterY + 250;
+        int bar_height = 46;
+        int bar_thickness = 3;
+
+        int recalc_bar_x = bar_x;
+        int recalc_bar_y = bar_y;
+
+        int curHP_x = 0;
+        int curHP_y = 0;
+
+        PlayerEntityList* pPlayerEntity = PlayerEntityList::GetFirst();
+        //PlayerEntityList* pNextPlayerEntity = pPlayerEntity->nextEntity;
+
+        int curHP = 0;
+        for (int i = 1; i <= maxPlayers; i++) {
+            CPlayer* pPlayer = pPlayerEntity->ptrPlayer;
+
+            if ((DWORD)pPlayer == (DWORD)pPlayerEntity) {
+                break;
+            }
+            pPlayerEntity = pPlayerEntity->nextEntity;
+
+            curHP = pPlayer->pHP->getValue();
+
+            if (curHP <= 0) continue;
+
+            if (pPlayer->teamID == 1) {
+                // TT
+                countTT += 1;
+                DrawPlayerBar(pDevice, pPlayer, countTT);
+            } else if (pPlayer->teamID == 2) {
+                // CT
+                countCT += 1;
+                DrawPlayerBar(pDevice, pPlayer, countCT);
+            }
+        }
+
+
 
     };
 
@@ -150,6 +201,111 @@ namespace d3d9hook {
         }
 
         return hRet;
+    }
+
+    void DrawHealthbar(LPDIRECT3DDEVICE9 pD3Ddev, int PosX, int PosY, int Value, int ValArm, int width, int height, int thickness, DWORD cBorder, DWORD cBar, bool isCT)
+    {
+        int bar_width = 230;
+        if (Value > 0)
+        {
+            // border
+            int width_arm, PosX_arm = PosX;
+
+            DrawRectangle(pD3Ddev, (float)(PosX - thickness), (float)(PosY - thickness), (float)(width), (float)(height), cBorder);
+
+            if (ValArm > 0)
+            {
+                width_arm = (int)((ValArm * ((float)width / 100)) - (thickness * 2));
+                if (isCT) PosX_arm = PosX + ((bar_width - (thickness * 2)) - width_arm);// invert drawing	
+            }
+
+            width = (int)((Value * ((float)width / 100)) - (thickness * 2));
+
+            if (isCT) PosX = PosX + ((bar_width - (thickness * 2)) - width);// invert drawing	
+
+
+            DrawRectangle(pD3Ddev, (float)(PosX), (float)(PosY), (float)(width), (float)((height / 2) - thickness), cBar);
+            if (ValArm > 0) DrawRectangle(pD3Ddev, (float)(PosX_arm), (float)(PosY), (float)(width_arm), 3.0, Cyan);
+
+        }
+    }
+
+    void DrawPlayerBar(LPDIRECT3DDEVICE9 pD3Ddev, CPlayer* pPlayer, int idx) {
+        int HP = pPlayer->pHP->getValue();
+
+        if (HP <= 0) return;
+
+        bool isCT = (pPlayer->teamID == 2);
+
+        // Background
+        int iY = Viewport.Height - playerBar.margin_bottom;
+        iY = (iY - ((playerBar.height + (playerBar.thickness * 2) + 3) * idx));
+
+
+        int iX = playerBar.margin_left_right;
+        if (isCT) {
+            iX = Viewport.Width - (playerBar.margin_left_right + playerBar.width);
+        }
+        
+        DrawRectangle(pD3Ddev, (float)iX, (float)(iY), (float)playerBar.width, (float)playerBar.height, HPBarBorder);
+
+        int row_1 = iY + playerBar.thickness;
+
+        // Health
+        int hpWidth = (int)(HP * ((float)playerBar.width / 100) - (playerBar.thickness * 2));
+        int hpHeight = (playerBar.height / 2) - (playerBar.thickness * 2);
+
+        std::string sHP = std::to_string(HP);
+        if (isCT) {
+            int hpx = iX + (playerBar.width - playerBar.thickness - hpWidth);
+            int shpx = iX + (playerBar.width - playerBar.thickness - 3);
+            DrawRectangle(pD3Ddev, (float)(hpx), (float)(row_1), (float)hpWidth, (float)hpHeight, CTBar);
+            TextWithBorder(guiFont, shpx, row_1, White, (char*)sHP.c_str(), alignRight);
+        }
+        else {
+            DrawRectangle(pD3Ddev, (float)(iX + playerBar.thickness), (float)(row_1), (float)hpWidth, (float)hpHeight, TTBar);
+            TextWithBorder(guiFont, iX + playerBar.thickness + 3, row_1, White, (char*)sHP.c_str(), alignLeft);
+        }
+
+        // Armor
+        int arm = pPlayer->pArmor->getValue();
+        if (arm > 0) {
+            int armWidth = (int)(arm * ((float)playerBar.width / 100) - (playerBar.thickness * 2));
+
+            if (isCT) {
+                int armx = iX + (playerBar.width - playerBar.thickness - armWidth);
+                DrawRectangle(pD3Ddev, (float)(armx), (float)(row_1 + hpHeight), (float)armWidth, 3.0, Cyan);
+            }
+            else {
+                DrawRectangle(pD3Ddev, (float)(iX + playerBar.thickness), (float)(row_1 + hpHeight), (float)armWidth, 3.0, Cyan);
+            } 
+        }
+
+        //Nickname
+        size_t nameSize = pPlayer->ptrCname->NicknameLen + 1;
+        size_t convertedChars = 0;
+        char* pName = new char[nameSize];
+        wcstombs_s(&convertedChars, pName, nameSize, pPlayer->ptrCname->Nickname, pPlayer->ptrCname->NicknameLen);
+        
+        if (isCT) {
+            int nx = iX + (playerBar.width - playerBar.thickness - 30);
+            TextWithBorder(guiFont, nx, row_1, White, pName, alignRight);
+        } else {
+            TextWithBorder(guiFont, iX + 30, row_1, White, pName, alignLeft);
+        }
+        delete[] pName;
+
+        //Money
+        int row_2 = row_1 + hpHeight + playerBar.thickness + 5;
+        std::string sMoney = "$" + std::to_string(pPlayer->pMoney->getValue());
+        if (isCT) {
+            int mx = iX + playerBar.thickness + 50;
+            TextWithBorder(guiFont, mx, row_2, Gold, (char*)sMoney.c_str(), alignRight);
+        }
+        else {
+            TextWithBorder(guiFont, iX + playerBar.width - 50, row_2, Gold, (char*)sMoney.c_str(), alignLeft);
+        }
+        
     }
 
     void WriteText(LPD3DXFONT pFont, int x, int y, DWORD color, char* text, DWORD format)

@@ -22,12 +22,13 @@
 #include "context.h"
 #include "patscanner.h"
 
+
 namespace fs = std::filesystem;
 
 inline core::Context g_ctx_proc;
 inline core::Context g_ctx_dll;
 
-inline bool ShowOverlay = false;
-inline bool ShowMenu = false;
+inline bool ShowOverlay = true;
+inline bool ShowMenu = true;
 
 void CreateDXHook();

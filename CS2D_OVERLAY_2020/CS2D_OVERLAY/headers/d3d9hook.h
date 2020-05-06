@@ -1,6 +1,7 @@
 #pragma once
 #include "dllmain.h"
 #include "../MinHook/include/MinHook.h"
+#include "sdk.h"
 
 namespace d3d9hook {
     #define alignCenter     DT_NOCLIP | DT_CENTER
@@ -49,6 +50,8 @@ namespace d3d9hook {
     #define TTBar           D3DCOLOR_ARGB(230, 255, 50, 50) 
     #define CTBar           D3DCOLOR_ARGB(230, 0, 125, 255) 
 
+    inline bool hook_initialized = false;
+
     // vtable
     inline DWORD* dVtable = NULL;
 
@@ -57,18 +60,24 @@ namespace d3d9hook {
     inline float screenCenterX = NULL;
     inline float screenCenterY = NULL;
 
-    inline bool hook_initialized = false;
-
     //font
     inline LPD3DXFONT guiFont, symbolFont, scoreFont = NULL; 
 
     // menu & overlay
-    inline int iTransparency = 0;
+    inline int iTransparency = 1;
     inline int MenuPosX = 0;
     inline int MenuPosY = 0;
     inline int iBorderedText = 0;
 
     inline char* opt_OnOff[] = { "[OFF]", "[ON]" };
+
+    struct PlayerBar {
+        int width = 230;
+        int height = 46;
+        int margin_left_right = 10;
+        int margin_bottom = 50;
+        int thickness = 3;
+    } inline playerBar;
 
     // hook
     typedef HRESULT(APIENTRY* Present) (IDirect3DDevice9*, CONST RECT*, CONST RECT*, HWND, CONST RGNDATA*);
@@ -88,6 +97,8 @@ namespace d3d9hook {
     void TextWithBorder(LPD3DXFONT pFont, int x, int y, DWORD color, char* text, DWORD align);
     void FillRGB(LPDIRECT3DDEVICE9 pDevice, int x, int y, int w, int h, D3DCOLOR color);
     HRESULT DrawRectangle(LPDIRECT3DDEVICE9 Device, FLOAT x, FLOAT y, FLOAT w, FLOAT h, DWORD Color);
+
+    void DrawPlayerBar(LPDIRECT3DDEVICE9 pD3Ddev, CPlayer* pPlayer, int idx);
 
     // Helpers
     void setScreenCenter(LPDIRECT3DDEVICE9 pDevice);

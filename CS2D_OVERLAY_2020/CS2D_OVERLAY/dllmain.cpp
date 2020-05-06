@@ -4,6 +4,8 @@
 #include "headers/dllmain.h"
 #include "headers/logger.h"
 #include "headers/d3d9hook.h"
+#include "headers/sdk.h"
+
 
 void EjectDLL(HMODULE hModule) {
     logger.Write(LOG_INFO, "Ejecting...");
@@ -86,6 +88,26 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
 
         if (GetAsyncKeyState(VK_F9) & 1) {
             ShowMenu = !ShowMenu;
+
+            CPlayer* localPlayer = CPlayer::GetLocalPlayer();
+
+            logger.Write(
+                LOG_INFO,
+                "localPlayer 0x%08lX",
+                localPlayer
+            );
+
+            logger.Write(LOG_INFO, "usgn: %d, ", localPlayer->USGN_ID);
+            logger.Write(LOG_INFO, "hp: %d", localPlayer->pHP->getValue());
+
+            PlayerEntityList* pEntList = PlayerEntityList::GetFirst();
+
+            logger.Write(
+                LOG_INFO,
+                "pEntList 0x%08lX",
+                pEntList
+            );
+
 
             ShowMenu ? logger.Write(LOG_INFO, "ShowMenu = true") : logger.Write(LOG_INFO, "ShowMenu = false");
         }
