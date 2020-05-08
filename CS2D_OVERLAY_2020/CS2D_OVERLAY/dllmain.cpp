@@ -5,12 +5,20 @@
 #include "headers/logger.h"
 #include "headers/d3d9hook.h"
 #include "headers/sdk.h"
+#include "headers/config.h"
+#include "headers/features.h"
 
 
 void EjectDLL(HMODULE hModule) {
     logger.Write(LOG_INFO, "Ejecting...");
     Sleep(100);
     d3d9hook::DeleteDirectXHooks();
+
+    bNoFlash = false;
+    Features::changeNoFlash();
+
+    bNoFOW = false;
+    Features::changeNoFOW();
 
     Sleep(1000);
     logger.Write(LOG_INFO, "Ejected...");
@@ -42,6 +50,14 @@ void CreateDXHook() {
     d3d9hook::SetupDirectXHooks();
 }
 
+void loadConfig() {
+    logger.Write(LOG_INFO, "loadConfig...");
+    iTransparency = config::Load("Overlay", "Transparency", 1);
+    iBorderedText = config::Load("Overlay", "BorderedText", 1);
+    team1 = config::iniLoadString("Teams", "Team1", "TT");
+    team2 = config::iniLoadString("Teams", "Team2", "CT");
+}
+
 DWORD WINAPI mainFunc(LPVOID lpModule)
 {
     Sleep(200);
@@ -69,7 +85,12 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
         mod_size
     );
 
+    loadConfig();
     CreateDXHook();
+
+    //Features
+    Features::changeNoFlash();
+    Features::changeNoFOW();
 
     // Process input
     logger.Write(LOG_INFO, "Start main loop");
@@ -91,22 +112,34 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
 
             CPlayer* localPlayer = CPlayer::GetLocalPlayer();
 
-            logger.Write(
-                LOG_INFO,
-                "localPlayer 0x%08lX",
-                localPlayer
-            );
+#ifndef _DEBUG
+            if (CPlayer::is_valid((DWORD)localPlayer)) {
+                logger.Write(
+                    LOG_INFO,
+                    "localPlayer 0x%08lX",
+                    localPlayer
+                );
 
-            logger.Write(LOG_INFO, "usgn: %d, ", localPlayer->USGN_ID);
-            logger.Write(LOG_INFO, "hp: %d", localPlayer->pHP->getValue());
+                logger.Write(LOG_INFO, "usgn: %d, ", localPlayer->USGN_ID);
+                logger.Write(LOG_INFO, "hp: %d", localPlayer->pHP->getValue());
 
-            PlayerEntityList* pEntList = PlayerEntityList::GetFirst();
+                PlayerEntityList* pEntList = PlayerEntityList::GetFirst();
 
-            logger.Write(
-                LOG_INFO,
-                "pEntList 0x%08lX",
-                pEntList
-            );
+                logger.Write(
+                    LOG_INFO,
+                    "pEntList 0x%08lX",
+                    pEntList
+                );
+            }
+            else {
+                logger.Write(
+                    LOG_INFO,
+                    "Invalid - localPlayer 0x%08lX",
+                    localPlayer
+                );
+            }
+#endif
+
 
 
             ShowMenu ? logger.Write(LOG_INFO, "ShowMenu = true") : logger.Write(LOG_INFO, "ShowMenu = false");

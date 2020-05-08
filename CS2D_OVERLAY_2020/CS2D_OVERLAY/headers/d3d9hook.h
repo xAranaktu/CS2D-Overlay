@@ -2,6 +2,7 @@
 #include "dllmain.h"
 #include "../MinHook/include/MinHook.h"
 #include "sdk.h"
+#include "sprites.h"
 
 namespace d3d9hook {
     #define alignCenter     DT_NOCLIP | DT_CENTER
@@ -50,7 +51,12 @@ namespace d3d9hook {
     #define TTBar           D3DCOLOR_ARGB(230, 255, 50, 50) 
     #define CTBar           D3DCOLOR_ARGB(230, 0, 125, 255) 
 
+    #define ItemColorOn Green
+    #define ItemColorOff Red
+    #define ItemCurrent White
+
     inline bool hook_initialized = false;
+    
 
     // vtable
     inline DWORD* dVtable = NULL;
@@ -63,19 +69,32 @@ namespace d3d9hook {
     //font
     inline LPD3DXFONT guiFont, symbolFont, scoreFont = NULL; 
 
+    //textures
+    inline bool sprites_created = false;
+    inline bool tex_created = false;
+    inline LPD3DXSPRITE sprWep1 = NULL, sprWep2 = NULL, sprIcon = NULL, sprLogo = NULL;
+    inline LPDIRECT3DTEXTURE9 texLogo, texSymArm, texSymHP, texIcoC4, texIcoDef, texUSP, texGlock, texDeagle, texP228, texElite, texFiveSeven, texM3, texXM1014, texMP5, texTMP, texP90, texMAC10, texUMP, texAK47, texSG552, texM4A1, texAUG, texScout, texAWP, texG3SG1, texSG550, texGalil, texFamas, texM249, texTactShield, texLaser, texFlame, texRPG, texRocket, texGrenade, texKnife, texHE, texFB, texSmoke, texFlare, texBomb, texMachete, texM134, texFNF2000 = NULL;
+
+
     // menu & overlay
-    inline int iTransparency = 1;
+  
+    inline int MenuSelection = 1;
+    inline int Current = 1;
+    inline int swapTeamNames = 0;
     inline int MenuPosX = 0;
     inline int MenuPosY = 0;
     inline int iBorderedText = 0;
 
     inline char* opt_OnOff[] = { "[OFF]", "[ON]" };
+    inline char* opt_SpecMode[] = { "[WAR]", "[ALL]", "[TEAM]" };
+    inline char* opt_Val[] = { "" };
+    inline POINT cPos;
 
     struct PlayerBar {
         int width = 230;
         int height = 46;
         int margin_left_right = 10;
-        int margin_bottom = 50;
+        int margin_bottom = 70;
         int thickness = 3;
     } inline playerBar;
 
@@ -97,14 +116,23 @@ namespace d3d9hook {
     void TextWithBorder(LPD3DXFONT pFont, int x, int y, DWORD color, char* text, DWORD align);
     void FillRGB(LPDIRECT3DDEVICE9 pDevice, int x, int y, int w, int h, D3DCOLOR color);
     HRESULT DrawRectangle(LPDIRECT3DDEVICE9 Device, FLOAT x, FLOAT y, FLOAT w, FLOAT h, DWORD Color);
-
+    void DrawTexture(int x, int y, LPDIRECT3DTEXTURE9 ldTexture, LPD3DXSPRITE sprite, bool rotate);
+    void DrawWeapon(LPDIRECT3DDEVICE9 pDevice, int x, int y, int TeamID, int WeaponID);
     void DrawPlayerBar(LPDIRECT3DDEVICE9 pD3Ddev, CPlayer* pPlayer, int idx);
+    void DrawScore(LPDIRECT3DDEVICE9 pD3Ddev);
 
     // Helpers
+    void CreateSprites(LPDIRECT3DDEVICE9 pDevice);
+    void CreateTextures(LPDIRECT3DDEVICE9 pDevice);
     void setScreenCenter(LPDIRECT3DDEVICE9 pDevice);
     void DeleteSurfaces();
 
     // Menu
-    void BuildOverlay(LPDIRECT3DDEVICE9 pDevice);
+    int CheckTabs(int x, int y, int w, int h);
+    void AddItem(LPDIRECT3DDEVICE9 pDevice, char* text, int& var, char** opt, int MaxValue);
+    
     void BuildMenu(LPDIRECT3DDEVICE9 pDevice);
+
+    // Overlay
+    void BuildOverlay(LPDIRECT3DDEVICE9 pDevice);
 }

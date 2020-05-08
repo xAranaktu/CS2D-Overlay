@@ -28,7 +28,28 @@ namespace fs = std::filesystem;
 inline core::Context g_ctx_proc;
 inline core::Context g_ctx_dll;
 
-inline bool ShowOverlay = true;
-inline bool ShowMenu = true;
+
+//features
+inline bool bNoFlash = true;
+inline bool bNoFOW = true;
+inline int oldSpecMode = 0;
+inline int iSpecMode = 1;
+
+inline bool ShowOverlay = false;
+inline bool ShowMenu = false;
+
+inline int iBorderedText = 1;
+inline int iTransparency = 1;
+inline std::string team1;
+inline std::string team2;
+
+inline bool bScoreSaved;
+inline int Team1Score = 0;
+inline int Team2Score = 0;
+inline bool bSwap;
+
+inline int scoreTT = 0;
+inline int scoreCT = 0;
+inline int mr = 15;
 
 void CreateDXHook();

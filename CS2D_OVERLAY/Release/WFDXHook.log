@@ -1,14 +1,15 @@
 ﻿  main.cpp
-k:\programowanie\c++\cs2d_overlay\warframe-master\warframe-master\main.h(339): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\time.h(505): note: see declaration of 'localtime'
-k:\programowanie\c++\cs2d_overlay\warframe-master\warframe-master\main.h(1159): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Aranaktu\source\repos\cs2d_overlay\project\CS2D-Overlay\CS2D_OVERLAY\main.h(339,1): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : see declaration of 'localtime'
+C:\Users\Aranaktu\source\repos\cs2d_overlay\project\CS2D-Overlay\CS2D_OVERLAY\main.h(1159,16): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Aranaktu\source\repos\cs2d_overlay\project\CS2D-Overlay\CS2D_OVERLAY\main.h(1159,38): warning C4018: '<': signed/unsigned mismatch
   buffer.c
   hde32.c
   hde64.c
   hook.c
   trampoline.c
   Generating code
-  All 478 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Previous IPDB was built with incompatible compiler, fall back to full compilation.
+  All 463 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  WFDXHook.vcxproj -> K:\Programowanie\C++\CS2D_OVERLAY\Warframe-master\Warframe-master\Release\CS2DOverlay.dll
-  WFDXHook.vcxproj -> K:\Programowanie\C++\CS2D_OVERLAY\Warframe-master\Warframe-master\Release\CS2DOverlay.pdb (Full PDB)
+  WFDXHook.vcxproj -> C:\Users\Aranaktu\source\repos\cs2d_overlay\project\CS2D-Overlay\CS2D_OVERLAY\Release\CS2DOverlay.dll

@@ -7,6 +7,8 @@ SET(ALL_CPP
     "dllmain.cpp"
     "source/d3d9hook.cpp"
     "source/logger.cpp"
+    "source/config.cpp"
+    "source/features.cpp"
     
     "MinHook/src/buffer.c"
     "MinHook/src/hook.c"
@@ -24,6 +26,9 @@ SET(ALL_HEADERS
     "headers/logger.h"
     "headers/AOBs.h"
     "headers/sdk.h"
+    "headers/sprites.h"
+    "headers/config.h"
+    "headers/features.h"
 
     "MinHook/include/MinHook.h"
     "MinHook/src/buffer.h"

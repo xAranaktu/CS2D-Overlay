@@ -1,2 +1,2 @@
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.15063.0
-Release|Win32|K:\Programowanie\C++\CS2D_OVERLAY\Warframe-master\Warframe-master\|
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v142:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0
+Release|Win32|C:\Users\Aranaktu\source\repos\cs2d_overlay\project\CS2D-Overlay\CS2D_OVERLAY\|

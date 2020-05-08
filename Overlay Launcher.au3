@@ -9,7 +9,7 @@
 #include <WinAPIvkeysConstants.au3>
 #include <GUIConstants.au3>
 
-Global Const $DefaultDllPath = @ScriptDir & "\CS2DOverlay.dll"
+Global Const $DefaultDllPath = @ScriptDir & "\CS2D_OVERLAY.dll"
 Global Const $SettingsPath = @MyDocumentsDir & "\CS2D_Overlay"
 Global Const $fNameOverlaySettings = "\settings.ini"
 Global Const $fNameLauncherSettings = "\launcher_settings.ini"
@@ -178,7 +178,7 @@ Func GUI_AdvancedSettings()
 	GUICtrlSetData($WindowModeCombo, "windowed|fullscreen", $WindowMode)
 	GUICtrlCreateGroup("", -99, -99, 1, 1) ;close group
 
-	Local $DLLPath = IniRead($SettingsFullPath, "Injecting", "DLLPath", @ScriptDir & "\CS2DOverlay.dll")
+	Local $DLLPath = IniRead($SettingsFullPath, "Injecting", "DLLPath", @ScriptDir & "\CS2D_OVERLAY.dll")
 	If $DLLPath = "" Then
 		$DLLPath = $DefaultDllPath
 		IniWrite($SettingsFullPath, "Injecting", "DLLPath", $DLLPath)
@@ -223,7 +223,7 @@ Func GUI_AdvancedSettings()
 				IniWrite($SettingsFullPath, "CS2D", "Path", $CS2DPath)
 				GUICtrlSetData($CS2DPathInput, $CS2DPath)
 			Case $DLLPathButton
-				$DLLPath = FileOpenDialog("CS2DOverlay.dll", @ScriptDir, "CS2DOverlay.dll (CS2DOverlay.dll)", 2, "CS2DOverlay.dll", $hGUI2)
+				$DLLPath = FileOpenDialog("CS2D_OVERLAY.dll", @ScriptDir, "CS2D_OVERLAY.dll (CS2D_OVERLAY.dll)", 2, "CS2D_OVERLAY.dll", $hGUI2)
 				IniWrite($SettingsFullPath, "Injecting", "DLLPath", $DLLPath)
 				GUICtrlSetData($DLLPathInput, $DLLPath)
 		EndSwitch
@@ -291,7 +291,7 @@ Func InjectOverlay()
 	Local $PID = ProcessExists("CS2D.exe")
 	If Not $PID Then Return
 
-	Local $DllPath = IniRead($SettingsPath & $fNameLauncherSettings, "Injecting", "DLLPath", @ScriptDir & "\CS2DOverlay.dll")
+	Local $DllPath = IniRead($SettingsPath & $fNameLauncherSettings, "Injecting", "DLLPath", @ScriptDir & "\CS2D_OVERLAY.dll")
 	If Not FileExists($DllPath) Then
 		DoLogs("File not found:" & @CRLF & $DllPath)
 		MsgBox(16, "CS2D Overlay", "File not found:" & @CRLF & $DllPath)
@@ -299,12 +299,12 @@ Func InjectOverlay()
 	EndIf
 
 	Local $Delay = IniRead($SettingsPath & $fNameLauncherSettings, "Injecting", "Delay", "3s.")
-	GUICtrlSetData($label_status, "Injecting CS2DOverlay.dll within " & $Delay)
+	GUICtrlSetData($label_status, "Injecting CS2D_OVERLAY.dll within " & $Delay)
 
 	Sleep(Int(StringTrimRight($Delay, 2)) * 1000)
 	_InjectDll($PID, $DllPath)
 	If Not @error Then
-		GUICtrlSetData($label_status, "CS2DOverlay.dll INJECTED!")
+		GUICtrlSetData($label_status, "CS2D_OVERLAY.dll INJECTED!")
 		Sleep(1500)
 		Exit
 	Else
