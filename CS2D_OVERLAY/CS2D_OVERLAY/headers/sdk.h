@@ -6,7 +6,7 @@ struct GameOffsets {
     DWORD pInvalid =        0x3C7BC0;
     DWORD EntityListBase =  0x487330;
     DWORD isMatchLive =     0x497DAC;
-    DWORD playerBase =      0x497E0C;
+    DWORD playerBase =      0x497E04;
     DWORD clockMin =        0x497F10;
     DWORD specFollow =      0x497FA4;
     DWORD specBase =        0x498364;
