@@ -107,6 +107,22 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
             ShowOverlay ? logger.Write(LOG_INFO, "ShowOverlay = true") : logger.Write(LOG_INFO, "ShowOverlay = false");
         }
 
+        if (GetAsyncKeyState(VK_F6) & 1) {
+            scoreTT += 1;
+        }
+
+        if (GetAsyncKeyState(VK_F7) & 1) {
+            scoreCT += 1;
+        }
+
+        if (GetAsyncKeyState(VK_F8) & 1) {
+            Team1Score = 0;
+            Team2Score = 0;
+            scoreTT = 0;
+            scoreCT = 0;
+            bScoreSaved = false;
+        }
+
         if (GetAsyncKeyState(VK_F9) & 1) {
             ShowMenu = !ShowMenu;
 

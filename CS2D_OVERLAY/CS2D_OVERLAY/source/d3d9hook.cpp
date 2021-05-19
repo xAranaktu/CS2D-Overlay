@@ -93,7 +93,7 @@ namespace d3d9hook {
         int countCT = 0;
         int countTT = 0;
 
-        DWORD HPColor;
+        DWORD HPColor = HPBarBorder;
         DWORD BarColor = HPBarBorder;
 
         int bar_width = 230;
@@ -145,7 +145,8 @@ namespace d3d9hook {
         if (GetAsyncKeyState(VK_DOWN) & 1)	MenuSelection++;
 
 
-        DrawRectangle(pDevice, (FLOAT)MenuPosX, (FLOAT)MenuPosY, 200, 240, Black);
+        // 30px per item
+        DrawRectangle(pDevice, (FLOAT)MenuPosX, (FLOAT)MenuPosY, 200, 300, Black);
         TextWithBorder(guiFont, MenuPosX + 100, MenuPosY + 5, LightYellow, "[F9] - [Overlay Menu]", alignCenter);
         
         Current = 1;
@@ -161,6 +162,8 @@ namespace d3d9hook {
         AddItem(pDevice, " Transparency", iTransparency, opt_OnOff, 1);
         AddItem(pDevice, " Text Border", iBorderedText, opt_OnOff, 1);
         AddItem(pDevice, " Swap names", iswapTeamNames, opt_OnOff, 1);
+        AddItem(pDevice, " Extra TT score", scoreTT, opt_Val, 999);
+        AddItem(pDevice, " Extra CT score", scoreCT, opt_Val, 999);
         AddItem(pDevice, " MR", mr, opt_Val, 999);
 
         if (MenuSelection >= Current)
@@ -411,7 +414,7 @@ namespace d3d9hook {
             float scallingY = 1.0f;
 
             D3DXVECTOR2 vCenter((float)(desc.Width / 2), (float)(desc.Height / 2));
-            D3DXVECTOR2 vPosition(x, y);
+            D3DXVECTOR2 vPosition((float)(x), (float)(y));
             D3DXVECTOR2 scaling(scallingX, scallingY);
 
             scaling.x *= -1;
@@ -423,7 +426,7 @@ namespace d3d9hook {
             sprite->Draw(ldTexture, NULL, NULL, NULL, 0xFFFFFFFF);
         }
         else {
-            sprite->Draw(ldTexture, NULL, NULL, &D3DXVECTOR3(x, y, 0.0f), 0xFFFFFFFF);
+            sprite->Draw(ldTexture, NULL, NULL, &D3DXVECTOR3((float)(x), (float)(y), 0.0f), 0xFFFFFFFF);
         }
     }
 
@@ -802,7 +805,7 @@ namespace d3d9hook {
         float h = 65.0f;
         int score_y = 17;
         DrawRectangle(pD3Ddev, screenCenterX - 60.0f, 0, 120.0f, h, D3DCOLOR_ARGB(255, 100, 100, 100));
-        TextWithBorder(scoreFont, screenCenterX, score_y, White, "SCORE", alignCenter);
+        TextWithBorder(scoreFont, (int)(screenCenterX), score_y, White, "SCORE", alignCenter);
         DrawRectangle(pD3Ddev, screenCenterX - 68.0f, 0, 8.0f, h, OrangeRed);
         DrawRectangle(pD3Ddev, screenCenterX + 60.0f, 0, 8.0f, h, Blue);
 
