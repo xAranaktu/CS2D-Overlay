@@ -54,6 +54,7 @@ void loadConfig() {
     logger.Write(LOG_INFO, "loadConfig...");
     iTransparency = config::Load("Overlay", "Transparency", 1);
     iBorderedText = config::Load("Overlay", "BorderedText", 1);
+    iAutoUpdateScore = config::Load("Overlay", "AutoUpdateScore", 1);
     team1 = config::iniLoadString("Teams", "Team1", "TT");
     team2 = config::iniLoadString("Teams", "Team2", "CT");
 }

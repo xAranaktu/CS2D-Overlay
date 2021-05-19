@@ -769,8 +769,13 @@ namespace d3d9hook {
     }
 
     void DrawScore(LPDIRECT3DDEVICE9 pD3Ddev) {
-        int currentTTScore = *(int*)(g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.ttRounds);
-        int currentCTScore = *(int*)(g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.ctRounds);
+        int currentTTScore = 0;
+        int currentCTScore = 0;
+
+        if (iAutoUpdateScore == 1) {
+            currentTTScore = *(int*)(g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.ttRounds);
+            currentCTScore = *(int*)(g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.ctRounds);
+        }
 
         if (currentTTScore + currentCTScore == mr && bScoreSaved == false && Team1Score == 0 && Team2Score == 0)
         {

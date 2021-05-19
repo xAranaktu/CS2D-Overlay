@@ -38,6 +38,7 @@ inline int iSpecMode = 1;
 inline bool ShowOverlay = false;
 inline bool ShowMenu = false;
 
+inline int iAutoUpdateScore = 1;
 inline int iBorderedText = 1;
 inline int iTransparency = 1;
 inline std::string team1;
