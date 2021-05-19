@@ -1,26 +1,25 @@
 #pragma once
 
 struct GameOffsets {
-    DWORD isMatchLive = 0x496DB4;
-    DWORD totalRounds = 0x496DBC;
-    DWORD ttRounds = 0x496DC0;
-    DWORD ctRounds = 0x496DC4;
+    // DWORD tickCount =       0x496BC4;
 
-    DWORD clockMin = 0x496F18;
-    DWORD clockSec = 0x496F1C;
+    DWORD pInvalid =        0x3C7BC0;
+    DWORD EntityListBase =  0x487330;
+    DWORD isMatchLive =     0x497DAC;
+    DWORD playerBase =      0x497E0C;
+    DWORD clockMin =        0x497F10;
+    DWORD specFollow =      0x497FA4;
+    DWORD specBase =        0x498364;
+    DWORD patchNoFlash =    0x2A3441;
+    DWORD patchNoFow =      0x27CBF0;
 
-    DWORD patchNoFlash = 0x2A33CB;
-    DWORD patchNoFow = 0x27CB74;
+    DWORD totalRounds = isMatchLive + 0x8;
+    DWORD ttRounds = totalRounds + 0x4;
+    DWORD ctRounds = ttRounds + 0x4;
 
-    DWORD specBase = 0x49736C;
-    DWORD specFollow = 0x496FAC;
-    DWORD specFollowID = 0x496FB0;
-    DWORD tickCount = 0x496BC4;
-    DWORD playerBase = 0x496E0C;
-    DWORD playerInvalid = 0x3C6BC0;
+    DWORD clockSec = clockMin + 0x4;
 
-
-    DWORD EntityListBase = 0x486330;
+    DWORD specFollowID = specFollow + 0x4;
 
     // CPlayer
     DWORD pEntListOff1 = 0x8;
@@ -261,7 +260,7 @@ public:
     }
 
     static bool is_valid(DWORD addr) {
-        return !(addr == g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.playerInvalid);
+        return !(addr == g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.pInvalid);
     }
 
     static std::string getKDA(CPlayer* pPlayer) {
