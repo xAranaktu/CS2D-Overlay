@@ -128,25 +128,17 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
             ShowMenu = !ShowMenu;
 
             CPlayer* localPlayer = CPlayer::GetLocalPlayer();
-
-#ifndef _DEBUG
-            if (CPlayer::is_valid((DWORD)localPlayer)) {
+            
+#ifdef _DEBUG
+            if (Validator::ObjIsValid(localPlayer)) {
                 logger.Write(
                     LOG_INFO,
                     "localPlayer 0x%08lX",
                     localPlayer
                 );
-
-                logger.Write(LOG_INFO, "usgn: %d, ", localPlayer->USGN_ID);
-                logger.Write(LOG_INFO, "hp: %d", localPlayer->pHP->getValue());
-
-                PlayerEntityList* pEntList = PlayerEntityList::GetFirst();
-
-                logger.Write(
-                    LOG_INFO,
-                    "pEntList 0x%08lX",
-                    pEntList
-                );
+                
+                logger.Write(LOG_INFO, "usgn: %d", localPlayer->m_usgnid);
+                logger.Write(LOG_INFO, "hp: %d", cInt::Get(localPlayer->m_health));
             }
             else {
                 logger.Write(

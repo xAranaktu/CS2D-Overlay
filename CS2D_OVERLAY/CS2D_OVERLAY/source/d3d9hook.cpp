@@ -108,31 +108,33 @@ namespace d3d9hook {
         int curHP_x = 0;
         int curHP_y = 0;
 
-        PlayerEntityList* pPlayerEntity = PlayerEntityList::GetFirst();
-        //PlayerEntityList* pNextPlayerEntity = pPlayerEntity->nextEntity;
+        TList* pPlayersList = CPlayer::GetPlayersList();
+        
+        TLink* pPlayerEntity = TList::GetFirstLink(pPlayersList);
 
         int curHP = 0;
         for (int i = 1; i <= maxPlayers; i++) {
-            CPlayer* pPlayer = pPlayerEntity->ptrPlayer;
+            CPlayer* pPlayer = reinterpret_cast<CPlayer*>(TLink::Get(pPlayerEntity));
 
-            if (!(CPlayer::is_valid((DWORD)pPlayer))) {
+            if (!Validator::ObjIsValid(pPlayer)) {
                 continue;
             }
 
             if ((DWORD)pPlayer == (DWORD)pPlayerEntity) {
                 break;
             }
-            pPlayerEntity = pPlayerEntity->nextEntity;
+            
+            pPlayerEntity = TLink::Next(pPlayerEntity);
 
-            curHP = pPlayer->pHP->getValue();
+            curHP = cInt::Get(pPlayer->m_health);
 
             if (curHP <= 0) continue;
 
-            if (pPlayer->teamID == 1) {
+            if (pPlayer->m_team == 1) {
                 // TT
                 countTT += 1;
                 DrawPlayerBar(pDevice, pPlayer, countTT);
-            } else if (pPlayer->teamID == 2) {
+            } else if (pPlayer->m_team == 2) {
                 // CT
                 countCT += 1;
                 DrawPlayerBar(pDevice, pPlayer, countCT);
@@ -648,11 +650,11 @@ namespace d3d9hook {
     }
 
     void DrawPlayerBar(LPDIRECT3DDEVICE9 pD3Ddev, CPlayer* pPlayer, int idx) {
-        int HP = pPlayer->pHP->getValue();
+        int HP = cInt::Get(pPlayer->m_health);
 
         if (HP <= 0) return;
 
-        bool isCT = (pPlayer->teamID == 2);
+        bool isCT = (pPlayer->m_team == 2);
 
         // Background
         int iY = Viewport.Height - playerBar.margin_bottom;
@@ -685,7 +687,7 @@ namespace d3d9hook {
         }
 
         // Armor
-        int arm = pPlayer->pArmor->getValue();
+        int arm = cInt::Get(pPlayer->m_armor);
         if (arm > 0) {
             int armWidth = (int)(arm * ((float)playerBar.width / 100) - (playerBar.thickness * 2));
 
@@ -699,10 +701,10 @@ namespace d3d9hook {
         }
 
         //Nickname
-        size_t nameSize = pPlayer->ptrCname->NicknameLen + 1;
+        size_t nameSize = pPlayer->m_name->length + 1;
         size_t convertedChars = 0;
         char* pName = new char[nameSize];
-        wcstombs_s(&convertedChars, pName, nameSize, pPlayer->ptrCname->Nickname, pPlayer->ptrCname->NicknameLen);
+        wcstombs_s(&convertedChars, pName, nameSize, pPlayer->m_name->buf, pPlayer->m_name->length);
         
         if (isCT) {
             int nx = iX + (playerBar.width - playerBar.thickness - 30);
@@ -714,7 +716,7 @@ namespace d3d9hook {
 
         //Money
         int row_2 = row_1 + hpHeight + (playerBar.thickness*2);
-        std::string sMoney = "$" + std::to_string(pPlayer->pMoney->getValue());
+        std::string sMoney = "$" + std::to_string(cInt::Get(pPlayer->m_money));
         if (isCT) {
             int mx = iX + 50;
             TextWithBorder(guiFont, mx, row_2, Gold, (char*)sMoney.c_str(), alignRight);
@@ -724,7 +726,7 @@ namespace d3d9hook {
         }
 
         // Score
-        std::string kda = CPlayer::getKDA(pPlayer);
+        std::string kda = CPlayer::KDA(pPlayer);
         if (isCT) {
             int mx = iX + 105;
             TextWithBorder(guiFont, mx, row_2, White, (char*)kda.c_str(), alignRight);
@@ -734,15 +736,15 @@ namespace d3d9hook {
         }
 
         //Weapon
-        if (sprites_created && tex_created) {
-            std::string sAmmo = CWeapon::getAmmo(pPlayer->CWeapon);
+        if (Validator::ObjIsValid(pPlayer->m_weapon) && sprites_created && tex_created) {
+            std::string sAmmo = CPlayer::GetAmmo(pPlayer);
             if (isCT) {
                 int weapon_x = iX - 10;
-                DrawWeapon(pD3Ddev, weapon_x, iY+3, pPlayer->teamID, pPlayer->CWeapon->WeaponID);
+                DrawWeapon(pD3Ddev, weapon_x, iY+3, pPlayer->m_team, pPlayer->m_weapon->m_typ);
                 TextWithBorder(guiFont, weapon_x + 5, row_2+3, Gold, (char*)sAmmo.c_str(), alignRight);
 
                 // Has Defuse kit
-                if (pPlayer->hasDefuser) {
+                if (pPlayer->m_defuse > 0) {
                     int dx = iX + (playerBar.width - (playerBar.thickness*2) - 15);
                     sprIcon->Begin(D3DXSPRITE_ALPHABLEND);
                     DrawTexture(dx, row_2, texIcoDef, sprIcon, FALSE);
@@ -751,11 +753,11 @@ namespace d3d9hook {
             }
             else {
                 int weapon_x = iX + playerBar.width + 10;
-                DrawWeapon(pD3Ddev, weapon_x, iY+3, pPlayer->teamID, pPlayer->CWeapon->WeaponID);
+                DrawWeapon(pD3Ddev, weapon_x, iY+3, pPlayer->m_team, pPlayer->m_weapon->m_typ);
                 TextWithBorder(guiFont, weapon_x - 5, row_2+3, Gold, (char*)sAmmo.c_str(), alignLeft);
 
                 // Bomb holder
-                if (pPlayer->hasBomb) {
+                if (pPlayer->m_bomb > 0) {
                     /*std::string ttt = "Has BOMB";
                     TextWithBorder(guiFont, 500, 500, Gold, (char*)ttt.c_str(), alignRight);*/
 

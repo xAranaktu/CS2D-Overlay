@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheatTable CheatEngineTableVersion="27">
+<CheatTable CheatEngineTableVersion="34">
   <CheatEntries>
     <CheatEntry>
-      <ID>5</ID>
-      <Description>"tickCount"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>00896BC4</Address>
+      <ID>1</ID>
+      <Description>"======== [ FOR CS2D v1.0.1.2 ] ========"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
     </CheatEntry>
     <CheatEntry>
-      <ID>6</ID>
-      <Description>"hackTick"</Description>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>[ENABLE]
+      <ID>2</ID>
+      <Description>"COOL"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>0</ID>
+          <Description>"Patch_IsDebuggerPresent"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
 //code from here to '[DISABLE]' will be used to enable the cheat
 alloc(newmem,2048)
 label(returnhere)
@@ -23,17 +30,14 @@ newmem: //this is allocated memory, you have read,write,execute access
 //place your code here
 
 originalcode:
-mov edx, #100
-mov eax,[CS2D.exe+496BC4]
+xor eax, eax
+ret 
 
 exit:
 jmp returnhere
 
-"CS2D.exe"+1BA904:
+"KERNELBASE.dll"+1292C6:
 jmp newmem
-nop
-nop
-nop
 returnhere:
 
 
@@ -42,156 +46,72 @@ returnhere:
 [DISABLE]
 //code from here till the end of the code will be used to disable the cheat
 dealloc(newmem)
-"CS2D.exe"+1BA904:
-mov edx,[ebp+0C]
-mov eax,[CS2D.exe+496BC4]
-//Alt: db 8B 55 0C A1 C4 6B 89 00
+"KERNELBASE.dll"+1292C6:
+movzx eax,byte ptr [eax+02]
+ret 
+//Alt: db 0F B6 40 02 C3
 </AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
     </CheatEntry>
     <CheatEntry>
-      <ID>7</ID>
-      <Description>"playerLocal"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>00896E0C</Address>
-      <Offsets>
-        <Offset>0</Offset>
-      </Offsets>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>8</ID>
-      <Description>"localName"</Description>
-      <VariableType>String</VariableType>
-      <Length>35</Length>
-      <Unicode>1</Unicode>
-      <CodePage>0</CodePage>
-      <ZeroTerminate>1</ZeroTerminate>
-      <Address>00896E0C</Address>
-      <Offsets>
-        <Offset>C</Offset>
-        <Offset>C</Offset>
-      </Offsets>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>9</ID>
-      <Description>"firstEntity"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>"CS2D.exe"+00486330</Address>
-      <Offsets>
-        <Offset>0</Offset>
-        <Offset>C</Offset>
-        <Offset>8</Offset>
-      </Offsets>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>10</ID>
-      <Description>"No description"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>4 Bytes</VariableType>
-      <Address>1F8E50B8</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>11</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>1F8E50B0</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>12</ID>
-      <Description>"No description"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>4 Bytes</VariableType>
-      <Address>208B6478</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>13</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>4790920</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>14</ID>
-      <Description>"No description"</Description>
-      <ShowAsHex>1</ShowAsHex>
-      <VariableType>4 Bytes</VariableType>
-      <Address>13CD2B48</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>15</ID>
-      <Description>"pointerscan result"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>"CS2D.exe"+00485F94</Address>
-      <Offsets>
-        <Offset>0</Offset>
-        <Offset>28</Offset>
-        <Offset>188</Offset>
-        <Offset>30</Offset>
-        <Offset>308</Offset>
-      </Offsets>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>16</ID>
-      <Description>"pointerscan result"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>"CS2D.exe"+00486330</Address>
-      <Offsets>
-        <Offset>40</Offset>
-        <Offset>16C</Offset>
-        <Offset>28</Offset>
-        <Offset>8</Offset>
-        <Offset>2F8</Offset>
-      </Offsets>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>17</ID>
-      <Description>"pointerscan result"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>"CS2D.exe"+00486330</Address>
-      <Offsets>
-        <Offset>1C0</Offset>
-        <Offset>2F8</Offset>
-      </Offsets>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>18</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>CS2D.exe+496FAC</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>19</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>0484E04C</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>20</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>0484E048</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>21</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>047CE048</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>22</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>047CE04C</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>23</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>047CE048</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>24</ID>
-      <Description>"No description"</Description>
-      <VariableType>4 Bytes</VariableType>
-      <Address>CS2D.exe+496DC0</Address>
+      <ID>3</ID>
+      <Description>"Pointers"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"Invalid Entity"</Description>
+          <LastState Value="0" RealAddress="007C7BC0"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>7C7BC0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>5</ID>
+          <Description>"Clock Min"</Description>
+          <LastState Value="4" RealAddress="00897F10"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>897F10</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Clock Sec"</Description>
+          <LastState Value="23" RealAddress="00897F14"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>897F14</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"pLocalPlayer"</Description>
+          <LastState Value="129C7840" RealAddress="00897E04"/>
+          <ShowAsHex>1</ShowAsHex>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>897E04</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>8</ID>
+              <Description>"name"</Description>
+              <LastState RealAddress="1292678C"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>String</VariableType>
+              <Length>6</Length>
+              <Unicode>1</Unicode>
+              <CodePage>0</CodePage>
+              <ZeroTerminate>1</ZeroTerminate>
+              <Address>897E04</Address>
+              <Offsets>
+                <Offset>C</Offset>
+                <Offset>C</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>
