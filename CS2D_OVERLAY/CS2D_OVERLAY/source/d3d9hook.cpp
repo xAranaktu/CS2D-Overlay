@@ -1,12 +1,26 @@
 #pragma once
 #include <windows.h>
-
+#include "dllmain.h"
+#include "../imgui/imgui.h"
+#include "../imgui/imgui_impl_dx9.h"
+#include "../imgui/imgui_impl_win32.h"
 #include "../headers/d3d9hook.h"
 #include "../headers/features.h"
-#include "dllmain.h"
+#include "../headers/overlay.h"
+
 
 
 namespace d3d9hook {
+
+    LRESULT __stdcall newWndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+
+        if (g_Overlay.show_menu) {
+            ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam);
+            return true;
+        }
+
+        return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
+    }
 
     HRESULT Present_Hook(IDirect3DDevice9* pDevice, CONST RECT* pSrcRect, CONST RECT* pDestRect, HWND hDestWindow, CONST RGNDATA* pDirtyRegion) {
         //logger.Write(LOG_INFO, "[DX9] Present Called");
@@ -15,13 +29,66 @@ namespace d3d9hook {
         if (!hook_initialized) {
             logger.Write(LOG_INFO, "[DX9] Init present hook");
 
-            setScreenCenter(pDevice);
+            logger.Write(LOG_INFO, "[DX9] Setup ImGUI");
+            ImGui::CreateContext();
+            ImGuiIO& io = ImGui::GetIO(); (void)io;
 
-            MenuPosX = Viewport.Width - 210;
-            MenuPosY = 65;
+            io.IniFilename = g_Overlay.imgui_ini.c_str();
+            io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+            ImGui::StyleColorsDark();
+
+            ImFont* font;
+            float font_size = 16.0f;
+            ImFontConfig font_cfg = ImFontConfig();
+            font_cfg.SizePixels = font_size * 1.0f;
+            if (font_cfg.Name[0] == '\0') {
+                std::string font_name = "FiraMono - Regular.ttf, " + std::to_string(font_cfg.SizePixels) + "px";
+                strcpy(font_cfg.Name, font_name.c_str());
+            }
+            font_cfg.OversampleH = font_cfg.OversampleV = 1;
+            font_cfg.PixelSnapH = true;
+            font_cfg.EllipsisChar = (ImWchar)0x0085;
+            static const ImWchar chars_ranges[] = {
+                0x0020, 0x00FF,
+                0x0100, 0x01FF,
+                0x0180, 0x027F,
+                0
+            };
+            font = io.Fonts->AddFontFromMemoryCompressedTTF(FiraMono_compressed_data, FiraMono_compressed_size, font_cfg.SizePixels, &font_cfg, chars_ranges);
+            g_Overlay.csp_small = io.Fonts->AddFontFromMemoryCompressedTTF(csp_text_compressed_data, csp_text_compressed_size, font_cfg.SizePixels + 10.0f, &font_cfg, chars_ranges);
+            g_Overlay.csp_big = io.Fonts->AddFontFromMemoryCompressedTTF(csp_text_compressed_data, csp_text_compressed_size, font_cfg.SizePixels + 16.0f, &font_cfg, chars_ranges);
+            font_cfg.MergeMode = true;
+
+            static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+            io.Fonts->AddFontFromMemoryCompressedTTF(fa_solid_900_compressed_data, fa_solid_900_compressed_size, font_cfg.SizePixels, &font_cfg, icons_ranges);
+
+            io.Fonts->Build();
+
+            logger.Write(LOG_INFO, "[DX9] Setup ImGUI Done");
+
+            HWND window = FindWindowA("BBDX9Device Window Class", nullptr);
+            if (!window) {
+                DWORD e = GetLastError();
+                logger.Write(LOG_ERROR, "Can't Find BBDX9Device Window Class. Err: %d", e);
+                Sleep(2000);
+                return Present_orig(pDevice, pSrcRect, pDestRect, hDestWindow, pDirtyRegion);
+            }
+            oWndProc = (WNDPROC)SetWindowLongPtrA(window, GWL_WNDPROC, (LONG_PTR)newWndProc);
+
+            IDirect3DSwapChain9* pChain = nullptr;
+            D3DPRESENT_PARAMETERS pp = {};
+            D3DDEVICE_CREATION_PARAMETERS param = {};
+            pDevice->GetCreationParameters(&param);
+            pDevice->GetSwapChain(0, &pChain);
+            if (pChain)
+                pChain->GetPresentParameters(&pp);
+
+            ImGui_ImplWin32_Init(window);
+            ImGui_ImplDX9_Init(pDevice);
 
             logger.Write(LOG_INFO, "[DX9] Init present hook done");
             hook_initialized = true;
+            g_Overlay.can_draw = true;
         }
 
         // Create Fonts
@@ -52,13 +119,29 @@ namespace d3d9hook {
         // Create Sprites
         if (!sprites_created) CreateSprites(pDevice);
 
-        if (ShowOverlay) BuildOverlay(pDevice);
-        if (ShowMenu) BuildMenu(pDevice);
+        DWORD colorwrite, srgbwrite;
+        pDevice->GetRenderState(D3DRS_COLORWRITEENABLE, &colorwrite);
+        pDevice->GetRenderState(D3DRS_SRGBWRITEENABLE, &srgbwrite);
+
+        pDevice->SetRenderState(D3DRS_COLORWRITEENABLE, 0xffffffff);
+        pDevice->SetRenderState(D3DRS_SRGBWRITEENABLE, false);
+
+        ImGui_ImplDX9_NewFrame();
+        ImGui_ImplWin32_NewFrame();
+        ImGui::NewFrame();
+
+        g_Overlay.HandleDraw();
         
+        ImGui::EndFrame();
+        ImGui::Render();
+        ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
+
+        pDevice->SetRenderState(D3DRS_COLORWRITEENABLE, colorwrite);
+        pDevice->SetRenderState(D3DRS_SRGBWRITEENABLE, srgbwrite);
+
         // Required on full screen
         // If not executed we will lose font and textures when window will change state
         DeleteSurfaces();
-
         HRESULT present_return = Present_orig(pDevice, pSrcRect, pDestRect, hDestWindow, pDirtyRegion);
 
         return present_return;
@@ -86,121 +169,121 @@ namespace d3d9hook {
 
     void BuildOverlay(LPDIRECT3DDEVICE9 pDevice) {
 
-        DrawScore(pDevice);
-        // init vars
-        int maxPlayers = 32;
+        //DrawScore(pDevice);
+        //// init vars
+        //int maxPlayers = 32;
 
-        int countCT = 0;
-        int countTT = 0;
+        //int countCT = 0;
+        //int countTT = 0;
 
-        DWORD HPColor = HPBarBorder;
-        DWORD BarColor = HPBarBorder;
+        //DWORD HPColor = HPBarBorder;
+        //DWORD BarColor = HPBarBorder;
 
-        int bar_width = 230;
-        int bar_x = 10;
-        int bar_y = (int)screenCenterY + 250;
-        int bar_height = 46;
-        int bar_thickness = 3;
+        //int bar_width = 230;
+        //int bar_x = 10;
+        //int bar_y = (int)screenCenterY + 250;
+        //int bar_height = 46;
+        //int bar_thickness = 3;
 
-        int recalc_bar_x = bar_x;
-        int recalc_bar_y = bar_y;
+        //int recalc_bar_x = bar_x;
+        //int recalc_bar_y = bar_y;
 
-        int curHP_x = 0;
-        int curHP_y = 0;
+        //int curHP_x = 0;
+        //int curHP_y = 0;
 
-        TList* pPlayersList = CPlayer::GetPlayersList();
-        
-        TLink* pPlayerEntity = TList::GetFirstLink(pPlayersList);
+        //TList* pPlayersList = CPlayer::GetPlayersList();
+        //
+        //TLink* pPlayerEntity = TList::GetFirstLink(pPlayersList);
 
-        int curHP = 0;
-        for (int i = 1; i <= maxPlayers; i++) {
-            CPlayer* pPlayer = reinterpret_cast<CPlayer*>(TLink::Get(pPlayerEntity));
+        //int curHP = 0;
+        //for (int i = 1; i <= maxPlayers; i++) {
+        //    CPlayer* pPlayer = reinterpret_cast<CPlayer*>(TLink::Get(pPlayerEntity));
 
-            if (!Validator::ObjIsValid(pPlayer)) {
-                continue;
-            }
+        //    if (!Validator::ObjIsValid(pPlayer)) {
+        //        continue;
+        //    }
 
-            if ((DWORD)pPlayer == (DWORD)pPlayerEntity) {
-                break;
-            }
-            
-            pPlayerEntity = TLink::Next(pPlayerEntity);
+        //    if ((DWORD)pPlayer == (DWORD)pPlayerEntity) {
+        //        break;
+        //    }
+        //    
+        //    pPlayerEntity = TLink::Next(pPlayerEntity);
 
-            curHP = cInt::Get(pPlayer->m_health);
+        //    curHP = cInt::Get(pPlayer->m_health);
 
-            if (curHP <= 0) continue;
+        //    if (curHP <= 0) continue;
 
-            if (pPlayer->m_team == 1) {
-                // TT
-                countTT += 1;
-                DrawPlayerBar(pDevice, pPlayer, countTT);
-            } else if (pPlayer->m_team == 2) {
-                // CT
-                countCT += 1;
-                DrawPlayerBar(pDevice, pPlayer, countCT);
-            }
-        }
+        //    if (pPlayer->m_team == 1) {
+        //        // TT
+        //        countTT += 1;
+        //        DrawPlayerBar(pDevice, pPlayer, countTT);
+        //    } else if (pPlayer->m_team == 2) {
+        //        // CT
+        //        countCT += 1;
+        //        DrawPlayerBar(pDevice, pPlayer, countCT);
+        //    }
+        //}
     };
 
     void BuildMenu(LPDIRECT3DDEVICE9 pDevice) {
-        if (GetAsyncKeyState(VK_UP) & 1)	MenuSelection--;
-        if (GetAsyncKeyState(VK_DOWN) & 1)	MenuSelection++;
+        //if (GetAsyncKeyState(VK_UP) & 1)	MenuSelection--;
+        //if (GetAsyncKeyState(VK_DOWN) & 1)	MenuSelection++;
 
 
-        // 30px per item
-        DrawRectangle(pDevice, (FLOAT)MenuPosX, (FLOAT)MenuPosY, 200, 300, Black);
-        TextWithBorder(guiFont, MenuPosX + 100, MenuPosY + 5, LightYellow, "[F9] - [Overlay Menu]", alignCenter);
-        
-        Current = 1;
-        int iShowOverlay = ShowOverlay ? 1 : 0;
-        int iswapTeamNames = swapTeamNames;
-        int iNoFlash = bNoFlash ? 1 : 0;
-        int iNoFOW = bNoFOW ? 1 : 0;
+        //// 30px per item
+        //DrawRectangle(pDevice, (FLOAT)MenuPosX, (FLOAT)MenuPosY, 200, 300, Black);
+        //TextWithBorder(guiFont, MenuPosX + 100, MenuPosY + 5, LightYellow, "[F9] - [Overlay Menu]", alignCenter);
+        //
+        //Current = 1;
+        //int iShowOverlay = ShowOverlay ? 1 : 0;
+        //int iswapTeamNames = swapTeamNames;
+        //int iNoFlash = bNoFlash ? 1 : 0;
+        //int iNoFOW = bNoFOW ? 1 : 0;
 
-        AddItem(pDevice, " [ALT] Overlay", iShowOverlay, opt_OnOff, 1);
-        AddItem(pDevice, " No Flash", iNoFlash, opt_OnOff, 1);
-        AddItem(pDevice, " No Fog", iNoFOW, opt_OnOff, 1);
-        AddItem(pDevice, " SpecMode", iSpecMode, opt_SpecMode, 2);
-        AddItem(pDevice, " Transparency", iTransparency, opt_OnOff, 1);
-        AddItem(pDevice, " Text Border", iBorderedText, opt_OnOff, 1);
-        AddItem(pDevice, " Swap names", iswapTeamNames, opt_OnOff, 1);
-        AddItem(pDevice, " Extra TT score", scoreTT, opt_Val, 999);
-        AddItem(pDevice, " Extra CT score", scoreCT, opt_Val, 999);
-        AddItem(pDevice, " MR", mr, opt_Val, 999);
+        //AddItem(pDevice, " [ALT] Overlay", iShowOverlay, opt_OnOff, 1);
+        //AddItem(pDevice, " No Flash", iNoFlash, opt_OnOff, 1);
+        //AddItem(pDevice, " No Fog", iNoFOW, opt_OnOff, 1);
+        //AddItem(pDevice, " SpecMode", iSpecMode, opt_SpecMode, 2);
+        //AddItem(pDevice, " Transparency", iTransparency, opt_OnOff, 1);
+        //AddItem(pDevice, " Text Border", iBorderedText, opt_OnOff, 1);
+        //AddItem(pDevice, " Swap names", iswapTeamNames, opt_OnOff, 1);
+        //AddItem(pDevice, " Extra TT score", scoreTT, opt_Val, 999);
+        //AddItem(pDevice, " Extra CT score", scoreCT, opt_Val, 999);
+        //AddItem(pDevice, " MR", mr, opt_Val, 999);
 
-        if (MenuSelection >= Current)
-            MenuSelection = 1;
+        //if (MenuSelection >= Current)
+        //    MenuSelection = 1;
 
-        if (MenuSelection < 1)
-            MenuSelection = Current;
+        //if (MenuSelection < 1)
+        //    MenuSelection = Current;
 
-        ShowOverlay = iShowOverlay;
+        //ShowOverlay = iShowOverlay;
 
-        if (iswapTeamNames != swapTeamNames)
-        {
-            std::string tmp;
-            tmp = team1;
-            team1 = team2;
-            team2 = tmp;
-            swapTeamNames = iswapTeamNames;
-        }
+        //if (iswapTeamNames != swapTeamNames)
+        //{
+        //    std::string tmp;
+        //    tmp = team1;
+        //    team1 = team2;
+        //    team2 = tmp;
+        //    swapTeamNames = iswapTeamNames;
+        //}
 
-        if ((int)bNoFlash != iNoFlash)
-        {
-            bNoFlash = iNoFlash;
-            Features::changeNoFlash();
-        }
+        //if ((int)bNoFlash != iNoFlash)
+        //{
+        //    bNoFlash = iNoFlash;
+        //    Features::changeNoFlash();
+        //}
 
-        if ((int)bNoFOW != iNoFOW)
-        {
-            bNoFOW = iNoFOW;
-            Features::changeNoFOW();
-        }
+        //if ((int)bNoFOW != iNoFOW)
+        //{
+        //    bNoFOW = iNoFOW;
+        //    Features::changeNoFOW();
+        //}
 
-        if (oldSpecMode != iSpecMode) {
-            oldSpecMode = iSpecMode;
-            Features::changeSpecMode(iSpecMode);
-        }
+        //if (oldSpecMode != iSpecMode) {
+        //    oldSpecMode = iSpecMode;
+        //    Features::changeSpecMode(iSpecMode);
+        //}
     };
 
     void CreateTextures(LPDIRECT3DDEVICE9 pDevice) {
@@ -357,48 +440,48 @@ namespace d3d9hook {
     {
 
         HRESULT hRet = D3D_OK;
-        if (iTransparency == 0)
-        {
-            FillRGB(Device, (int)x, (int)y, (int)w, (int)h, Color);
-            return hRet;
-        }
+        //if (iTransparency == 0)
+        //{
+        //    FillRGB(Device, (int)x, (int)y, (int)w, (int)h, Color);
+        //    return hRet;
+        //}
 
-        const DWORD D3D_FVF = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
+        //const DWORD D3D_FVF = (D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
 
-        struct Vertex
-        {
-            float x, y, z, ht;
-            DWORD vcolor;
-        }
-        V[4] =
-        {
-            { x, (y + h), 0.0f, 0.0f, Color },
-            { x, y, 0.0f, 0.0f, Color },
-            { (x + w), (y + h), 0.0f, 0.0f, Color },
-            { (x + w), y, 0.0f, 0.0f, Color }
-        };
+        //struct Vertex
+        //{
+        //    float x, y, z, ht;
+        //    DWORD vcolor;
+        //}
+        //V[4] =
+        //{
+        //    { x, (y + h), 0.0f, 0.0f, Color },
+        //    { x, y, 0.0f, 0.0f, Color },
+        //    { (x + w), (y + h), 0.0f, 0.0f, Color },
+        //    { (x + w), y, 0.0f, 0.0f, Color }
+        //};
 
 
-        hRet = D3D_OK;
-        if (SUCCEEDED(hRet))
-        {
-            //Old fvf
-            LPDIRECT3DSTATEBLOCK9 pStateBlock = NULL;
-            Device->CreateStateBlock(D3DSBT_ALL, &pStateBlock);
-            pStateBlock->Capture();
-            DWORD fvf;
-            Device->GetFVF(&fvf);
+        //hRet = D3D_OK;
+        //if (SUCCEEDED(hRet))
+        //{
+        //    //Old fvf
+        //    LPDIRECT3DSTATEBLOCK9 pStateBlock = NULL;
+        //    Device->CreateStateBlock(D3DSBT_ALL, &pStateBlock);
+        //    pStateBlock->Capture();
+        //    DWORD fvf;
+        //    Device->GetFVF(&fvf);
 
-            Device->SetPixelShader(0); //fix black color
-            Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
-            Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-            Device->SetFVF(D3D_FVF);
-            Device->SetTexture(0, NULL);
-            hRet = Device->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, V, sizeof(Vertex));
-            Device->SetFVF(fvf); // Restore Old FVF
-            pStateBlock->Apply();   // apply old states
-            pStateBlock->Release(); // delete
-        }
+        //    Device->SetPixelShader(0); //fix black color
+        //    Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
+        //    Device->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+        //    Device->SetFVF(D3D_FVF);
+        //    Device->SetTexture(0, NULL);
+        //    hRet = Device->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, V, sizeof(Vertex));
+        //    Device->SetFVF(fvf); // Restore Old FVF
+        //    pStateBlock->Apply();   // apply old states
+        //    pStateBlock->Release(); // delete
+        //}
 
         return hRet;
     }
@@ -771,65 +854,65 @@ namespace d3d9hook {
     }
 
     void DrawScore(LPDIRECT3DDEVICE9 pD3Ddev) {
-        int currentTTScore = 0;
-        int currentCTScore = 0;
+        //int currentTTScore = 0;
+        //int currentCTScore = 0;
 
-        if (iAutoUpdateScore == 1) {
-            currentTTScore = *(int*)(g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.ttRounds);
-            currentCTScore = *(int*)(g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.ctRounds);
-        }
+        //if (iAutoUpdateScore == 1) {
+        //    currentTTScore = *(int*)(g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.ttRounds);
+        //    currentCTScore = *(int*)(g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.ctRounds);
+        //}
 
-        if (currentTTScore + currentCTScore == mr && bScoreSaved == false && Team1Score == 0 && Team2Score == 0)
-        {
-            int tmp[32] = { 0 };
-            /*Team1Score += currentTTScore;
-            Team2Score += currentCTScore;*/
+        //if (currentTTScore + currentCTScore == mr && bScoreSaved == false && Team1Score == 0 && Team2Score == 0)
+        //{
+        //    int tmp[32] = { 0 };
+        //    /*Team1Score += currentTTScore;
+        //    Team2Score += currentCTScore;*/
 
-            //std::copy(iPlayersScore, iPlayersScore + 32, iSavedPlayersScore);
-            //std::copy(iPlayersDeaths, iPlayersDeaths + 32, iSavedPlayersDeaths);
+        //    //std::copy(iPlayersScore, iPlayersScore + 32, iSavedPlayersScore);
+        //    //std::copy(iPlayersDeaths, iPlayersDeaths + 32, iSavedPlayersDeaths);
 
-            //std::copy(iDmgDealtTotal, iDmgDealtTotal + 32, iDmgDealtTotalSaved); // saved dmg total before swap
-            //std::copy(tmp, tmp + 32, iDmgDealtTotal); // clear dmg total
+        //    //std::copy(iDmgDealtTotal, iDmgDealtTotal + 32, iDmgDealtTotalSaved); // saved dmg total before swap
+        //    //std::copy(tmp, tmp + 32, iDmgDealtTotal); // clear dmg total
 
-            //memcpy(iSavedPlayersScore, iPlayersScore, 32 * sizeof(int));
-            //memcpy(iSavedPlayersDeaths, iPlayersDeaths, 32 * sizeof(int));
-            /*
-            for (int i = 0; i < 32; i++)
-            {
-                iSavedPlayersScore[i] = iPlayersScore[i];
-                iSavedPlayersDeaths[i] = iPlayersDeaths[i];
-            }
-            */
-            bScoreSaved = true;
-        }
+        //    //memcpy(iSavedPlayersScore, iPlayersScore, 32 * sizeof(int));
+        //    //memcpy(iSavedPlayersDeaths, iPlayersDeaths, 32 * sizeof(int));
+        //    /*
+        //    for (int i = 0; i < 32; i++)
+        //    {
+        //        iSavedPlayersScore[i] = iPlayersScore[i];
+        //        iSavedPlayersDeaths[i] = iPlayersDeaths[i];
+        //    }
+        //    */
+        //    bScoreSaved = true;
+        //}
 
-        if (Team1Score + Team2Score >= mr && currentTTScore + currentCTScore == 0 && bScoreSaved == true)
-        {
-            bSwap = !bSwap;
-            bScoreSaved = false;
-        }
+        //if (Team1Score + Team2Score >= mr && currentTTScore + currentCTScore == 0 && bScoreSaved == true)
+        //{
+        //    bSwap = !bSwap;
+        //    bScoreSaved = false;
+        //}
 
-        float h = 65.0f;
-        int score_y = 17;
-        DrawRectangle(pD3Ddev, screenCenterX - 60.0f, 0, 120.0f, h, D3DCOLOR_ARGB(255, 100, 100, 100));
-        TextWithBorder(scoreFont, (int)(screenCenterX), score_y, White, "SCORE", alignCenter);
-        DrawRectangle(pD3Ddev, screenCenterX - 68.0f, 0, 8.0f, h, OrangeRed);
-        DrawRectangle(pD3Ddev, screenCenterX + 60.0f, 0, 8.0f, h, Blue);
+        //float h = 65.0f;
+        //int score_y = 17;
+        //DrawRectangle(pD3Ddev, screenCenterX - 60.0f, 0, 120.0f, h, D3DCOLOR_ARGB(255, 100, 100, 100));
+        //TextWithBorder(scoreFont, (int)(screenCenterX), score_y, White, "SCORE", alignCenter);
+        //DrawRectangle(pD3Ddev, screenCenterX - 68.0f, 0, 8.0f, h, OrangeRed);
+        //DrawRectangle(pD3Ddev, screenCenterX + 60.0f, 0, 8.0f, h, Blue);
 
-        if (bSwap) {
-            currentTTScore += Team2Score;
-            currentCTScore += Team1Score;
+        //if (bSwap) {
+        //    currentTTScore += Team2Score;
+        //    currentCTScore += Team1Score;
 
-            TextWithBorder(scoreFont, (int)((screenCenterX)-(screenCenterX / 2)), score_y, White, (char*)team2.c_str(), alignCenter);
-            TextWithBorder(scoreFont, (int)((screenCenterX)+(screenCenterX / 2)), score_y, White, (char*)team1.c_str(), alignCenter);
-        }
-        else {
-            TextWithBorder(scoreFont, (int)((screenCenterX)-(screenCenterX / 2)), score_y, White, (char*)team1.c_str(), alignCenter);
-            TextWithBorder(scoreFont, (int)((screenCenterX)+(screenCenterX / 2)), score_y, White, (char*)team2.c_str(), alignCenter);
-        }
+        //    TextWithBorder(scoreFont, (int)((screenCenterX)-(screenCenterX / 2)), score_y, White, (char*)team2.c_str(), alignCenter);
+        //    TextWithBorder(scoreFont, (int)((screenCenterX)+(screenCenterX / 2)), score_y, White, (char*)team1.c_str(), alignCenter);
+        //}
+        //else {
+        //    TextWithBorder(scoreFont, (int)((screenCenterX)-(screenCenterX / 2)), score_y, White, (char*)team1.c_str(), alignCenter);
+        //    TextWithBorder(scoreFont, (int)((screenCenterX)+(screenCenterX / 2)), score_y, White, (char*)team2.c_str(), alignCenter);
+        //}
 
-        TextWithBorder(scoreFont, (int)screenCenterX - 100, score_y, White, (char*)std::to_string(currentTTScore + scoreTT).c_str(), alignCenter);
-        TextWithBorder(scoreFont, (int)screenCenterX + 100, score_y, White, (char*)std::to_string(currentCTScore + scoreCT).c_str(), alignCenter);
+        //TextWithBorder(scoreFont, (int)screenCenterX - 100, score_y, White, (char*)std::to_string(currentTTScore + scoreTT).c_str(), alignCenter);
+        //TextWithBorder(scoreFont, (int)screenCenterX + 100, score_y, White, (char*)std::to_string(currentCTScore + scoreCT).c_str(), alignCenter);
 
     }
 

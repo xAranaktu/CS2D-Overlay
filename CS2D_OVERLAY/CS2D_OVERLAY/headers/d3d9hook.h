@@ -2,8 +2,18 @@
 #include "dllmain.h"
 #include "../MinHook/include/MinHook.h"
 #include "sdk.h"
+#include "fonts.h"
+#include "IconsFontAwesome5.h"
 #include "sprites.h"
+#include "../imgui/imgui.h"
+#include "../imgui/imgui_impl_dx9.h"
+#include "../imgui/imgui_impl_win32.h"
+#pragma warning(disable: 4996)
 
+#ifndef GWL_WNDPROC
+#define GWL_WNDPROC GWLP_WNDPROC
+#endif
+IMGUI_IMPL_API LRESULT  ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 namespace d3d9hook {
     #define alignCenter     DT_NOCLIP | DT_CENTER
     #define alignLeft       DT_NOCLIP | DT_LEFT
@@ -97,6 +107,9 @@ namespace d3d9hook {
         int margin_bottom = 70;
         int thickness = 3;
     } inline playerBar;
+
+    inline WNDPROC oWndProc;
+    LRESULT __stdcall newWndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
     // hook
     typedef HRESULT(APIENTRY* Present) (IDirect3DDevice9*, CONST RECT*, CONST RECT*, HWND, CONST RGNDATA*);

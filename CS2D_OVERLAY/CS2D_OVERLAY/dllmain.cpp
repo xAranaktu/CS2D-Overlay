@@ -2,6 +2,7 @@
 #pragma once
 
 #include "headers/dllmain.h"
+#include "headers/overlay.h"
 #include "headers/logger.h"
 #include "headers/d3d9hook.h"
 #include "headers/sdk.h"
@@ -52,11 +53,7 @@ void CreateDXHook() {
 
 void loadConfig() {
     logger.Write(LOG_INFO, "loadConfig...");
-    iTransparency = config::Load("Overlay", "Transparency", 1);
-    iBorderedText = config::Load("Overlay", "BorderedText", 1);
-    iAutoUpdateScore = config::Load("Overlay", "AutoUpdateScore", 1);
-    team1 = config::iniLoadString("Teams", "Team1", "TT");
-    team2 = config::iniLoadString("Teams", "Team2", "CT");
+
 }
 
 DWORD WINAPI mainFunc(LPVOID lpModule)
@@ -86,7 +83,9 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
         mod_size
     );
 
-    loadConfig();
+    g_OverlayCFG.Init();
+    g_Overlay.Init();
+
     CreateDXHook();
 
     //Features
@@ -103,9 +102,7 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
         }
 
         if (GetAsyncKeyState(VK_MENU) & 1) {
-            ShowOverlay = !ShowOverlay;
-
-            ShowOverlay ? logger.Write(LOG_INFO, "ShowOverlay = true") : logger.Write(LOG_INFO, "ShowOverlay = false");
+            g_Overlay.show_overlay = !g_Overlay.show_overlay;
         }
 
         if (GetAsyncKeyState(VK_F6) & 1) {
@@ -125,7 +122,7 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
         }
 
         if (GetAsyncKeyState(VK_F9) & 1) {
-            ShowMenu = !ShowMenu;
+            g_Overlay.show_menu = !g_Overlay.show_menu;
 
             CPlayer* localPlayer = CPlayer::GetLocalPlayer();
             
@@ -148,10 +145,6 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
                 );
             }
 #endif
-
-
-
-            ShowMenu ? logger.Write(LOG_INFO, "ShowMenu = true") : logger.Write(LOG_INFO, "ShowMenu = false");
         }
 
     }
