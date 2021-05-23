@@ -1,7 +1,7 @@
 #pragma once
 
 #include "dllmain.h"
-#include "sdk.h"
+#include "manager.h"
 
 namespace Features {
     void WriteToMemory(uintptr_t addressToWrite, char* valueToWrite, int byteNum);

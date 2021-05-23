@@ -1,93 +1,12 @@
 #pragma once
 #pragma warning(disable : 4200)
 
-#pragma region BRL
-// https://github.com/bmx-ng/brl.mod/tree/master/blitz.mod
-
-typedef struct BBDebugDecl BBDebugDecl;
-typedef struct BBDebugScope BBDebugScope;
-
-enum DebugeclCodes {
-    BBDEBUGDECL_END = 0,
-    BBDEBUGDECL_CONST = 1,
-    BBDEBUGDECL_LOCAL = 2,
-    BBDEBUGDECL_FIELD = 3,
-    BBDEBUGDECL_GLOBAL = 4,
-    BBDEBUGDECL_VARPARAM = 5,
-
-    BBDEBUGDECL_TYPEMETHOD = 6,
-    BBDEBUGDECL_TYPEFUNCTION = 7
-};
-
-enum DebugScopeCodes {
-    BBDEBUGSCOPE_FUNCTION = 1,
-    BBDEBUGSCOPE_USERTYPE = 2,
-    BBDEBUGSCOPE_LOCALBLOCK = 3,
-    BBDEBUGSCOPE_USERINTERFACE = 4,
-    BBDEBUGSCOPE_USERSTRUCT = 5,
-    BBDEBUGSCOPE_USERENUM = 6,
-};
-
-struct BBDebugDecl {
-    unsigned int    kind;  // DebugeclCodes
-    const char* name;
-    const char* type_tag;
-    unsigned int    offset;
-};
-
-struct BBDebugScope {
-    unsigned int    kind;   // DebugScopeCodes
-    const char*     name;
-    BBDebugDecl     decls;
-    // ... 
-    // decls until BBDEBUGDECL_END
-};
-
-struct BBString {
-    void* cls;
-    unsigned int    kind;   // DebugScopeCodes (?)
-    int length; //0x0008
-    wchar_t buf[]; //0x000C
-};
-
-#pragma endregion BRL
-
-struct GameOffsets {
-    // DWORD tickCount =       0x496BC4;
-
-    DWORD pInvalid = 0x3C7BC0;   // EmptyPtr
-    DWORD g_pPlayersEntityList = 0x487330;
-    DWORD isMatchLive = 0x497DAC;
-    DWORD g_pLocalPlayer = 0x497E04;
-    DWORD clockMin = 0x497F10;
-    DWORD specFollow = 0x497FA4;
-    DWORD specBase = 0x498364;
-    DWORD patchNoFlash = 0x2A3441;
-    DWORD patchNoFow = 0x27CBF0;
-
-    DWORD totalRounds = isMatchLive + 0x8;
-    DWORD ttRounds = totalRounds + 0x4;
-    DWORD ctRounds = ttRounds + 0x4;
-
-    DWORD clockSec = clockMin + 0x4;
-
-    DWORD specFollowID = specFollow + 0x4;
-
-    // CPlayer
-    DWORD pEntListOff1 = 0x8;
-    DWORD pEntListOff2 = 0xC;
-    DWORD pEntListOff3 = 0x0;
-
-    // SpecMode
-    DWORD specModeOff1 = 0x19;
-} inline gameOffsets;
-
-typedef class TList  TList;
-typedef class TLink  TLink;
-typedef class cInt cInt;
-typedef class Titem  Titem;
-typedef class Ttimer   Ttimer;
-typedef class CPlayer CPlayer;
+#include "SDKGen/offsets.h"
+#include "SDKGen/defines.h"
+#include "SDKGen/TList.h"
+#include "SDKGen/TLink.h"
+#include "SDKGen/Titem.h"
+#include "SDKGen/cInt.h"
 
 class Validator {
 public:
@@ -96,120 +15,54 @@ public:
     }
 };
 
-
-class ClassDecl
-{
-public:
-    void* pSuper; //0x0000
-    void* fnFree; //0x0004
-    BBDebugScope* pDebugScope; //0x0008
-    size_t sz; //0x000C
-
-    // functions...
-    char pad_0010[4]; //0x0010
-}; //Size: 0x0014
-
-class TLink {
-public:
-    ClassDecl* pClassDecl; // 0x0 
-    unsigned int    kind;  // 0x4 DebugeclCodes (?) 
-    void* m_value; // 0x8 <type_:Object> 
-    TLink* m_succ; // 0xC <type_:TLink> 
-    TLink* m_pred; // 0x10 <type_:TLink>
-
-    static TLink* Next(TLink* p) {
-        return p->m_succ;
-    }
-
-    static TLink* Prev(TLink* p) {
-        return p->m_pred;
-    }
-
-    static void* Get(TLink* p) {
-        return p->m_value;
-    }
-};
-
-class TList {
-public:
-    ClassDecl* pClassDecl; // 0x0 
-    unsigned int    kind;  // 0x4 DebugeclCodes (?) 
-    TLink* m_head; // 0x8 <type_:TLink>
-
-    static TLink* GetFirstLink(TList* p) {
-        return p->m_head->m_succ;
-    }
-};
-
-class cInt
-{
-public:
-    ClassDecl* pClassDecl; // 0x0
-    unsigned int    kind;  // DebugeclCodes (?) 
-    int m_value; // 0x8 <type_i> 
-    int m_valueRND; // 0xC <type_i> 
-    void* m_check; // 0x10 <type_[]i> 
-
-    static int Get(cInt* p) {
-        return p->m_value + p->m_valueRND;
-    }
-}; //Size: 0x0010
-
-class Titem {
-public:
-    ClassDecl* pClassDecl; // 0x0 
-    unsigned int    kind;  // 0x4 DebugeclCodes (?) 
-    int m_id; // 0x8 <type_i> 
-    int m_typ; // 0xC <type_i> 
-    int m_player; // 0x10 <type_i> 
-    int m_ammo; // 0x14 <type_i> 
-    int m_ammoin; // 0x18 <type_i> 
-    int m_mode; // 0x1C <type_i> 
-    int m_x; // 0x20 <type_i> 
-    int m_y; // 0x24 <type_i> 
-    float m_rot; // 0x28 <type_f> 
-    int m_water; // 0x2C <type_i> 
-    float m_watertimer; // 0x30 <type_f> 
-    int m_dropped; // 0x34 <type_i> 
-    int m_droptimer; // 0x38 <type_i> 
-    int m_visible; // 0x3C <type_i>
-
-    static std::string GetAmmo(Titem* p) {
-        if ( 
-            p->m_typ == 51 ||
-            p->m_typ == 52 ||
-            p->m_typ == 53 ||
-            p->m_typ == 54
-        ) {
-            // Grenade
-            return std::to_string(p->m_ammoin);
-        }
-        else if (
-            p->m_typ == 50 ||
-            p->m_typ == 55
-        ) {
-            // Knife / Bomb
-            return "";
-        }
-        else {
-            // Gun
-            return std::to_string(p->m_ammoin) + "/" + std::to_string(p->m_ammo);
-        }
-    }
-};
-
-class Ttimer {
-public:
-    ClassDecl* pClassDecl; // 0x0 
-    unsigned int    kind;  // 0x4 DebugeclCodes (?) 
-    int m_time; // 0x8 <type_i> 
-};
+//class Titem {
+//public:
+//    ClassDecl* pClassDecl; // 0x0 
+//    unsigned int    kind;  // 0x4 DebugeclCodes (?) 
+//    int m_id; // 0x8 <type_i> 
+//    int m_typ; // 0xC <type_i> 
+//    int m_player; // 0x10 <type_i> 
+//    int m_ammo; // 0x14 <type_i> 
+//    int m_ammoin; // 0x18 <type_i> 
+//    int m_mode; // 0x1C <type_i> 
+//    int m_x; // 0x20 <type_i> 
+//    int m_y; // 0x24 <type_i> 
+//    float m_rot; // 0x28 <type_f> 
+//    int m_water; // 0x2C <type_i> 
+//    float m_watertimer; // 0x30 <type_f> 
+//    int m_dropped; // 0x34 <type_i> 
+//    int m_droptimer; // 0x38 <type_i> 
+//    int m_visible; // 0x3C <type_i>
+//
+//    static std::string GetAmmo(Titem* p) {
+//        if ( 
+//            p->m_typ == 51 ||
+//            p->m_typ == 52 ||
+//            p->m_typ == 53 ||
+//            p->m_typ == 54
+//        ) {
+//            // Grenade
+//            return std::to_string(p->m_ammoin);
+//        }
+//        else if (
+//            p->m_typ == 50 ||
+//            p->m_typ == 55
+//        ) {
+//            // Knife / Bomb
+//            return "";
+//        }
+//        else {
+//            // Gun
+//            return std::to_string(p->m_ammoin) + "/" + std::to_string(p->m_ammo);
+//        }
+//    }
+//};
 
 // Tpl
 class CPlayer
 {
 public:
-    ClassDecl* pClassDecl; // 0x0 
+    void* pClassDecl; // 0x0 
     unsigned int    kind;  // 0x4 DebugeclCodes (?) 
     int m_id; // 0x8 <type_i> 
     BBString* m_name; // 0xC <type_$> 
@@ -430,16 +283,21 @@ public:
     }
 
     static TList* GetPlayersList() {
-        DWORD addr = *(DWORD*)(g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.g_pPlayersEntityList);
-        return reinterpret_cast<TList*>(addr);
+        //DWORD addr = *(DWORD*)(g_ctx_proc.m_ModuleContext.m_Base + gameOffsets.g_pPlayersEntityList);
+        //return reinterpret_cast<TList*>(addr);
+
+        return NULL;
     }
 
     static std::string GetAmmo(CPlayer* p) {
-        return Titem::GetAmmo(p->m_weapon);
+        //return Titem::GetAmmo(p->m_weapon);
+        return "";
     }
 
     static std::string KDA(CPlayer* p) {
-        std::string result = std::to_string(p->m_score) + "/" + std::to_string(p->m_deaths) + "/" + std::to_string(p->m_assists);
-        return result;
+        //std::string result = std::to_string(p->m_score) + "/" + std::to_string(p->m_deaths) + "/" + std::to_string(p->m_assists);
+        //return result;
+
+        return "";
     }
 }; //Size: 0x0C40

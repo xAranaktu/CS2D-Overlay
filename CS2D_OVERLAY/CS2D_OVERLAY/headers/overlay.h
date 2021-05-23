@@ -2,6 +2,7 @@
 
 #include <../imgui/imgui.h>
 #include <dllmain.h>
+#include <globals.h>
 #include <logger.h>
 
 class Overlay {
@@ -24,6 +25,10 @@ public:
     void HandleDraw();
 
     void ShowMenu(bool* p_open);
+
+    void TransparentText(const char* text, ImVec2 win_pos, ImVec2 win_size, int id = 0, ImFont* f = nullptr);
+
+    void DrawOverlay();
 };
 
 extern Overlay g_Overlay;

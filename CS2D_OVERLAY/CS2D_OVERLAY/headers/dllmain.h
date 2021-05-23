@@ -16,8 +16,11 @@
 #pragma comment(lib, "winmm.lib")
 
 
+#pragma warning(disable: 4996)
+
 #define SAFE_RELEASE(p)      { if (p) { (p)->Release();    (p)=nullptr;  }	}
 
+#include "globals.h"
 #include "logger.h"
 #include "context.h"
 #include "patscanner.h"

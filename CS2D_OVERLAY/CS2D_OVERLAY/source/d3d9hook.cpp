@@ -733,7 +733,7 @@ namespace d3d9hook {
     }
 
     void DrawPlayerBar(LPDIRECT3DDEVICE9 pD3Ddev, CPlayer* pPlayer, int idx) {
-        int HP = cInt::Get(pPlayer->m_health);
+        int HP = 0;//cInt::Get(pPlayer->m_health);
 
         if (HP <= 0) return;
 
@@ -770,7 +770,7 @@ namespace d3d9hook {
         }
 
         // Armor
-        int arm = cInt::Get(pPlayer->m_armor);
+        int arm = 0; // cInt::Get(pPlayer->m_armor);
         if (arm > 0) {
             int armWidth = (int)(arm * ((float)playerBar.width / 100) - (playerBar.thickness * 2));
 
@@ -799,7 +799,7 @@ namespace d3d9hook {
 
         //Money
         int row_2 = row_1 + hpHeight + (playerBar.thickness*2);
-        std::string sMoney = "$" + std::to_string(cInt::Get(pPlayer->m_money));
+        std::string sMoney = "";// "$" + std::to_string(cInt::Get(pPlayer->m_money));
         if (isCT) {
             int mx = iX + 50;
             TextWithBorder(guiFont, mx, row_2, Gold, (char*)sMoney.c_str(), alignRight);

@@ -44,6 +44,22 @@ SET(MinHook_CPP
     "MinHook/src/HDE/hde64.c"
 )
 
+SET(SDK_H
+    "headers/SDKGen/defines.h"
+    "headers/SDKGen/offsets.h"
+    "headers/SDKGen/cInt.h"
+    "headers/SDKGen/StatsMap.h"
+    "headers/SDKGen/TBank.h"
+    "headers/SDKGen/TImage.h"
+    "headers/SDKGen/Titem.h"
+    "headers/SDKGen/TLink.h"
+    "headers/SDKGen/TList.h"
+    "headers/SDKGen/TMap.h"
+    "headers/SDKGen/TNode.h"
+    "headers/SDKGen/Tpl.h"
+    "headers/SDKGen/Tstats_user.h"
+    "headers/SDKGen/Ttimer.h"
+)
 
 SET(ALL_CPP
     "dllmain.cpp"
@@ -55,11 +71,11 @@ SET(ALL_CPP
 
     ${MinHook_CPP}
     ${ImGUI_CPP}
-    
 )
 
 SET(ALL_HEADERS
     "headers/dllmain.h"
+    "headers/globals.h"
     "headers/fonts.h"
     "headers/IconsFontAwesome5.h"
     "headers/d3d9hook.h"
@@ -67,12 +83,13 @@ SET(ALL_HEADERS
     "headers/patscanner.h"
     "headers/logger.h"
     "headers/AOBs.h"
-    "headers/sdk.h"
+    "headers/manager.h"
     "headers/sprites.h"
     "headers/config.h"
     "headers/features.h"
     "headers/overlay.h"
 
+    ${SDK_H}
     ${MinHook_H}
     ${ImGUI_H}
 )

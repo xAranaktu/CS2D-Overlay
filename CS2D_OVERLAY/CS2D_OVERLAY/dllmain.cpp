@@ -5,7 +5,7 @@
 #include "headers/overlay.h"
 #include "headers/logger.h"
 #include "headers/d3d9hook.h"
-#include "headers/sdk.h"
+#include "headers/manager.h"
 #include "headers/config.h"
 #include "headers/features.h"
 
@@ -74,7 +74,7 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
 
     // Setup all kind of logs
     SetupLogger();
-    logger.Write(LOG_INFO, "Injected");
+    logger.Write(LOG_INFO, "========== [ %s ] ==========", APP_NAME);
     logger.Write(LOG_INFO,
         "Proc: <%s> BaseAddr: 0x%08lX, EndAddr: 0x%08lX (Size: 0x%08lX)",
         module_name_c,
@@ -134,8 +134,8 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
                     localPlayer
                 );
                 
-                logger.Write(LOG_INFO, "usgn: %d", localPlayer->m_usgnid);
-                logger.Write(LOG_INFO, "hp: %d", cInt::Get(localPlayer->m_health));
+                //logger.Write(LOG_INFO, "usgn: %d", localPlayer->m_usgnid);
+                //logger.Write(LOG_INFO, "hp: %d", cInt::Get(localPlayer->m_health));
             }
             else {
                 logger.Write(
