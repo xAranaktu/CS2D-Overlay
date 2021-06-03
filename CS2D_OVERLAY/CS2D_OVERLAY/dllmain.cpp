@@ -8,6 +8,7 @@
 #include "headers/manager.h"
 #include "headers/config.h"
 #include "headers/features.h"
+#include "headers/SDKGen/Tpl.h"
 
 
 void EjectDLL(HMODULE hModule) {
@@ -51,6 +52,37 @@ void CreateDXHook() {
     d3d9hook::SetupDirectXHooks();
 }
 
+void PatchIsDebuggerPresent() {
+    logger.Write(LOG_INFO, "Patching IsDebuggerPresent...");
+    auto kernelbase = GetModuleHandle("KERNELBASE.dll");
+
+    if (!kernelbase) {
+        logger.Write(LOG_INFO, "no kernelbase");
+        return;
+    }
+
+    auto addr = reinterpret_cast<uintptr_t>(GetProcAddress(kernelbase, "IsDebuggerPresent"));
+
+    // xor eax, eax
+    char BytesToPath[] = "\x31\xC0\x90\x90\x90\x90\x90\x90\x90\x90\xC3";
+    Features::WriteToMemory(addr, BytesToPath, 11);
+}
+void RestoreOrgIsDebuggerPresent() {
+    logger.Write(LOG_INFO, "Restoring orginal IsDebuggerPresent...");
+    auto kernelbase = GetModuleHandle("KERNELBASE.dll");
+
+    if (!kernelbase) {
+        logger.Write(LOG_INFO, "no kernelbase");
+        return;
+    }
+
+    auto addr = reinterpret_cast<uintptr_t>(GetProcAddress(kernelbase, "IsDebuggerPresent"));
+
+    char BytesToPath[] = "\x64\xA1\x30\x00\x00\x00\x0F\xB6\x40\x02\xC3";
+    Features::WriteToMemory(addr, BytesToPath, 11);
+}
+
+
 void loadConfig() {
     logger.Write(LOG_INFO, "loadConfig...");
 
@@ -87,6 +119,9 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
     g_Overlay.Init();
 
     CreateDXHook();
+#ifdef _DEBUG
+    PatchIsDebuggerPresent();
+#endif
 
     //Features
     Features::changeNoFlash();
@@ -97,6 +132,7 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
     for (;;) {
         Sleep(50);
         if (GetAsyncKeyState(VK_END)) {
+            g_Overlay.can_draw = false;
             Sleep(1000);
             break;
         }
@@ -124,7 +160,8 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
         if (GetAsyncKeyState(VK_F9) & 1) {
             g_Overlay.show_menu = !g_Overlay.show_menu;
 
-            CPlayer* localPlayer = CPlayer::GetLocalPlayer();
+            Tpl* localPlayer = PlayerManager::GetLocalPlayer();
+            
             
 #ifdef _DEBUG
             if (Validator::ObjIsValid(localPlayer)) {
@@ -135,6 +172,7 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
                 );
                 
                 //logger.Write(LOG_INFO, "usgn: %d", localPlayer->m_usgnid);
+                logger.Write(LOG_INFO, "ammo: %d", localPlayer->decl->m_Tpl_getammo(localPlayer));
                 //logger.Write(LOG_INFO, "hp: %d", cInt::Get(localPlayer->m_health));
             }
             else {
@@ -148,6 +186,10 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
         }
 
     }
+
+#ifdef _DEBUG
+    RestoreOrgIsDebuggerPresent();
+#endif
     EjectDLL(reinterpret_cast<HMODULE>(lpModule));
     return 0;
 }

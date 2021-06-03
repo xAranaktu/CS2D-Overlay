@@ -51,3 +51,6 @@ inline int scoreCT = 0;
 inline int mr = 15;
 
 void CreateDXHook();
+void PatchIsDebuggerPresent();
+void RestoreOrgIsDebuggerPresent();
+

@@ -82,8 +82,6 @@ namespace d3d9hook {
     inline bool sprites_created = false;
     inline bool tex_created = false;
     inline LPD3DXSPRITE sprWep1 = NULL, sprWep2 = NULL, sprIcon = NULL, sprLogo = NULL;
-    inline LPDIRECT3DTEXTURE9 texLogo, texSymArm, texSymHP, texIcoC4, texIcoDef, texUSP, texGlock, texDeagle, texP228, texElite, texFiveSeven, texM3, texXM1014, texMP5, texTMP, texP90, texMAC10, texUMP, texAK47, texSG552, texM4A1, texAUG, texScout, texAWP, texG3SG1, texSG550, texGalil, texFamas, texM249, texTactShield, texLaser, texFlame, texRPG, texRocket, texGrenade, texKnife, texHE, texFB, texSmoke, texFlare, texBomb, texMachete, texM134, texFNF2000 = NULL;
-
 
     // menu & overlay
   
@@ -130,12 +128,12 @@ namespace d3d9hook {
     HRESULT DrawRectangle(LPDIRECT3DDEVICE9 Device, FLOAT x, FLOAT y, FLOAT w, FLOAT h, DWORD Color);
     void DrawTexture(int x, int y, LPDIRECT3DTEXTURE9 ldTexture, LPD3DXSPRITE sprite, bool rotate);
     void DrawWeapon(LPDIRECT3DDEVICE9 pDevice, int x, int y, int TeamID, int WeaponID);
-    void DrawPlayerBar(LPDIRECT3DDEVICE9 pD3Ddev, CPlayer* pPlayer, int idx);
+    //void DrawPlayerBar(LPDIRECT3DDEVICE9 pD3Ddev, CPlayer* pPlayer, int idx);
     void DrawScore(LPDIRECT3DDEVICE9 pD3Ddev);
 
     // Helpers
     void CreateSprites(LPDIRECT3DDEVICE9 pDevice);
-    void CreateTextures(LPDIRECT3DDEVICE9 pDevice);
+    void CreateTextures(LPDIRECT3DDEVICE9 pDevice, D3DPRESENT_PARAMETERS pp);
     void setScreenCenter(LPDIRECT3DDEVICE9 pDevice);
     void DeleteSurfaces();
 

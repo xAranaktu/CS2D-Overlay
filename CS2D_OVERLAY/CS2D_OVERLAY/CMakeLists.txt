@@ -68,6 +68,7 @@ SET(ALL_CPP
     "source/config.cpp"
     "source/features.cpp"
     "source/overlay.cpp"
+    "source/misc.cpp"
 
     ${MinHook_CPP}
     ${ImGUI_CPP}
@@ -88,6 +89,7 @@ SET(ALL_HEADERS
     "headers/config.h"
     "headers/features.h"
     "headers/overlay.h"
+    "headers/misc.h"
 
     ${SDK_H}
     ${MinHook_H}

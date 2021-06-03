@@ -30,7 +30,14 @@ typedef struct TplDecl;
 
 // TODO Add definitions for
 typedef struct Object;
+typedef struct Tudp_con;
 typedef struct TListEnum;
+typedef struct TChannel;
+
+enum TEAM {
+    TEAM_TT = 1,
+    TEAM_CT = 2
+};
 
 
 #pragma region BRL

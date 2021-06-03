@@ -433,7 +433,7 @@ function gen_sdk(cls)
     io.close(fo)
     
 end
-local to_gen_inst = ReadPointer(0x897E04)
+local to_gen_inst = 0x06053320-- ReadPointer(0x897E04)
 generated_classes = {ReadPointer(to_gen_inst)}
 gen_sdk(get_class(to_gen_inst, 0))
 print("Done")
