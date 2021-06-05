@@ -75,7 +75,7 @@ struct TplDecl {
 // 212 members
 struct Tpl {
     TplDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     int m_id; // 0x8 <type_i>
     BBString* m_name; // 0xC <type_$>
     int m_ip; // 0x10 <type_i>

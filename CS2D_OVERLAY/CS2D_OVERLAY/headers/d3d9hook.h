@@ -65,7 +65,58 @@ namespace d3d9hook {
     #define ItemCurrent White
 
     inline bool hook_initialized = false;
-    
+
+    struct MemFile {
+        BYTE* content;
+        size_t sz;
+
+        MemFile(BYTE* f, size_t siz) {
+            content = f;
+            sz = siz;
+        }
+    };
+
+    inline std::map<int, MemFile> weapon_mem_files = {
+        {1,  MemFile(weapon_usp, sizeof(weapon_usp))},
+        {2,  MemFile(weapon_glock, sizeof(weapon_glock))},
+        {3,  MemFile(weapon_deagle, sizeof(weapon_deagle))},
+        {4,  MemFile(weapon_p228, sizeof(weapon_p228))},
+        {5,  MemFile(weapon_elite, sizeof(weapon_elite))},
+        {6,  MemFile(weapon_fiveseven, sizeof(weapon_fiveseven))},
+        {10, MemFile(weapon_m3, sizeof(weapon_m3))},
+        {11, MemFile(weapon_xm1014, sizeof(weapon_xm1014))},
+        {20, MemFile(weapon_mp5, sizeof(weapon_mp5))},
+        {21, MemFile(weapon_tmp, sizeof(weapon_tmp))},
+        {22, MemFile(weapon_p90, sizeof(weapon_p90))},
+        {23, MemFile(weapon_mac10, sizeof(weapon_mac10))},
+        {24, MemFile(weapon_ump, sizeof(weapon_ump))},
+        {30, MemFile(weapon_ak47, sizeof(weapon_ak47))},
+        {31, MemFile(weapon_sg552, sizeof(weapon_sg552))},
+        {32, MemFile(weapon_m4a1, sizeof(weapon_m4a1))},
+        {33, MemFile(weapon_aug, sizeof(weapon_aug))},
+        {34, MemFile(weapon_scout, sizeof(weapon_scout))},
+        {35, MemFile(weapon_awp, sizeof(weapon_awp))},
+        {36, MemFile(weapon_g3sg1, sizeof(weapon_g3sg1))},
+        {37, MemFile(weapon_sg550, sizeof(weapon_sg550))},
+        {38, MemFile(weapon_galil, sizeof(weapon_galil))},
+        {39, MemFile(weapon_famas, sizeof(weapon_famas))},
+        {40, MemFile(weapon_m249, sizeof(weapon_m249))},
+        {41, MemFile(weapon_tacticalshield, sizeof(weapon_tacticalshield))},
+        {45, MemFile(weapon_laser, sizeof(weapon_laser))},
+        {46, MemFile(weapon_flamethrower, sizeof(weapon_flamethrower))},
+        {47, MemFile(weapon_rpglauncher, sizeof(weapon_rpglauncher))},
+        {48, MemFile(weapon_rocketlauncher, sizeof(weapon_rocketlauncher))},
+        {49, MemFile(weapon_grenadelauncher, sizeof(weapon_grenadelauncher))},
+        {50, MemFile(weapon_knife, sizeof(weapon_knife))},
+        {51, MemFile(weapon_HE, sizeof(weapon_HE))},
+        {52, MemFile(weapon_flash, sizeof(weapon_flash))},
+        {53, MemFile(weapon_smoke, sizeof(weapon_smoke))},
+        {54, MemFile(weapon_flare, sizeof(weapon_flare))},
+        {55, MemFile(icons_c4, sizeof(icons_c4))},
+        {69, MemFile(weapon_machete, sizeof(weapon_machete))},
+        {90, MemFile(weapon_m134, sizeof(weapon_m134))},
+        {91, MemFile(weapon_fnf2000, sizeof(weapon_fnf2000))}
+    };
 
     // vtable
     inline DWORD* dVtable = NULL;
@@ -134,7 +185,6 @@ namespace d3d9hook {
     // Helpers
     void CreateSprites(LPDIRECT3DDEVICE9 pDevice);
     void CreateTextures(LPDIRECT3DDEVICE9 pDevice, D3DPRESENT_PARAMETERS pp);
-    void setScreenCenter(LPDIRECT3DDEVICE9 pDevice);
     void DeleteSurfaces();
 
     // Menu

@@ -48,7 +48,7 @@ struct TListDecl {
 // 1 members
 struct TList {
     TListDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     TLink* m__head; // 0x8 <type_:TLink>
 };
 

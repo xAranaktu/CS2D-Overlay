@@ -29,7 +29,7 @@ struct TNodeDecl {
 // 4 members
 struct TNode {
     TNodeDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     int m__color; // 0x10 <type_i>
     TNode* m__parent; // 0x14 <type_:TNode>
     TNode* m__left; // 0x18 <type_:TNode>

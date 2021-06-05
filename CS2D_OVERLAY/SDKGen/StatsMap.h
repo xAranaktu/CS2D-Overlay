@@ -26,7 +26,7 @@ struct StatsMapDecl {
 // 1 members
 struct StatsMap {
     StatsMapDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     TMap* m_values; // 0x8 <type_:TMap>
 };
 

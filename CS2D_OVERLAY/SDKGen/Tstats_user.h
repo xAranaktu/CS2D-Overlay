@@ -31,7 +31,7 @@ struct Tstats_userDecl {
 // 17 members
 struct Tstats_user {
     Tstats_userDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     BBString* m_name; // 0x8 <type_$>
     int m_userType; // 0xC <type_i>
     long long m_userID; // 0x10 <type_l>

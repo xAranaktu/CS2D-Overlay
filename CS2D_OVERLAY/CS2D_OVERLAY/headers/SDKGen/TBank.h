@@ -47,7 +47,7 @@ struct TBankDecl {
 // 4 members
 struct TBank {
     TBankDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     void* m__buf; // 0x8 <type_*b>
     int m__size; // 0xC <type_i>
     int m__capacity; // 0x10 <type_i>

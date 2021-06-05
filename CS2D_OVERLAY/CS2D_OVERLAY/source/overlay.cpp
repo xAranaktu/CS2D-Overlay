@@ -86,6 +86,12 @@ void Overlay::TransparentText(const char* text, ImVec2 win_pos, ImVec2 win_size,
 }
 
 void Overlay::DrawOverlay() {
+    auto pPlayersList = PlayerManager::GetPlayersList();
+    TLink* pPlayerEntity = pPlayersList->m__head->m__succ;
+
+    // No players
+    if (reinterpret_cast<DWORD>(pPlayerEntity) == reinterpret_cast<DWORD>(pPlayerEntity->m__value)) return;
+
     //TransparentText("Test", ImVec2(200.0f, 200.0f), ImVec2(250.0f, 45.0f));
     //TransparentText("Test2", ImVec2(400.0f, 400.0f), ImVec2(250.0f, 45.0f), 0, csp_small);
     //TransparentText("Test3", ImVec2(600.0f, 600.0f), ImVec2(250.0f, 45.0f), 0, csp_big);
@@ -102,6 +108,7 @@ void Overlay::DrawOverlay() {
     char window_title_weapon[30];
     char sHP[5];
     char sName[256];
+    char sAmmo[16];
 
     auto ContainerBGColor = ImGui::GetColorU32(IM_COL32(37, 48, 52, 100));
     auto TTBarColor = ImGui::GetColorU32(IM_COL32(255, 50, 50, 230));
@@ -124,8 +131,10 @@ void Overlay::DrawOverlay() {
 
     ImVec2 textSize = ImVec2(0.0f, 0.0f);
     if (textSize.x == 0.0f) {
-        textSize = ImGui::CalcTextSize("100");
-        textSize.x += 5.0f;
+        ImGui::PushFont(csp_small);
+        textSize = ImGui::CalcTextSize("9999");
+        textSize.x += 6.0f;
+        ImGui::PopFont();
     }
 
     ImVec2 win_size = ImVec2(bar_cfg.width, bar_cfg.height);
@@ -133,16 +142,22 @@ void Overlay::DrawOverlay() {
     ImVec2 win_pos = ImVec2(0.0f, 0.0f);
     ImVec2 container_bar_size = ImVec2(0.0f, 0.0f);
 
+    ImVec2 hp_pos = ImVec2(0.0f, 0.0f);
     ImVec2 hp_bar_size = ImVec2(0.0f, 0.0f);
     float hp_bar_height = bar_cfg.height / 2;
+    float hpbar_offset = 0.0f;
 
+    ImVec2 arm_pos = ImVec2(0.0f, 0.0f);
     ImVec2 armor_bar_size = ImVec2(0.0f, 0.0f);
     float armor_bar_height = 3.0f;
+    float armbar_offset = 0.0f;
 
+    ImVec2 weapon_win_pos = ImVec2(0.0f, 0.0f);
+    ImVec2 weapon_win_size = ImVec2(0.0f, 0.0f);
     ImDrawList* draw_list = nullptr;
 
-    auto pPlayersList = PlayerManager::GetPlayersList();
-    TLink* pPlayerEntity = pPlayersList->m__head->m__succ;
+    ImVec2 cur_pos = ImVec2(0.0f, 0.0f);
+
     for (int i = 1; i <= g_OverlayCFG.max_players; i++) {
         if (!Validator::ObjIsValid(pPlayerEntity))
             break;
@@ -158,9 +173,7 @@ void Overlay::DrawOverlay() {
         if (hp == 0)
             continue;
 
-
         auto playerid = pPlayer->m_id;
-        
 
         // Convert HP
         float fhp = static_cast<float>(hp);
@@ -174,10 +187,17 @@ void Overlay::DrawOverlay() {
         nameSize = pPlayer->m_name->length + 1;
         wcstombs_s(&convertedChars, sName, nameSize, pPlayer->m_name->buf, pPlayer->m_name->length);
 
+        // Convert Ammo
+        auto ammo = PlayerManager::GetAmmo(pPlayer);
+        sprintf(sAmmo, "%s", ammo.c_str());
+
         auto m_team = pPlayer->m_team;
         if (m_team == TEAM::TEAM_TT) {
             win_pos.x = bar_cfg.x;
             win_pos.y = io.DisplaySize.y - bar_cfg.first_y - (bar_cfg.margin_bottom * countTT);
+
+            weapon_win_pos = ImVec2(win_pos.x + win_size.x, win_pos.y - 5.0f);
+            weapon_win_size = ImVec2(win_size.x / 2, win_size.y + 8.0f);
 
             HPBarColor = TTBarColor;
             countTT += 1;
@@ -186,9 +206,14 @@ void Overlay::DrawOverlay() {
             win_pos.x = io.DisplaySize.x - bar_cfg.x - bar_cfg.width;
             win_pos.y = io.DisplaySize.y - bar_cfg.first_y - (bar_cfg.margin_bottom * countCT);
 
+            weapon_win_pos = ImVec2(win_pos.x - bar_cfg.width, win_pos.y - 5.0f);
+            weapon_win_size = ImVec2(win_size.x / 2, win_size.y + 8.0f);
+
             HPBarColor = CTBarColor;
             countCT += 1;
         }
+        hp_pos = win_pos;
+        arm_pos = win_pos;
 
         // Windows
         container_bar_size = ImVec2(win_pos.x + win_size.x, win_pos.y + win_size.y);
@@ -211,20 +236,29 @@ void Overlay::DrawOverlay() {
 
         ImGui::End();
 
-        // HP
+        // HP 
         hp_bar_size = ImVec2(
             win_pos.x + fhp * (win_size.x / 100),
             win_pos.y + hp_bar_height
         );
+
         ImGui::SetNextWindowPos(win_pos, ImGuiCond_Always);
         ImGui::SetNextWindowSize(win_size, ImGuiCond_Always);
         ImGui::Begin(window_title_hp, &show_overlay, window_flags);
+
         draw_list = ImGui::GetWindowDrawList();
+        if (m_team == TEAM::TEAM_CT) {
+            hpbar_offset = win_pos.x + (win_size.x - hp_bar_size.x);
+            hp_pos.x += hpbar_offset;
+            hp_bar_size.x += hpbar_offset;
+        };
+
         draw_list->AddRectFilled(
-            win_pos,
+            hp_pos,
             hp_bar_size,
             HPBarColor
         );
+
         ImGui::End();
 
         // Armor
@@ -236,8 +270,13 @@ void Overlay::DrawOverlay() {
         ImGui::SetNextWindowSize(win_size, ImGuiCond_Always);
         ImGui::Begin(window_title_armor, &show_overlay, window_flags);
         draw_list = ImGui::GetWindowDrawList();
+        if (m_team == TEAM::TEAM_CT) {
+            armbar_offset = win_pos.x + (win_size.x - armor_bar_size.x);
+            arm_pos.x += armbar_offset;
+            armor_bar_size.x += armbar_offset;
+        };
         draw_list->AddRectFilled(
-            win_pos,
+            arm_pos,
             armor_bar_size,
             ArmorBarColor
         );
@@ -251,27 +290,62 @@ void Overlay::DrawOverlay() {
         ImGui::BeginChild("row1", win_size);
         ImGui::PushFont(csp_small);
 
-        auto cur = ImGui::GetCursorPos();
+        cur_pos = ImGui::GetCursorPos();
+        if (m_team == TEAM::TEAM_TT) {
+            ImGui::Text(sHP);
+            ImGui::SetCursorPos(ImVec2(cur_pos.x + textSize.x, cur_pos.y));
+            ImGui::Text(sName);
+        }
+        else if (m_team == TEAM::TEAM_CT) {
+            char CTsHP[8];
+            sprintf(CTsHP, "%d9", hp);
+            auto ct_hp_sz = ImGui::CalcTextSize(CTsHP);
+            ImGui::SetCursorPos(ImVec2(cur_pos.x + win_size.x - ct_hp_sz.x - 5.0f, cur_pos.y));
+            ImGui::Text(sHP);
 
-        ImGui::Text(sHP);
-        ImGui::SetCursorPos(ImVec2(cur.x + textSize.x, cur.y));
-        ImGui::Text(sName);
+            auto name_size = ImGui::CalcTextSize(sName);
+            ImGui::SetCursorPos(ImVec2(cur_pos.x + win_size.x - textSize.x - name_size.x - 15.0f, cur_pos.y));
+            ImGui::Text(sName);
+        }
 
         ImGui::PopFont();
         ImGui::EndChild();
         ImGui::EndGroup();
         ImGui::End();
 
+        // Money
+
+        // KDA
+
         // Weapon
-        win_pos.x = win_pos.x + win_size.x;
-        ImGui::SetNextWindowPos(win_pos, ImGuiCond_Always);
-        ImGui::SetNextWindowSize(win_size, ImGuiCond_Always);
+        ImGui::SetNextWindowPos(weapon_win_pos, ImGuiCond_Always);
+        ImGui::SetNextWindowSize(weapon_win_size, ImGuiCond_Always);
         ImGui::Begin(window_title_weapon, &show_overlay, window_flags);
 
         DrawWeapon(pPlayer, m_team);
 
-        ImGui::End();
+        cur_pos = ImGui::GetCursorPos();
 
+        ImGui::PushFont(csp_small);
+        
+        if (m_team == TEAM::TEAM_TT) {
+            // Has Bomb
+            if (pPlayer->m_bomb > 0) {
+
+            }
+        }
+        else if (m_team == TEAM::TEAM_CT) {
+            char CTsAMMO[16];
+            sprintf(CTsAMMO, "%s9", sAmmo);
+            auto ammo_text_size = ImGui::CalcTextSize(CTsAMMO);
+            ImGui::SetCursorPosX(cur_pos.x + weapon_win_size.x - ammo_text_size.x - 5.0f);
+            // Has Defuse kit
+            if (pPlayer->m_defuse > 0) {
+            }
+        }
+        ImGui::Text(sAmmo);
+        ImGui::PopFont();
+        ImGui::End();
     }
 }
 
@@ -308,6 +382,13 @@ void Overlay::DrawHPBar(int playerid, int team, float hp, ImVec2 win_pos, ImVec2
         HPBarColor
     );
     ImGui::End();
+}
+
+Overlay::WeaponInfo Overlay::GetWeaponInfo(int weapon_id) {
+    // None
+    if (weapons_info.count(weapon_id) != 1) return  weapons_info.at(0);
+
+    return weapons_info.at(weapon_id);
 }
 
 void Overlay::DrawBarText(Tpl* pPlayer, ImVec2 win_pos, ImVec2 win_size) {
@@ -426,142 +507,18 @@ void Overlay::DrawWeapon(Tpl* pPlayer, int team) {
     auto weapon_id = pPlayer->m_weapon->m_typ;
 
     // Unknown weapon
-    if (weapon_names.count(weapon_id) != 1) return;
+    if (weapons_info.count(weapon_id) != 1) return;
 
-    auto weapon_texture_size = weapon_sizes.at(weapon_id);
+    auto weapon_info = weapons_info.at(weapon_id);
 
     auto weapon_texture_scale = g_OverlayCFG.weapon_texture_scale;
 
-    weapon_texture_size = ImVec2(
-        weapon_texture_size.x * weapon_texture_scale,
-        weapon_texture_size.y * weapon_texture_scale
+    auto weapon_texture_size = ImVec2(
+        weapon_info.width * weapon_texture_scale,
+        weapon_info.height * weapon_texture_scale
     );
 
-    LPDIRECT3DTEXTURE9  ptexture    = nullptr;
-    
-    switch (weapon_id) {
-    case 1:
-        ptexture = texUSP;
-        break;
-    case 2:
-        ptexture = texGlock;
-        break;
-    case 3:
-        ptexture = texDeagle;
-        break;
-    case 4:
-        ptexture = texP228;
-        break;
-    case 5:
-        ptexture = texElite;
-        break;
-    case 6:
-        ptexture = texFiveSeven;
-        break;
-    case 10:
-        ptexture = texM3;
-        break;
-    case 11:
-        ptexture = texXM1014;
-        break;
-    case 20:
-        ptexture = texMP5;
-        break;
-    case 21:
-        ptexture = texTMP;
-        break;
-    case 22:
-        ptexture = texP90;
-        break;
-    case 23:
-        ptexture = texMAC10;
-        break;
-    case 24:
-        ptexture = texUMP;
-        break;
-    case 30:
-        ptexture = texAK47;
-        break;
-    case 31:
-        ptexture = texSG552;
-        break;
-    case 32:
-        ptexture = texM4A1;
-        break;
-    case 33:
-        ptexture = texAUG;
-        break;
-    case 34:
-        ptexture = texScout;
-        break;
-    case 35:
-        ptexture = texAWP;
-        break;
-    case 36:
-        ptexture = texG3SG1;
-        break;
-    case 37:
-        ptexture = texSG550;
-        break;
-    case 38:
-        ptexture = texGalil;
-        break;
-    case 39:
-        ptexture = texFamas;
-        break;
-    case 40:
-        ptexture = texM249;
-        break;
-    case 41:
-        ptexture = texTactShield;
-        break;
-    case 45:
-        ptexture = texLaser;
-        break;
-    case 46:
-        ptexture = texFlame;
-        break;
-    case 47:
-        ptexture = texRPG;
-        break;
-    case 48:
-        ptexture = texRocket;
-        break;
-    case 49:
-        ptexture = texGrenade;
-        break;
-    case 50:
-        ptexture = texKnife;
-        break;
-    case 51:
-        ptexture = texHE;
-        break;
-    case 52:
-        ptexture = texFB;
-        break;
-    case 53:
-        ptexture = texSmoke;
-        break;
-    case 54:
-        ptexture = texFlare;
-        break;
-    case 55:
-        ptexture = texIcoC4;
-        break;
-    case 69:
-        ptexture = texMachete;
-        break;
-    case 90:
-        ptexture = texM134;
-        break;
-    case 91:
-        ptexture = texFNF2000;
-        break;
-    default:
-        ptexture = nullptr;
-        break;
-    }
-
+    LPDIRECT3DTEXTURE9  ptexture    = weapon_info.ptex;
 
     if (!ptexture)  return;
 
@@ -569,9 +526,14 @@ void Overlay::DrawWeapon(Tpl* pPlayer, int team) {
         ImGui::Image(ptexture, weapon_texture_size);
     }
     else {
+        auto avail_space = ImGui::GetContentRegionAvail();
+        auto cur = ImGui::GetCursorPos();
+        ImGui::SetCursorPos(ImVec2(cur.x + avail_space.x - weapon_texture_size.x, cur.y));
         ImGui::Image(ptexture, weapon_texture_size, ImVec2(1, 0), ImVec2(0, 1));
     }
 
 }
+
+
 
 Overlay g_Overlay;

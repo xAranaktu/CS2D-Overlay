@@ -7,14 +7,6 @@
 #include <config.h>
 #include <manager.h>
 
-struct WeaponTexture {
-    std::string name = "";
-    float w = 32.0f;
-    float h = 32.0f;
-    float scale = 1.0f;
-    LPDIRECT3DTEXTURE9  p = nullptr;
-};
-
 class Overlay {
 public:
     std::string imgui_ini = "imgui.ini";
@@ -28,93 +20,71 @@ public:
 
     bool show_overlay = false;
 
-    std::map<int, std::string>  weapon_names = {
-        {1, "USP"},
-        {2, "Glock"},
-        {3, "Deagle"},
-        {4, "P228"},
-        {5, "Elite"},
-        {6, "Five-Seven"},
-        {10, "M3"},
-        {11, "XM1014"},
-        {20, "MP5"},
-        {21, "TMP"},
-        {22, "P90"},
-        {23, "Mac 10"},
-        {24, "UMP45"},
-        {30, "AK-47"},
-        {31, "SG552"},
-        {32, "M4A1"},
-        {33, "Aug"},
-        {34, "Scout"},
-        {35, "AWP"},
-        {36, "G3SG1"},
-        {37, "SG550"},
-        {38, "Galil"},
-        {39, "Famas"},
-        {40, "M249"},
-        {41, "Tactical Shield"},
-        {45, "Laser"},
-        {46, "Flamethrower"},
-        {47, "RPG Launcher"},
-        {48, "Rocket Launcher"},
-        {49, "Grenade Launcher"},
-        {50, "Knife"},
-        {51, "HE"},
-        {52, "FB"},
-        {53, "Smoke"},
-        {54, "Flare"},
-        {55, "C4"},
-        {69, "Machete"},   // HEHE
+    class WeaponInfo {
+    public:
+        std::string name;
+        float width;
+        float height;
+        LPDIRECT3DTEXTURE9 ptex = nullptr;
+
+        WeaponInfo(std::string n, float w, float h) {
+            name = n;
+            width = w;
+            height = h;
+        }
+    };
+
+    
+    std::map<int, WeaponInfo> weapons_info = {
+        {0,  WeaponInfo("NONE", 32.0f, 32.0f)},
+
+        {1,  WeaponInfo("USP", 16.0f, 12.0f)},
+        {2,  WeaponInfo("Glock", 18.0f, 13.0f)},
+        {3,  WeaponInfo("Deagle", 18.0f, 12.0f)},
+        {4,  WeaponInfo("P228", 14.0f, 12.0f)},
+        {5,  WeaponInfo("Elite", 17.0f, 12.0f)},
+        {6,  WeaponInfo("Five-Seven", 16.0f, 12.0f)},
+        {10, WeaponInfo("M3", 33.0f, 12.0f)},
+        {11, WeaponInfo("XM1014", 36.0f, 12.0f)},
+        {20, WeaponInfo("MP5", 24.0f, 12.0f)},
+        {21, WeaponInfo("TMP", 25.0f, 12.0f)},
+        {22, WeaponInfo("P90", 23.0f, 12.0f)},
+        {23, WeaponInfo("Mac 10", 18.0f, 12.0f)},
+        {24, WeaponInfo("UMP45", 24.0f, 12.0f)},
+        {30, WeaponInfo("AK-47", 32.0f, 12.0f)},
+        {31, WeaponInfo("SG552", 30.0f, 12.0f)},
+        {32, WeaponInfo("M4A1", 30.0f, 12.0f)},
+        {33, WeaponInfo("Aug", 29.0f, 12.0f)},
+        {34, WeaponInfo("Scout", 38.0f, 12.0f)},
+        {35, WeaponInfo("AWP", 41.0f, 12.0f)},
+        {36, WeaponInfo("G3SG1", 37.0f, 12.0f)},
+        {37, WeaponInfo("SG550", 35.0f, 12.0f)},
+        {38, WeaponInfo("Galil", 31.0f, 12.0f)},
+        {39, WeaponInfo("Famas", 31.0f, 12.0f)},
+        {40, WeaponInfo("M249", 28.0f, 12.0f)},
+        {41, WeaponInfo("Tactical Shield", 12.0f, 12.0f)},
+        {45, WeaponInfo("Laser", 27.0f, 12.0f)},
+        {46, WeaponInfo("Flamethrower", 15.0f, 12.0f)},
+        {47, WeaponInfo("RPG Launcher", 45.0f, 11.0f)},
+        {48, WeaponInfo("Rocket Launcher", 24.0f, 12.0f)},
+        {49, WeaponInfo("Grenade Launcher", 16.0f, 11.0f)},
+        {50, WeaponInfo("Knife", 28.0f, 9.0f)},
+        {51, WeaponInfo("HE", 12.0f, 12.0f)},
+        {52, WeaponInfo("FB", 12.0f, 12.0f)},
+        {53, WeaponInfo("Smoke", 12.0f, 12.0f)},
+        {54, WeaponInfo("Flare", 12.0f, 12.0f)},
+        {55, WeaponInfo("C4", 12.0f, 12.0f)},
+        {69, WeaponInfo("Machete", 13.0f, 10.0f)},
         // {88, "Portal Gun"},
-        {90, "M134"},
-        {91, "FN F2000"}
+        {90, WeaponInfo("M134", 31.0f, 12.0f)},
+        {91, WeaponInfo("FN F2000", 27.0f, 12.0f)}
     };
 
-    std::map<int, ImVec2>       weapon_sizes = {
-        {1, ImVec2(16.0f, 12.0f)},
-        {2, ImVec2(18.0f, 13.0f)},
-        {3, ImVec2(18.0f, 12.0f)},
-        {4, ImVec2(14.0f, 12.0f)},
-        {5, ImVec2(17.0f, 12.0f)},
-        {6, ImVec2(16.0f, 12.0f)},
-        {10, ImVec2(33.0f, 12.0f)},
-        {11, ImVec2(36.0f, 12.0f)},
-        {20, ImVec2(24.0f, 12.0f)},
-        {21, ImVec2(25.0f, 12.0f)},
-        {22, ImVec2(23.0f, 12.0f)},
-        {23, ImVec2(18.0f, 12.0f)},
-        {24, ImVec2(24.0f, 12.0f)},
-        {30, ImVec2(32.0f, 12.0f)},
-        {31, ImVec2(30.0f, 12.0f)},
-        {32, ImVec2(30.0f, 12.0f)},
-        {33, ImVec2(29.0f, 12.0f)},
-        {34, ImVec2(38.0f, 12.0f)},
-        {35, ImVec2(41.0f, 12.0f)},
-        {36, ImVec2(37.0f, 12.0f)},
-        {37, ImVec2(35.0f, 12.0f)},
-        {38, ImVec2(31.0f, 12.0f)},
-        {39, ImVec2(31.0f, 12.0f)},
-        {40, ImVec2(28.0f, 12.0f)},
-        {41, ImVec2(32.0f, 32.0f)},
-        {45, ImVec2(27.0f, 12.0f)},
-        {46, ImVec2(15.0f, 12.0f)},
-        {47, ImVec2(45.0f, 11.0f)},
-        {48, ImVec2(24.0f, 12.0f)},
-        {49, ImVec2(16.0f, 11.0f)},
-        {50, ImVec2(28.0f, 9.0f)},
-        {51, ImVec2(16.0f, 16.0f)},
-        {52, ImVec2(16.0f, 16.0f)},
-        {53, ImVec2(16.0f, 16.0f)},
-        {54, ImVec2(16.0f, 16.0f)},
-        {55, ImVec2(16.0f, 16.0f)},
-        {69, ImVec2(13.0f, 10.0f)},   // HEHE
-        //{88, "Portal Gun"},
-        {90, ImVec2(31.0f, 12.0f)},
-        {91, ImVec2(27.0f, 12.0f)}
-    };
-
-    LPDIRECT3DTEXTURE9 texLogo, texSymArm, texSymHP, texIcoC4, texIcoDef, texUSP, texGlock, texDeagle, texP228, texElite, texFiveSeven, texM3, texXM1014, texMP5, texTMP, texP90, texMAC10, texUMP, texAK47, texSG552, texM4A1, texAUG, texScout, texAWP, texG3SG1, texSG550, texGalil, texFamas, texM249, texTactShield, texLaser, texFlame, texRPG, texRocket, texGrenade, texKnife, texHE, texFB, texSmoke, texFlare, texBomb, texMachete, texM134, texFNF2000 = NULL;
+    LPDIRECT3DTEXTURE9 texLogo = nullptr;
+    LPDIRECT3DTEXTURE9 texSymArm = nullptr;
+    LPDIRECT3DTEXTURE9 texSymHP = nullptr;
+    LPDIRECT3DTEXTURE9 texIcoC4 = nullptr;
+    LPDIRECT3DTEXTURE9 texIcoDef = nullptr;
 
     Overlay();
     ~Overlay();
@@ -128,10 +98,13 @@ public:
 
     void DrawOverlay();
 private:
+    WeaponInfo GetWeaponInfo(int weapon_id);
+
     void DrawBarText(Tpl* pPlayer, ImVec2 win_pos, ImVec2 win_size);
     void DrawHPBar(int playerid, int team, float hp, ImVec2 win_pos, ImVec2 win_size);
     void DrawPlayerBar(Tpl* pPlayer, int idx, int team = -1, int hp = -1);
     void DrawWeapon(Tpl* pPlayer, int team = -1);
+
 };
 
 extern Overlay g_Overlay;

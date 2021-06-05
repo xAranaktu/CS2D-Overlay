@@ -117,9 +117,6 @@ namespace d3d9hook {
             }
         }
 
-        // Create Textures
-        // if (!tex_created) CreateTextures(pDevice);
-
         // Create Sprites
         if (!sprites_created) CreateSprites(pDevice);
 
@@ -306,45 +303,17 @@ namespace d3d9hook {
         D3DXCreateTextureFromFileInMemoryEx(pDevice, &symbol_HP, sizeof(symbol_HP), 32, 32, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texSymHP);
         D3DXCreateTextureFromFileInMemoryEx(pDevice, &icons_c4, sizeof(icons_c4), 18, 18, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texIcoC4);
         D3DXCreateTextureFromFileInMemoryEx(pDevice, &icons_defuser, sizeof(icons_defuser), 18, 18, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texIcoDef);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_usp, sizeof(weapon_usp), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texUSP);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_glock, sizeof(weapon_glock), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texGlock);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_deagle, sizeof(weapon_deagle), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texDeagle);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_p228, sizeof(weapon_p228), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texP228);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_elite, sizeof(weapon_elite), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texElite);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_fiveseven, sizeof(weapon_fiveseven), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texFiveSeven);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_m3, sizeof(weapon_m3), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texM3);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_xm1014, sizeof(weapon_xm1014), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texXM1014);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_mp5, sizeof(weapon_mp5), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texMP5);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_tmp, sizeof(weapon_tmp), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texTMP);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_p90, sizeof(weapon_p90), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texP90);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_mac10, sizeof(weapon_mac10), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texMAC10);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_ump, sizeof(weapon_ump), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texUMP);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_ak47, sizeof(weapon_ak47), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texAK47);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_sg552, sizeof(weapon_sg552), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texSG552);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_m4a1, sizeof(weapon_m4a1), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texM4A1);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_aug, sizeof(weapon_aug), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texAUG);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_scout, sizeof(weapon_scout), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texScout);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_awp, sizeof(weapon_awp), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texAWP);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_g3sg1, sizeof(weapon_g3sg1), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texG3SG1);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_sg550, sizeof(weapon_sg550), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texSG550);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_galil, sizeof(weapon_galil), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texGalil);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_famas, sizeof(weapon_famas), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texFamas);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_m249, sizeof(weapon_m249), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texM249);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_tacticalshield, sizeof(weapon_tacticalshield), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texTactShield);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_laser, sizeof(weapon_laser), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texLaser);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_flamethrower, sizeof(weapon_flamethrower), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texFlame);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_rpglauncher, sizeof(weapon_rpglauncher), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texRPG);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_rocketlauncher, sizeof(weapon_rocketlauncher), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texRocket);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_grenadelauncher, sizeof(weapon_grenadelauncher), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texGrenade);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_knife, sizeof(weapon_knife), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texKnife);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_HE, sizeof(weapon_HE), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texHE);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_flash, sizeof(weapon_flash), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texFB);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_smoke, sizeof(weapon_smoke), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texSmoke);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_flare, sizeof(weapon_flare), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texFlare);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_bomb, sizeof(weapon_bomb), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texBomb);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_machete, sizeof(weapon_machete), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texMachete);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_m134, sizeof(weapon_m134), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texM134);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &weapon_fnf2000, sizeof(weapon_fnf2000), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texFNF2000);
+        
+        std::map<int, MemFile>::iterator it = weapon_mem_files.begin();
+        while (it != weapon_mem_files.end())
+        {
+            int weapon_id = it->first;
+            MemFile mem_f = it->second;
+
+            D3DXCreateTextureFromFileInMemoryEx(pDevice, mem_f.content, mem_f.sz, D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.weapons_info.at(weapon_id).ptex);
+            it++;
+        }
+        
         tex_created = true;
     }
 
@@ -368,12 +337,6 @@ namespace d3d9hook {
         sprites_created = true;
     }
 
-    void setScreenCenter(LPDIRECT3DDEVICE9 pDevice) {
-        pDevice->GetViewport(&Viewport);
-        screenCenterX = (float)(Viewport.Width / 2);
-        screenCenterY = (float)(Viewport.Height / 2);
-    }
-
     void DeleteSurfaces()
     {
         SAFE_RELEASE(guiFont);
@@ -385,50 +348,18 @@ namespace d3d9hook {
         SAFE_RELEASE(sprIcon);
         SAFE_RELEASE(sprLogo);
 
-        SAFE_RELEASE(g_Overlay.texLogo);
-        SAFE_RELEASE(g_Overlay.texSymArm);
-        SAFE_RELEASE(g_Overlay.texSymHP);
-        SAFE_RELEASE(g_Overlay.texIcoC4);
-        SAFE_RELEASE(g_Overlay.texIcoDef);
-        SAFE_RELEASE(g_Overlay.texUSP);
-        SAFE_RELEASE(g_Overlay.texGlock);
-        SAFE_RELEASE(g_Overlay.texDeagle);
-        SAFE_RELEASE(g_Overlay.texP228);
-        SAFE_RELEASE(g_Overlay.texElite);
-        SAFE_RELEASE(g_Overlay.texFiveSeven);
-        SAFE_RELEASE(g_Overlay.texM3);
-        SAFE_RELEASE(g_Overlay.texXM1014);
-        SAFE_RELEASE(g_Overlay.texMP5);
-        SAFE_RELEASE(g_Overlay.texTMP);
-        SAFE_RELEASE(g_Overlay.texP90);
-        SAFE_RELEASE(g_Overlay.texMAC10);
-        SAFE_RELEASE(g_Overlay.texUMP);
-        SAFE_RELEASE(g_Overlay.texAK47);
-        SAFE_RELEASE(g_Overlay.texSG552);
-        SAFE_RELEASE(g_Overlay.texM4A1);
-        SAFE_RELEASE(g_Overlay.texAUG);
-        SAFE_RELEASE(g_Overlay.texScout);
-        SAFE_RELEASE(g_Overlay.texAWP);
-        SAFE_RELEASE(g_Overlay.texG3SG1);
-        SAFE_RELEASE(g_Overlay.texSG550);
-        SAFE_RELEASE(g_Overlay.texGalil);
-        SAFE_RELEASE(g_Overlay.texFamas);
-        SAFE_RELEASE(g_Overlay.texM249);
-        SAFE_RELEASE(g_Overlay.texTactShield);
-        SAFE_RELEASE(g_Overlay.texLaser);
-        SAFE_RELEASE(g_Overlay.texFlame);
-        SAFE_RELEASE(g_Overlay.texRPG);
-        SAFE_RELEASE(g_Overlay.texRocket);
-        SAFE_RELEASE(g_Overlay.texGrenade);
-        SAFE_RELEASE(g_Overlay.texKnife);
-        SAFE_RELEASE(g_Overlay.texHE);
-        SAFE_RELEASE(g_Overlay.texFB);
-        SAFE_RELEASE(g_Overlay.texSmoke);
-        SAFE_RELEASE(g_Overlay.texFlare);
-        SAFE_RELEASE(g_Overlay.texBomb);
-        SAFE_RELEASE(g_Overlay.texMachete);
-        SAFE_RELEASE(g_Overlay.texM134);
-        SAFE_RELEASE(g_Overlay.texFNF2000);
+        std::map<int, Overlay::WeaponInfo>::iterator it = g_Overlay.weapons_info.begin();
+        while (it != g_Overlay.weapons_info.end())
+        {
+            auto weap_info = it->second;
+
+            SAFE_RELEASE(weap_info.ptex);
+
+
+            it++;
+        }
+        
+
 
         tex_created = false;
         sprites_created = false;

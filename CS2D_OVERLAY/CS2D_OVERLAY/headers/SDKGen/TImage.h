@@ -29,7 +29,7 @@ struct TImageDecl {
 // 11 members
 struct TImage {
     TImageDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     int m_width; // 0x8 <type_i>
     int m_height; // 0xC <type_i>
     int m_flags; // 0x10 <type_i>

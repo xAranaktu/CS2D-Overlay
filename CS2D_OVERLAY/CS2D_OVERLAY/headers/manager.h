@@ -19,7 +19,7 @@ public:
 //class Titem {
 //public:
 //    ClassDecl* pClassDecl; // 0x0 
-//    unsigned int    kind;  // 0x4 DebugeclCodes (?) 
+//    int refs; 
 //    int m_id; // 0x8 <type_i> 
 //    int m_typ; // 0xC <type_i> 
 //    int m_player; // 0x10 <type_i> 

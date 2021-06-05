@@ -27,7 +27,7 @@ struct TtimerDecl {
 // 1 members
 struct Ttimer {
     TtimerDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     int m_time; // 0x8 <type_i>
 };
 

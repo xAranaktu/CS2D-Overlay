@@ -26,7 +26,7 @@ struct TLinkDecl {
 // 3 members
 struct TLink {
     TLinkDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     Object* m__value; // 0x8 <type_:Object>
     TLink* m__succ; // 0xC <type_:TLink>
     TLink* m__pred; // 0x10 <type_:TLink>

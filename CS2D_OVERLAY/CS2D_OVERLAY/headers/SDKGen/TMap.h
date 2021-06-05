@@ -40,7 +40,7 @@ struct TMapDecl {
 // 3 members
 struct TMap {
     TMapDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     TNode* m__root; // 0x8 <type_:TNode>
     int m_RED; // 0x8E80C8 <type_i>
     int m_BLACK; // 0x8E80E0 <type_i>

@@ -409,7 +409,7 @@ function gen_sdk(cls)
         "    %sDecl* decl; // 0x0\n",
         cls["name"]
     ))
-    fo:write("    unsigned int    kind;  // 0x4 DebugeclCodes (?)\n")
+    fo:write("    int    refs;  // 0x4\n")
     
     can_continue = true
     step = 0x4

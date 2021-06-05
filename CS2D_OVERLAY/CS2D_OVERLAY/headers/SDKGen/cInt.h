@@ -31,7 +31,7 @@ struct cIntDecl {
 // 3 members
 struct cInt {
     cIntDecl* decl; // 0x0
-    unsigned int    kind;  // 0x4 DebugeclCodes (?)
+    int refs;
     int m_value; // 0x8 <type_i>
     int m_valueRND; // 0xC <type_i>
     void* m_check; // 0x10 <type_[]i>
