@@ -1,5 +1,6 @@
 #pragma once
 #include <Shlobj.h>
+#include <../imgui/imgui.h>
 #include "dllmain.h"
 
 class OverlayCFG {
@@ -20,13 +21,20 @@ public:
     } fontsize;
 
     struct PlayerBar {
-        float x = 10.0f;
-        float first_y = 120.0f;
+        float x_margin = 10.0f;
+        float y_margin = 120.0f;
         float width = 260.0f;
         float height = 48.0f;
-        float margin_left_right = 10.0f;
-        float margin_bottom = 50.0f;
-        float padding = 3.0f;
+
+        float hp_height_perc = 0.5f;
+        float arm_height_perc = 0.15f;
+
+        float spacing = 2.0f;
+
+        float extra_text_width = 10.0f;
+
+        ImVec2 hp_text_sz = ImVec2(0.0f, 0.0f);
+        ImVec2 money_text_size = ImVec2(0.0f, 0.0f);
     } playerbar;
 
     float weapon_texture_scale = 2.0f;

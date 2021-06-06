@@ -80,9 +80,6 @@ public:
         {91, WeaponInfo("FN F2000", 27.0f, 12.0f)}
     };
 
-    LPDIRECT3DTEXTURE9 texLogo = nullptr;
-    LPDIRECT3DTEXTURE9 texSymArm = nullptr;
-    LPDIRECT3DTEXTURE9 texSymHP = nullptr;
     LPDIRECT3DTEXTURE9 texIcoC4 = nullptr;
     LPDIRECT3DTEXTURE9 texIcoDef = nullptr;
 
@@ -100,9 +97,6 @@ public:
 private:
     WeaponInfo GetWeaponInfo(int weapon_id);
 
-    void DrawBarText(Tpl* pPlayer, ImVec2 win_pos, ImVec2 win_size);
-    void DrawHPBar(int playerid, int team, float hp, ImVec2 win_pos, ImVec2 win_size);
-    void DrawPlayerBar(Tpl* pPlayer, int idx, int team = -1, int hp = -1);
     void DrawWeapon(Tpl* pPlayer, int team = -1);
 
 };

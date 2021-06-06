@@ -112,6 +112,14 @@ public:
         return arm->decl->m_cInt_Get(arm);
     }
 
+    static int GetMoney(Tpl* pPlayer) {
+        if (!Validator::ObjIsValid(pPlayer)) return 0;
+
+        auto money = pPlayer->m_money;
+
+        return money->decl->m_cInt_Get(money);
+    }
+
     static std::string GetAmmo(Tpl* pPlayer) {
         if (!Validator::ObjIsValid(pPlayer)) return "";
         return ItemManager::GetAmmo(pPlayer->m_weapon);

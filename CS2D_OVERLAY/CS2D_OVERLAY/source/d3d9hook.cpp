@@ -37,6 +37,9 @@ namespace d3d9hook {
             io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
             ImGui::StyleColorsDark();
 
+            ImGuiStyle& style = ImGui::GetStyle();
+            style.WindowPadding = ImVec2(6.0f, 6.0f);
+
             auto font_config = g_OverlayCFG.fontsize;
 
             ImFont* font;
@@ -291,18 +294,15 @@ namespace d3d9hook {
         logger.Write(LOG_INFO, "DirectX9 - CreateTextures");
 
         HRESULT hr;
-        hr = D3DXCreateTextureFromFileInMemoryEx(pDevice, &ICC_LOGO, sizeof(ICC_LOGO), 197 / 2, 173 / 2, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, 0, NULL, NULL, &g_Overlay.texLogo);
+        hr = D3DXCreateTextureFromFileInMemoryEx(pDevice, &icons_c4, sizeof(icons_c4), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texIcoC4);
         if (FAILED(hr))
         {
             tex_created = false;
-            logger.Write(LOG_ERROR, "D3DXCreateTextureFromFileInMemoryEx - ICC_LOGO failed");
+            logger.Write(LOG_ERROR, "D3DXCreateTextureFromFileInMemoryEx - icons_c4 failed");
             return;
         }
 
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &symbol_Armor, sizeof(symbol_Armor), 32, 32, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texSymArm);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &symbol_HP, sizeof(symbol_HP), 32, 32, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texSymHP);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &icons_c4, sizeof(icons_c4), 18, 18, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texIcoC4);
-        D3DXCreateTextureFromFileInMemoryEx(pDevice, &icons_defuser, sizeof(icons_defuser), 18, 18, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texIcoDef);
+        D3DXCreateTextureFromFileInMemoryEx(pDevice, &icons_defuser, sizeof(icons_defuser), D3DX_DEFAULT, D3DX_DEFAULT, 1, 0, D3DFMT_UNKNOWN, D3DPOOL_DEFAULT, D3DX_FILTER_LINEAR, D3DX_FILTER_LINEAR, D3DCOLOR_ARGB(255, 00, 00, 00), NULL, NULL, &g_Overlay.texIcoDef);
         
         std::map<int, MemFile>::iterator it = weapon_mem_files.begin();
         while (it != weapon_mem_files.end())
@@ -347,6 +347,9 @@ namespace d3d9hook {
         SAFE_RELEASE(sprWep2);
         SAFE_RELEASE(sprIcon);
         SAFE_RELEASE(sprLogo);
+
+        SAFE_RELEASE(g_Overlay.texIcoC4);
+        SAFE_RELEASE(g_Overlay.texIcoDef);
 
         std::map<int, Overlay::WeaponInfo>::iterator it = g_Overlay.weapons_info.begin();
         while (it != g_Overlay.weapons_info.end())
