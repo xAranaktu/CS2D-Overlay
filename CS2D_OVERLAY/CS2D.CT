@@ -11,7 +11,7 @@
       <ID>2</ID>
       <Description>"COOL"</Description>
       <Options moHideChildren="1"/>
-      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
@@ -52,6 +52,30 @@ ret
 //Alt: db 0F B6 40 02 C3
 </AssemblerScript>
         </CheatEntry>
+        <CheatEntry>
+          <ID>273</ID>
+          <Description>"globalalloc"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+globalalloc(fakecls, 4, 0x897E04)
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>274</ID>
+              <Description>"fakecls"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>fakecls</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
       </CheatEntries>
     </CheatEntry>
     <CheatEntry>
@@ -71,7 +95,7 @@ ret
         <CheatEntry>
           <ID>5</ID>
           <Description>"Clock Min"</Description>
-          <LastState Value="2" RealAddress="00897F10"/>
+          <LastState Value="3" RealAddress="00897F10"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>897F10</Address>
@@ -79,7 +103,7 @@ ret
         <CheatEntry>
           <ID>6</ID>
           <Description>"Clock Sec"</Description>
-          <LastState Value="45" RealAddress="00897F14"/>
+          <LastState Value="21" RealAddress="00897F14"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>897F14</Address>
@@ -87,7 +111,7 @@ ret
         <CheatEntry>
           <ID>7</ID>
           <Description>"pLocalPlayer"</Description>
-          <LastState Value="1291DAC0" RealAddress="00897E04"/>
+          <LastState Value="12B92C50" RealAddress="00897E04"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -96,7 +120,7 @@ ret
             <CheatEntry>
               <ID>8</ID>
               <Description>"name"</Description>
-              <LastState RealAddress="05F9389C"/>
+              <LastState RealAddress="047809DC"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>String</VariableType>
               <Length>6</Length>
@@ -113,6 +137,4218 @@ ret
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
+    <CheatEntry>
+      <ID>275</ID>
+      <Description>"Clss"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>276</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="007C7BE4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+3C7BE4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>277</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086DA10"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46DA10</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>278</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086DAFC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46DAFC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>279</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086DBA8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46DBA8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>280</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086DCB4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46DCB4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>281</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086DE28"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46DE28</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>282</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086DED4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46DED4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>283</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086DF90"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46DF90</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>284</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086E17C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46E17C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>285</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086E308"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46E308</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>286</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086E460"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46E460</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>287</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086E5C0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46E5C0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>288</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086E928"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46E928</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>289</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086EB40"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46EB40</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>290</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086ED64"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46ED64</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>291</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086EF1C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46EF1C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>292</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086F030"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46F030</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>293</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086F21C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46F21C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>294</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086F2D4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46F2D4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>295</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086F43C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46F43C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>296</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086F86C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46F86C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>297</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086F9CC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46F9CC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>298</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086FBFC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46FBFC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>299</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086FCF4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46FCF4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>300</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086FDE4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46FDE4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>301</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0086FED0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+46FED0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>302</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00870524"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+470524</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>303</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00870624"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+470624</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>304</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00870908"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+470908</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>305</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00870A54"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+470A54</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>306</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00870B98"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+470B98</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>307</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00870D84"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+470D84</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>308</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00871054"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+471054</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>309</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00871350"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+471350</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>310</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087157C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47157C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>311</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00871AA8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+471AA8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>312</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00871C08"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+471C08</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>313</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00871CF4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+471CF4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>314</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008722E0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4722E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>315</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00872458"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+472458</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>316</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00872578"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+472578</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>317</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00872680"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+472680</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>318</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00872BC8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+472BC8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>319</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00873410"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+473410</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>320</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00873534"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+473534</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>321</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008735E0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4735E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>322</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00873730"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+473730</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>323</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008737B8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4737B8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>324</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00873840"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+473840</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>325</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008746E8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4746E8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>326</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00874850"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+474850</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>327</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00874954"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+474954</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>328</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008749D0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4749D0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>329</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00874AAC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+474AAC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>330</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00874B98"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+474B98</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>331</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00874C5C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+474C5C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>332</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087525C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47525C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>333</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00875310"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+475310</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>334</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00875ED8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+475ED8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>335</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00876044"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+476044</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>336</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00876108"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+476108</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>337</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00876198"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+476198</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>338</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087641C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47641C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>339</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008768E0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4768E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>340</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00876D00"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+476D00</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>341</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00876DD8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+476DD8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>342</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00876F24"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+476F24</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>343</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008770FC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4770FC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>344</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008775F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4775F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>345</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008778A4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4778A4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>346</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00877A10"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+477A10</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>347</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00877CAC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+477CAC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>348</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00877DC8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+477DC8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>349</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00877FA8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+477FA8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>350</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008780A8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4780A8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>351</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00878260"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+478260</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>352</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00878460"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+478460</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>353</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008786CC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4786CC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>354</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008787C0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4787C0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>355</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00878868"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+478868</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>356</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00878D20"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+478D20</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>357</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087904C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47904C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>358</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087946C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47946C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>359</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00879688"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+479688</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>360</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087A194"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47A194</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>361</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087A628"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47A628</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>362</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087AA88"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47AA88</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>363</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087AFA8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47AFA8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>364</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087B250"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47B250</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>365</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087B65C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47B65C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>366</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087B96C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47B96C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>367</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087BBD8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47BBD8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>368</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087BE3C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47BE3C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>369</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087C1DC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47C1DC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>370</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087C3C0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47C3C0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>371</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087C994"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47C994</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>372</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087CF2C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47CF2C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>373</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087D118"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47D118</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>374</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087D39C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47D39C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>375</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087D4B4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47D4B4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>376</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087D59C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47D59C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>377</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087D6B4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47D6B4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>378</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087D840"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47D840</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>379</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087D974"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47D974</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>380</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087DA6C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47DA6C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>381</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087DC60"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47DC60</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>382</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087DDA8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47DDA8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>383</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087DE64"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47DE64</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>384</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087DF78"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47DF78</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>385</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087E3CC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47E3CC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>386</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087E4E4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47E4E4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>387</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087EB2C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47EB2C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>388</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087ECB8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47ECB8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>389</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087EFBC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47EFBC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>390</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087F088"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47F088</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>391</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087F180"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47F180</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>392</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087F80C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47F80C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>393</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087F8F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47F8F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>394</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087FAB0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47FAB0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>395</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087FC60"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47FC60</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>396</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0087FE30"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+47FE30</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>397</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00880058"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+480058</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>398</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00880570"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+480570</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>399</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00880A90"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+480A90</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>400</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00880C4C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+480C4C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>401</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00880D5C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+480D5C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>402</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00880E18"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+480E18</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>403</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00880EE0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+480EE0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>404</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00880FF8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+480FF8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>405</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008811C4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4811C4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>406</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00881384"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+481384</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>407</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00881598"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+481598</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>408</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088185C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48185C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>409</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00881A14"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+481A14</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>410</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00881BE8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+481BE8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>411</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00883124"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+483124</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>412</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008833CC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4833CC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>413</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088353C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48353C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>414</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008836F0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4836F0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>415</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00883834"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+483834</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>416</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008839E4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4839E4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>417</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00883B34"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+483B34</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>418</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00883DF4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+483DF4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>419</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00883F50"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+483F50</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>420</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00884050"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+484050</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>421</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088419C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48419C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>422</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008855B8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4855B8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>423</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00885698"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+485698</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>424</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008857F4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4857F4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>425</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00885AA4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+485AA4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>426</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00885B70"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+485B70</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>427</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00885C94"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+485C94</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>428</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00885F00"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+485F00</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>429</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088600C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48600C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>430</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00886228"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+486228</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>431</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008862F4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4862F4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>432</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00886548"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+486548</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>433</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008865FC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4865FC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>434</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008866DC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4866DC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>435</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008867CC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4867CC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>436</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008868B0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4868B0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>437</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00886944"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+486944</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>438</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008869F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4869F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>439</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00886A9C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+486A9C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>440</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00886C80"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+486C80</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>441</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00886DF0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+486DF0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>442</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00886F50"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+486F50</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>443</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00887020"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+487020</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>444</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00887114"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+487114</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>445</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008871D8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4871D8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>446</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008872F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4872F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>447</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00888F30"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+488F30</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>448</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00889330"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+489330</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>449</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00889450"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+489450</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>450</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008894F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4894F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>451</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00889694"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+489694</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>452</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00889AC4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+489AC4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>453</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00889C3C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+489C3C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>454</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00889FB4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+489FB4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>455</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088A36C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48A36C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>456</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088A4BC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48A4BC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>457</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088A7E0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48A7E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>458</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088A950"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48A950</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>459</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088B1AC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48B1AC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>460</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088B4D4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48B4D4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>461</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088B610"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48B610</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>462</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088B76C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48B76C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>463</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088BB2C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48BB2C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>464</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088BF28"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48BF28</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>465</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C0E4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C0E4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>466</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C18C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C18C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>467</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C270"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C270</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>468</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C33C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C33C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>469</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C3E8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C3E8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>470</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C550"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C550</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>471</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C64C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C64C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>472</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C774"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C774</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>473</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C848"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C848</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>474</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C920"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C920</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>475</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088C9F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48C9F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>476</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088CA9C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48CA9C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>477</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088CBC4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48CBC4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>478</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088CE70"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48CE70</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>479</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088D0A0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48D0A0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>480</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088D240"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48D240</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>481</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088D398"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48D398</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>482</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088D4FC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48D4FC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>483</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088D6B0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48D6B0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>484</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088DAA0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48DAA0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>485</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088DC60"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48DC60</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>486</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088DD80"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48DD80</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>487</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088DEB4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48DEB4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>488</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088E0B0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48E0B0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>489</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088E368"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48E368</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>490</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088E53C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48E53C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>491</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088E5FC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48E5FC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>492</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088E6E8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48E6E8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>493</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088E89C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48E89C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>494</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088EB70"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48EB70</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>495</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088EC80"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48EC80</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>496</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088EDA8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48EDA8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>497</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088EEB0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48EEB0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>498</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088EFA4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48EFA4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>499</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088F0D0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48F0D0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>500</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088F1F4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48F1F4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>501</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088F320"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48F320</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>502</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088F4BC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48F4BC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>503</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088F744"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48F744</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>504</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088F968"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48F968</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>505</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088FAA8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48FAA8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>506</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088FBC4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48FBC4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>507</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088FCD4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48FCD4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>508</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088FE0C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48FE0C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>509</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088FEEC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48FEEC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>510</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0088FFF0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+48FFF0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>511</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0089021C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+49021C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>512</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00890390"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+490390</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>513</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008904D8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4904D8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>514</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0089069C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+49069C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>515</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00890818"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+490818</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>516</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0089097C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+49097C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>517</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00890A98"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+490A98</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>518</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00890B9C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+490B9C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>519</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00890E40"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+490E40</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>520</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008912A0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4912A0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>521</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00891648"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+491648</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>522</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008917DC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4917DC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>523</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00891AD8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+491AD8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>524</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00891C24"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+491C24</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>525</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00891D3C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+491D3C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>526</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00891E74"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+491E74</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>527</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00891F6C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+491F6C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>528</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00892064"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+492064</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>529</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00892220"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+492220</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>530</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00892308"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+492308</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>531</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008924F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4924F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>532</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00892768"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+492768</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>533</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00892890"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+492890</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>534</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008929E0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4929E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>535</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00892B24"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+492B24</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>536</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00892C54"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+492C54</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>537</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00892D28"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+492D28</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>538</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0089309C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+49309C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>539</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00893188"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+493188</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>540</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00893308"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+493308</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>541</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0089340C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+49340C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>542</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00893720"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+493720</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>543</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0089411C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+49411C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>544</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00894468"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+494468</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>545</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008945D4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4945D4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>546</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00894738"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+494738</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>547</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00894854"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+494854</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>548</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00894944"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+494944</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>549</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00894A24"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+494A24</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>550</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00894B90"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+494B90</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>551</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00894C58"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+494C58</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>552</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00894DA0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+494DA0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>553</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00894EA0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+494EA0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>554</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00894F58"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+494F58</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>555</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="0089516C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+49516C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>556</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00895278"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+495278</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>557</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008953A4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4953A4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>558</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00895428"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+495428</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>559</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008955F4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4955F4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>560</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008956A8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4956A8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>561</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008957EC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4957EC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>562</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00895A1C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+495A1C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>563</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00895AFC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+495AFC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>564</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00895CE8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+495CE8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>565</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00895E00"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+495E00</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>566</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00895F28"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+495F28</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>567</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00896164"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+496164</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>568</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008962B4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4962B4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>569</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008963E0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4963E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>570</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008964E8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4964E8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>571</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008965D0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4965D0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>572</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00896694"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+496694</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>573</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008967B4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4967B4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>574</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00896890"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+496890</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>575</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008969B4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4969B4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>576</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00896C64"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+496C64</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>577</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00896D10"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+496D10</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>578</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00896DB4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+496DB4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>579</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00896ED4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+496ED4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>580</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00897254"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+497254</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>581</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00897458"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+497458</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>582</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008974F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4974F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>583</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008975C4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4975C4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>584</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="00897698"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+497698</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>585</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DD928"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DD928</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>586</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DDB10"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DDB10</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>587</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DDD94"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DDD94</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>588</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DE650"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DE650</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>589</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DEE6C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DEE6C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>590</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DF080"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DF080</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>591</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DF1CC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DF1CC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>592</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DF2C4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DF2C4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>593</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DF3BC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DF3BC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>594</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DF55C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DF55C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>595</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DFAA0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DFAA0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>596</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008DFE18"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4DFE18</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>597</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E0048"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E0048</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>598</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E0248"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E0248</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>599</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E09D0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E09D0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>600</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E0B40"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E0B40</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>601</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E0EE4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E0EE4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>602</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E1088"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E1088</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>603</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E1390"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E1390</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>604</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E1530"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E1530</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>605</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E1600"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E1600</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>606</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E16F4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E16F4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>607</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E1814"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E1814</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>608</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E1BB0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E1BB0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>609</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E1D08"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E1D08</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>610</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E1E48"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E1E48</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>611</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E209C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E209C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>612</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E23D4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E23D4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>613</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E27A4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E27A4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>614</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E2914"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E2914</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>615</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E31B8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E31B8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>616</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E32B4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E32B4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>617</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E339C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E339C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>618</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E3508"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E3508</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>619</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E36F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E36F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>620</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E3A90"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E3A90</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>621</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E3D98"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E3D98</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>622</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E3FE4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E3FE4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>623</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E4108"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E4108</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>624</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E42B4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E42B4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>625</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E4468"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E4468</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>626</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E5978"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E5978</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>627</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E5AD8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E5AD8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>628</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E5D20"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E5D20</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>629</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E5F30"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E5F30</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>630</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E6260"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E6260</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>631</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E6400"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E6400</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>632</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E65B4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E65B4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>633</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E67B4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E67B4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>634</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E6884"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E6884</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>635</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E69B8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E69B8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>636</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E6ADC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E6ADC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>637</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E6C48"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E6C48</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>638</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E6E54"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E6E54</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>639</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E6F38"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E6F38</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>640</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E70B8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E70B8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>641</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E72DC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E72DC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>642</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E740C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E740C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>643</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E75C4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E75C4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>644</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E76E4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E76E4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>645</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E77A4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E77A4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>646</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E7AD8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E7AD8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>647</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E7C78"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E7C78</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>648</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E7DDC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E7DDC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>649</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E7EAC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E7EAC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>650</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E7F30"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E7F30</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>651</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E7FB8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E7FB8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>652</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E808C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E808C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>653</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E8380"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E8380</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>654</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E8544"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E8544</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>655</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E8770"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E8770</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>656</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E8830"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E8830</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>657</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E8B78"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E8B78</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>658</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E8CE0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E8CE0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>659</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E904C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E904C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>660</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E90FC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E90FC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>661</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E91BC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E91BC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>662</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E92C4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E92C4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>663</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E9528"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E9528</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>664</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E9664"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E9664</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>665</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E9888"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E9888</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>666</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008E9C7C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4E9C7C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>667</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EA0D4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EA0D4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>668</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EA360"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EA360</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>669</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EA4F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EA4F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>670</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EA68C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EA68C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>671</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EA954"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EA954</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>672</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EAE1C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EAE1C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>673</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EB750"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EB750</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>674</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EB83C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EB83C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>675</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EB970"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EB970</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>676</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EBAC8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EBAC8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>677</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EBC4C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EBC4C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>678</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EBDF4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EBDF4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>679</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EBEC0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EBEC0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>680</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EBF60"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EBF60</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>681</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EC1A0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EC1A0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>682</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EC2A0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EC2A0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>683</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EC33C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EC33C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>684</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EC460"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EC460</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>685</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EC52C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EC52C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>686</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EC6B0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EC6B0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>687</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008ED12C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4ED12C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>688</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008ED1D4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4ED1D4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>689</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008ED2B8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4ED2B8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>690</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008ED4E0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4ED4E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>691</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008ED770"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4ED770</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>692</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008ED86C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4ED86C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>693</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EF708"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EF708</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>694</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EFA7C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EFA7C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>695</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EFCE4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EFCE4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>696</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EFE74"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EFE74</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>697</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008EFFD4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4EFFD4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>698</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F0090"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F0090</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>699</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F0134"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F0134</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>700</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F01E8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F01E8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>701</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F0554"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F0554</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>702</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F05D0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F05D0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>703</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F0648"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F0648</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>704</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F06F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F06F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>705</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F07A0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F07A0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>706</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F0D34"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F0D34</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>707</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F143C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F143C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>708</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F1B1C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F1B1C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>709</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F2188"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F2188</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>710</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F27E0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F27E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>711</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F2904"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F2904</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>712</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F2A4C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F2A4C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>713</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F2D48"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F2D48</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>714</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F2E3C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F2E3C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>715</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F2F10"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F2F10</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>716</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F3094"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F3094</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>717</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F321C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F321C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>718</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F3318"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F3318</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>719</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F348C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F348C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>720</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F3594"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F3594</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>721</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F36D8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F36D8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>722</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F38F4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F38F4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>723</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F3ADC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F3ADC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>724</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F3C58"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F3C58</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>725</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F3D28"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F3D28</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>726</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F3E8C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F3E8C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>727</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F3F74"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F3F74</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>728</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F40B4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F40B4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>729</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F429C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F429C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>730</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F433C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F433C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>731</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F44A4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F44A4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>732</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F45CC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F45CC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>733</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F4684"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F4684</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>734</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F47E0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F47E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>735</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F48C8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F48C8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>736</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F4984"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F4984</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>737</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F4A78"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F4A78</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>738</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F4BF0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F4BF0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>739</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F4DAC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F4DAC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>740</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F52EC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F52EC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>741</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F562C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F562C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>742</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F57C8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F57C8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>743</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F5D38"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F5D38</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>744</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F6018"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F6018</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>745</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F6100"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F6100</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>746</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F61B0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F61B0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>747</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F6238"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F6238</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>748</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F6728"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F6728</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>749</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F6A20"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F6A20</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>750</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F6EA8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F6EA8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>751</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F7048"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F7048</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>752</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F7434"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F7434</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>753</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F7CC4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F7CC4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>754</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F7E20"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F7E20</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>755</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F8188"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F8188</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>756</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F8738"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F8738</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>757</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F88E8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F88E8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>758</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F8A44"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F8A44</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>759</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F8B74"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F8B74</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>760</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F8E30"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F8E30</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>761</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F961C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F961C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>762</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F9808"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F9808</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>763</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F9928"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F9928</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>764</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F9A28"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F9A28</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>765</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F9AF4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F9AF4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>766</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F9BF8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F9BF8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>767</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F9CEC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F9CEC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>768</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008F9E34"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4F9E34</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>769</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FA17C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FA17C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>770</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FA268"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FA268</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>771</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FA3A4"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FA3A4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>772</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FA85C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FA85C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>773</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FA99C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FA99C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>774</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FABA0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FABA0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>775</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FAC60"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FAC60</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>776</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FAFF8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FAFF8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>777</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FB348"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FB348</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>778</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FB51C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FB51C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>779</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FB7F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FB7F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>780</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FB91C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FB91C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>781</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FBCC8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FBCC8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>782</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FBDAC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FBDAC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>783</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FBE3C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FBE3C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>784</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FBEC0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FBEC0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>785</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FBFD8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FBFD8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>786</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FC2C0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FC2C0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>787</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FC568"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FC568</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>788</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FC68C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FC68C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>789</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FC8EC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FC8EC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>790</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FCA30"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FCA30</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>791</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FCE20"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FCE20</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>792</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FD4B8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FD4B8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>793</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FD57C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FD57C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>794</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FD60C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FD60C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>795</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FD690"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FD690</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>796</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FD714"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FD714</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>797</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FD798"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FD798</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>798</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FD818"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FD818</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>799</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005926E0" RealAddress="008FD8DC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>CS2D.exe+4FD8DC</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
   </CheatEntries>
-  <UserdefinedSymbols/>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>fakecls</Name>
+      <Address>01970000</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+  <LuaScript>local _addrlist =  getAddressList()
+local x = _addrlist.getMemoryRecordByDescription("globalalloc")
+x.Active = true
+
+local rec = _addrlist.getMemoryRecordByDescription("fakecls")
+g_fakecls = rec.CurrentAddress
+</LuaScript>
 </CheatTable>
