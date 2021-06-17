@@ -1,11 +1,26 @@
 #pragma once
 
-#include "dllmain.h"
-#include "manager.h"
+class FeatureManager {
+public:
+    std::vector<std::string> specmodes = {
+        "Nothing", "Everything", "Team Only"
+    };
+    int current_specmode = 0;
 
-namespace Features {
-    void WriteToMemory(uintptr_t addressToWrite, char* valueToWrite, int byteNum);
-    void changeSpecMode(int new_val);
-    void changeNoFlash();
-    void changeNoFOW();
-}
+    bool bNoFlash = false;
+    bool bNoFow = false;
+    DWORD patch_noflash_addr = 0;
+    DWORD patch_nofow_addr = 0;
+    DWORD specmode_addr = 0;
+
+    FeatureManager();
+    ~FeatureManager();
+
+    void Init();
+
+    void SetSpecMode(int new_val);
+    void ChangeNoFlash();
+    void ChangeNoFOW();
+};
+
+extern FeatureManager g_FeatureManager;

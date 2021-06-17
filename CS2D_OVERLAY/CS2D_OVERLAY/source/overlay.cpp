@@ -11,9 +11,6 @@ Overlay::~Overlay()
 
 void Overlay::Init() {
     imgui_ini = g_ctx_dll.GetFolder() + "\\imgui.ini";
-
-
-
 }
 
 void Overlay::HandleDraw() {
@@ -40,28 +37,67 @@ void Overlay::ShowMenu(bool* p_open) {
     }
 #endif
     if (ImGui::CollapsingHeader("Config")) {
+        if (ImGui::TreeNode("Score")) {
+            ImGui::InputFloat("Height", &g_OverlayCFG.score.height, 1.0f, 480, "%.0f");
+            ImGui::InputFloat("X margin", &g_OverlayCFG.score.x_margin, 1.0f, 600, "%.0f");
+            ImGui::InputFloat("Y margin", &g_OverlayCFG.score.y_margin, 1.0f, 600, "%.0f");
+
+            ImGui::InputText("Team Name TT", &g_OverlayCFG.score.team1_name);
+            ImGui::InputText("Team Name CT", &g_OverlayCFG.score.team2_name);
+
+            ImGui::Checkbox("Auto Update Score", &g_OverlayCFG.score.auto_update);
+
+            ImGui::TreePop();
+        }
         if (ImGui::TreeNode("Player Bar")) {
-            ImGui::SliderFloat("Width", &g_OverlayCFG.playerbar.width, 50, 2000, "%.0f");
-            ImGui::SliderFloat("Height", &g_OverlayCFG.playerbar.height, 10, 480, "%.0f");
-            ImGui::SliderFloat("X margin", &g_OverlayCFG.playerbar.x_margin, 0, 600, "%.0f");
-            ImGui::SliderFloat("Y margin", &g_OverlayCFG.playerbar.y_margin, 0, 600, "%.0f");
+            ImGui::InputFloat("Width", &g_OverlayCFG.playerbar.width, 1.0f, 2000, "%.0f");
+            ImGui::InputFloat("Height", &g_OverlayCFG.playerbar.height, 1.0f, 480, "%.0f");
+            ImGui::InputFloat("X margin", &g_OverlayCFG.playerbar.x_margin, 1.0f, 600, "%.0f");
+            ImGui::InputFloat("Y margin", &g_OverlayCFG.playerbar.y_margin, 1.0f, 600, "%.0f");
 
-            ImGui::SliderFloat("Spacing", &g_OverlayCFG.playerbar.spacing, 0, 30, "%.0f");
+            ImGui::InputFloat("Spacing", &g_OverlayCFG.playerbar.spacing, 1.0f, 30, "%.0f");
 
-            ImGui::SliderFloat("HP Height (%)", &g_OverlayCFG.playerbar.hp_height_perc, 0, 1, "%.2f");
-            ImGui::SliderFloat("Arm Height (% of HP)", &g_OverlayCFG.playerbar.arm_height_perc, 0, 1, "%.2f");
+            ImGui::InputFloat("HP Height (%)", &g_OverlayCFG.playerbar.hp_height_perc, 0.01f, 0.1f, "%.2f");
+            ImGui::InputFloat("Arm Height (% of HP)", &g_OverlayCFG.playerbar.arm_height_perc, 0.01f, 0.1f, "%.2f");
 
-            ImGui::SliderFloat("Text Extra Width", &g_OverlayCFG.playerbar.extra_text_width, 0, 20, "%.0f");
+            ImGui::InputFloat("Text Extra Width", &g_OverlayCFG.playerbar.extra_text_width, 1.0f, 5.0f, "%.0f");
             ImGui::TreePop();
         }
 
         if (ImGui::TreeNode("Misc")) {
-            ImGui::SliderFloat("Weapon Scale", &g_OverlayCFG.weapon_texture_scale, 0.5f, 5.0f, "%.1f");
+            ImGui::InputFloat("Weapon Scale", &g_OverlayCFG.misc.weapon_texture_scale, 0.1f, 1.0f, "%.1f");
+            ImGui::InputInt("Max Players", &g_OverlayCFG.misc.max_players);
             ImGui::TreePop();
         }
     }
     if (ImGui::CollapsingHeader("Settings")) {
+        if (ImGui::TreeNode("Score")) {
+            ImGui::InputInt("Bonus Score TT", &bonus_score_tt);
+            ImGui::InputInt("Bonus Score CT", &bonus_score_ct);
+
+            ImGui::TreePop();
+        }
         ImGui::Checkbox("Show Overlay", &show_overlay);
+    }
+    if (ImGui::CollapsingHeader("Extra Features")) {
+        if (ImGui::BeginCombo("Spec Mode", g_FeatureManager.specmodes.at(g_FeatureManager.current_specmode).c_str())) {
+            int items_count = static_cast<int>(g_FeatureManager.specmodes.size());
+            for (int n = 0; n < items_count; n++) {
+                const bool is_selected = (g_FeatureManager.current_specmode == n);
+                auto specmode_name = g_FeatureManager.specmodes.at(n).c_str();
+                if (ImGui::Selectable(specmode_name, is_selected)) {
+                    g_FeatureManager.current_specmode = n;
+                    g_FeatureManager.SetSpecMode(n);
+                }
+            }
+            ImGui::EndCombo();
+        }
+
+        if (ImGui::Checkbox("No Flash", &g_FeatureManager.bNoFlash))
+            g_FeatureManager.ChangeNoFlash();
+        if (ImGui::Checkbox("No FOW",   &g_FeatureManager.bNoFow))
+            g_FeatureManager.ChangeNoFOW();
+    
     }
     if (ImGui::CollapsingHeader("Hotkeys")) {
         ImGui::Text("Show Menu - [F9]");
@@ -72,33 +108,20 @@ void Overlay::ShowMenu(bool* p_open) {
     ImGui::End();
 }
 
-void Overlay::TransparentText(const char* text, ImVec2 win_pos, ImVec2 win_size, int id, ImFont* f) {
-    
-    ImGuiIO& io = ImGui::GetIO();
+void Overlay::TextCenter(std::string text) {
+    auto avail = ImGui::GetContentRegionAvail();
+    auto text_sz = ImGui::CalcTextSize(text.c_str());
 
-    ImGuiWindowFlags flags = 0;
-    flags |= ImGuiWindowFlags_NoMove;
-    flags |= ImGuiWindowFlags_NoDecoration;
-    flags |= ImGuiWindowFlags_NoBackground;
-    //flags |= ImGuiWindowFlags_AlwaysAutoResize;
-    flags |= ImGuiWindowFlags_NoSavedSettings;
-    flags |= ImGuiWindowFlags_NoFocusOnAppearing;
-    flags |= ImGuiWindowFlags_NoNav;
+    ImVec2 txt_center = ImVec2(text_sz.x / 2, text_sz.y / 2);
+    ImVec2 window_center = ImVec2(avail.x / 2, avail.y / 2);
 
-    ImGui::SetNextWindowBgAlpha(0.0f);
-    ImGui::SetNextWindowPos(win_pos, ImGuiCond_Always);
-    ImGui::SetNextWindowSize(win_size, ImGuiCond_Always);
+    //ImGui::SetCursorPos(ImVec2(
+    //    window_center.x - txt_center.x,
+    //    window_center.y - txt_center.y
+    //));
+    ImGui::SetCursorPosX(window_center.x - txt_center.x);
 
-    char window_title[255];
-    sprintf(window_title, "TransparentText%d", id);
-
-    ImGui::Begin(text, &show_overlay, flags);
-
-    if (f) ImGui::PushFont(f);
-    ImGui::Text(text);
-    if (f) ImGui::PopFont();
-
-    ImGui::End();
+    ImGui::Text(text.c_str());
 }
 
 void Overlay::DrawOverlay() {
@@ -159,6 +182,9 @@ void Overlay::DrawOverlay() {
     auto style_pad_y_half = style_pad_y / 2;
 
     // Load CFG
+    auto misc_cfg = g_OverlayCFG.misc;
+    int max_players = misc_cfg.max_players;
+
     auto bar_cfg = g_OverlayCFG.playerbar;
     auto bar_x_margin = bar_cfg.x_margin;
     auto bar_w = bar_cfg.width;
@@ -172,6 +198,15 @@ void Overlay::DrawOverlay() {
     auto money_text_size = bar_cfg.money_text_size;
     auto hp_height_perc = bar_cfg.hp_height_perc;
     auto arm_height_perc = bar_cfg.arm_height_perc;
+
+    auto score_cfg = g_OverlayCFG.score;
+    auto score_h = score_cfg.height;
+    auto score_x_margin = score_cfg.x_margin;
+    auto score_y_margin = score_cfg.y_margin;
+    auto score_container_width = score_cfg.container_width;
+    bool score_auto_update = score_cfg.auto_update;
+    std::string team1_name = score_cfg.team1_name;
+    std::string team2_name = score_cfg.team2_name;
 
     ImGui::PushFont(csp_small);
 
@@ -187,6 +222,11 @@ void Overlay::DrawOverlay() {
         money_text_size = ImGui::CalcTextSize("$16000");
         money_text_size.x += extra_text_width;
     }
+
+    ImVec2 score_win_size = ImVec2(displaysz_x/2, score_h);
+    ImVec2 score_tt_win_pos = ImVec2(score_x_margin, score_y_margin);
+    ImVec2 score_ct_win_pos = ImVec2(score_x_margin + score_win_size.x, score_y_margin);
+    
 
     ImVec2 bar_win_size = ImVec2(bar_w, bar_h);
     ImVec2 bar_win_max = ImVec2(bar_w, bar_h);
@@ -211,7 +251,59 @@ void Overlay::DrawOverlay() {
 
     ImVec2 cur_pos = ImVec2(0.0f, 0.0f);
     ImDrawList* draw_list = nullptr;
-    for (int i = 1; i <= g_OverlayCFG.max_players; i++) {
+
+    // Score
+    int scoreTT = bonus_score_tt;
+    int scoreCT = bonus_score_ct;
+
+    if (score_auto_update) {
+        scoreTT += ScoreManager::GetScoreTT();
+        scoreCT += ScoreManager::GetScoreCT();
+    }
+
+
+    // Draw Score
+    ImGui::PushFont(csp_big);
+    ImGui::SetNextWindowPos(score_tt_win_pos, ImGuiCond_Always);
+    ImGui::SetNextWindowSize(score_win_size, ImGuiCond_Always);
+    ImGui::Begin("ScoreTT", &show_overlay, window_flags);
+
+    cur_pos = ImGui::GetCursorPos();
+    TextCenter(team1_name);
+
+    ImGui::SetCursorPos(ImVec2(
+        cur_pos.x + score_win_size.x - score_container_width - style_pad_x,
+        cur_pos.y
+    ));
+    ImGui::BeginChild("score_container", ImVec2(score_container_width, score_h));
+
+    TextCenter(std::to_string(scoreTT));
+    ImGui::EndChild();
+
+    ImGui::End();
+
+    ImGui::SetNextWindowPos(score_ct_win_pos, ImGuiCond_Always);
+    ImGui::SetNextWindowSize(score_win_size, ImGuiCond_Always);
+    ImGui::Begin("ScoreCT", &show_overlay, window_flags);
+
+    cur_pos = ImGui::GetCursorPos();
+    TextCenter(team2_name);
+
+    ImGui::SetCursorPos(ImVec2(
+        cur_pos.x - style_pad_x,
+        cur_pos.y
+    ));
+
+    ImGui::BeginChild("score_container", ImVec2(score_container_width, score_h));
+    TextCenter(std::to_string(scoreCT));
+    ImGui::EndChild();
+
+    ImGui::End();
+
+    ImGui::PopFont();
+
+    // Draw Player Bars
+    for (int i = 1; i <= max_players; i++) {
         if (!Validator::ObjIsValid(pPlayerEntity))
             break;
 
@@ -447,7 +539,7 @@ void Overlay::DrawWeapon(Tpl* pPlayer, int team) {
 
     auto weapon_info = weapons_info.at(weapon_id);
 
-    auto weapon_texture_scale = g_OverlayCFG.weapon_texture_scale;
+    auto weapon_texture_scale = g_OverlayCFG.misc.weapon_texture_scale;
 
     auto weapon_texture_size = ImVec2(
         weapon_info.width * weapon_texture_scale,
@@ -469,7 +561,5 @@ void Overlay::DrawWeapon(Tpl* pPlayer, int team) {
     }
 
 }
-
-
 
 Overlay g_Overlay;

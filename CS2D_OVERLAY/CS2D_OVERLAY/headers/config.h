@@ -9,10 +9,6 @@ public:
 
     int transparency = 1;
     int bordered_text = 1;
-    int auto_update_score = 1;
-    std::string team1_name = "TT";
-    std::string team2_name = "CT";
-    int max_players = 32;
 
     struct FontSize {
         float score = 26.0f;
@@ -37,7 +33,21 @@ public:
         ImVec2 money_text_size = ImVec2(0.0f, 0.0f);
     } playerbar;
 
-    float weapon_texture_scale = 2.0f;
+    struct Score {
+        float x_margin = 0.0f;
+        float y_margin = 5.0f;
+        float height = 48.0f;
+        float container_width = 60.0f;
+
+        bool auto_update = true;
+        std::string team1_name = "Team Red";
+        std::string team2_name = "Team Blue";
+    } score;
+
+    struct Misc {
+        int max_players = 32;
+        float weapon_texture_scale = 2.0f;
+    } misc;
 
     void Init();
 

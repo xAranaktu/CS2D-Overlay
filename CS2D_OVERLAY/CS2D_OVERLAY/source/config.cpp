@@ -8,9 +8,9 @@ void OverlayCFG::Init() {
 
     transparency = Load("Overlay", "Transparency", 1);
     bordered_text = Load("Overlay", "BorderedText", 1);
-    auto_update_score = Load("Overlay", "AutoUpdateScore", 1);
-    team1_name = Load("Teams", "Team1", "TT");
-    team2_name = Load("Teams", "Team2", "CT");
+    score.auto_update = Load("Overlay", "AutoUpdateScore", 1) == 1;
+    score.team1_name = Load("Teams", "Team1", "Team Bad Guys");
+    score.team2_name = Load("Teams", "Team2", "Team Good Guys");
 }
 
 int OverlayCFG::Load(char* szSection, char* szKey, int iDefaultValue) {

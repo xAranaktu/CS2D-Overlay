@@ -1,11 +1,13 @@
 #pragma once
 
 #include <../imgui/imgui.h>
+#include <../imgui/imgui_stdlib.h>
 #include <dllmain.h>
 #include <globals.h>
 #include <logger.h>
 #include <config.h>
 #include <manager.h>
+#include <features.h>
 
 class Overlay {
 public:
@@ -83,6 +85,9 @@ public:
     LPDIRECT3DTEXTURE9 texIcoC4 = nullptr;
     LPDIRECT3DTEXTURE9 texIcoDef = nullptr;
 
+    int bonus_score_tt = 0;
+    int bonus_score_ct = 0;
+
     Overlay();
     ~Overlay();
 
@@ -91,7 +96,7 @@ public:
 
     void ShowMenu(bool* p_open);
 
-    void TransparentText(const char* text, ImVec2 win_pos, ImVec2 win_size, int id = 0, ImFont* f = nullptr);
+    
 
     void DrawOverlay();
 private:
@@ -99,6 +104,7 @@ private:
 
     void DrawWeapon(Tpl* pPlayer, int team = -1);
 
+    void TextCenter(std::string text);
 };
 
 extern Overlay g_Overlay;

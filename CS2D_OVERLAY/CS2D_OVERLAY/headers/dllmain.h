@@ -26,15 +26,13 @@
 #include "patscanner.h"
 
 
+
 namespace fs = std::filesystem;
 
 inline core::Context g_ctx_proc;
 inline core::Context g_ctx_dll;
 
-
 //features
-inline bool bNoFlash = true;
-inline bool bNoFOW = true;
 inline int oldSpecMode = 0;
 inline int iSpecMode = 1;
 
@@ -51,6 +49,4 @@ inline int scoreCT = 0;
 inline int mr = 15;
 
 void CreateDXHook();
-void PatchIsDebuggerPresent();
-void RestoreOrgIsDebuggerPresent();
 

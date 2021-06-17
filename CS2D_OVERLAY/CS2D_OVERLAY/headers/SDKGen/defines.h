@@ -35,6 +35,7 @@ typedef struct TListEnum;
 typedef struct TChannel;
 
 enum TEAM {
+    TEAM_SPECTATOR = 0,
     TEAM_TT = 1,
     TEAM_CT = 2
 };

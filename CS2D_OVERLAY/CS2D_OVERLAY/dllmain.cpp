@@ -2,25 +2,23 @@
 #pragma once
 
 #include "headers/dllmain.h"
+#include "headers/misc.h"
 #include "headers/overlay.h"
 #include "headers/logger.h"
 #include "headers/d3d9hook.h"
 #include "headers/manager.h"
 #include "headers/config.h"
-#include "headers/features.h"
 #include "headers/SDKGen/Tpl.h"
 
 
 void EjectDLL(HMODULE hModule) {
     logger.Write(LOG_INFO, "Ejecting...");
+
+#ifdef _DEBUG
+    LMAO::RestoreOrgIsDebuggerPresent();
+#endif
     Sleep(100);
     d3d9hook::DeleteDirectXHooks();
-
-    bNoFlash = false;
-    Features::changeNoFlash();
-
-    bNoFOW = false;
-    Features::changeNoFOW();
 
     Sleep(1000);
     logger.Write(LOG_INFO, "Ejected...");
@@ -52,36 +50,6 @@ void CreateDXHook() {
     d3d9hook::SetupDirectXHooks();
 }
 
-void PatchIsDebuggerPresent() {
-    logger.Write(LOG_INFO, "Patching IsDebuggerPresent...");
-    auto kernelbase = GetModuleHandle("KERNELBASE.dll");
-
-    if (!kernelbase) {
-        logger.Write(LOG_INFO, "no kernelbase");
-        return;
-    }
-
-    auto addr = reinterpret_cast<uintptr_t>(GetProcAddress(kernelbase, "IsDebuggerPresent"));
-
-    // xor eax, eax
-    char BytesToPath[] = "\x31\xC0\x90\x90\x90\x90\x90\x90\x90\x90\xC3";
-    Features::WriteToMemory(addr, BytesToPath, 11);
-}
-void RestoreOrgIsDebuggerPresent() {
-    logger.Write(LOG_INFO, "Restoring orginal IsDebuggerPresent...");
-    auto kernelbase = GetModuleHandle("KERNELBASE.dll");
-
-    if (!kernelbase) {
-        logger.Write(LOG_INFO, "no kernelbase");
-        return;
-    }
-
-    auto addr = reinterpret_cast<uintptr_t>(GetProcAddress(kernelbase, "IsDebuggerPresent"));
-
-    char BytesToPath[] = "\x64\xA1\x30\x00\x00\x00\x0F\xB6\x40\x02\xC3";
-    Features::WriteToMemory(addr, BytesToPath, 11);
-}
-
 
 void loadConfig() {
     logger.Write(LOG_INFO, "loadConfig...");
@@ -91,6 +59,10 @@ void loadConfig() {
 DWORD WINAPI mainFunc(LPVOID lpModule)
 {
     Sleep(200);
+
+#ifdef _DEBUG
+    LMAO::PatchIsDebuggerPresent();
+#endif
 
     // Attached to
     g_ctx_proc.Update(GetModuleHandle(NULL));
@@ -117,15 +89,9 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
 
     g_OverlayCFG.Init();
     g_Overlay.Init();
+    g_FeatureManager.Init();
 
     CreateDXHook();
-#ifdef _DEBUG
-    PatchIsDebuggerPresent();
-#endif
-
-    //Features
-    Features::changeNoFlash();
-    Features::changeNoFOW();
 
     // Process input
     logger.Write(LOG_INFO, "Start main loop");
@@ -159,11 +125,8 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
 
         if (GetAsyncKeyState(VK_F9) & 1) {
             g_Overlay.show_menu = !g_Overlay.show_menu;
-
-            Tpl* localPlayer = PlayerManager::GetLocalPlayer();
-            
-            
 #ifdef _DEBUG
+            Tpl* localPlayer = PlayerManager::GetLocalPlayer();
             if (Validator::ObjIsValid(localPlayer)) {
                 logger.Write(
                     LOG_INFO,
@@ -187,9 +150,6 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
 
     }
 
-#ifdef _DEBUG
-    RestoreOrgIsDebuggerPresent();
-#endif
     EjectDLL(reinterpret_cast<HMODULE>(lpModule));
     return 0;
 }
