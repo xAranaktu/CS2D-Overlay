@@ -10,19 +10,23 @@
 #include <GUIConstants.au3>
 
 Global Const $DefaultDllPath = @ScriptDir & "\CS2D_OVERLAY.dll"
-Global Const $SettingsPath = @MyDocumentsDir & "\CS2D_Overlay"
+Global Const $SettingsPath = @ScriptDir
 Global Const $fNameOverlaySettings = "\settings.ini"
 Global Const $fNameLauncherSettings = "\launcher_settings.ini"
 Global Const $fNameLogs = "\log.txt"
 
-$MainGUI = GUICreate("Overlay Launcher", 275, 135, (@DesktopWidth/2) - (275/2), (@DesktopHeight/2) - (105/2))
+$main_window_width = 275
+$main_window_height = 135
 
-$ButtonSettings = GUICtrlCreateButton("Settings", 10, 10, 75)
-$ButtonAdvancedSettings = GUICtrlCreateButton("Advanced Settings", 95, 10, 105)
-$ButtonRunCS2D = GUICtrlCreateButton("Run CS2D", 10, 40, 75)
-$ButtonInjectDll = GUICtrlCreateButton("Inject DLL", 95, 40, 105)
-$ButtonHotkeys = GUICtrlCreateButton("Hotkeys", 10, 70, 75)
-GUICtrlSetState($ButtonHotkeys, $GUI_DISABLE)
+$MainGUI = GUICreate("Overlay Launcher", $main_window_width, $main_window_height, (@DesktopWidth/2) - ($main_window_width/2), (@DesktopHeight/2) - ($main_window_height/2))
+
+$button_width = 110
+$x_button_center = ($main_window_width / 2) - ($button_width / 2)
+
+$ButtonAdvancedSettings = GUICtrlCreateButton("Advanced Settings", $x_button_center, 10, $button_width)
+$ButtonRunCS2D = GUICtrlCreateButton("Run CS2D", $x_button_center, 40, $button_width)
+$ButtonInjectDll = GUICtrlCreateButton("Inject DLL", $x_button_center, 70, $button_width)
+
 GUICtrlSetState($ButtonInjectDll, $GUI_DISABLE)
 
 GUICtrlCreateLabel("Status:", 10, 105, 50, 17)
@@ -37,22 +41,10 @@ While 1
 	Switch GUIGetMsg()
 		Case $GUI_EVENT_CLOSE
 			ExitLoop
-		Case $ButtonSettings
-				GUISetState(@SW_DISABLE, $MainGUI)
-				GUISetState(@SW_MINIMIZE, $MainGUI)
-				GUI_Settings()
-				GUISetState(@SW_ENABLE, $MainGUI)
-				WinActivate($MainGUI)
 		Case $ButtonAdvancedSettings
 				GUISetState(@SW_DISABLE, $MainGUI)
 				GUISetState(@SW_MINIMIZE, $MainGUI)
 				GUI_AdvancedSettings()
-				GUISetState(@SW_ENABLE, $MainGUI)
-				WinActivate($MainGUI)
-		Case $ButtonHotkeys
-				GUISetState(@SW_DISABLE, $MainGUI)
-				GUISetState(@SW_MINIMIZE, $MainGUI)
-				GUI_Hotkeys()
 				GUISetState(@SW_ENABLE, $MainGUI)
 				WinActivate($MainGUI)
 		Case $ButtonRunCS2D
@@ -86,71 +78,6 @@ Func GUI_Hotkeys()
 			Case $GUI_EVENT_CLOSE
 				GUIDelete($hGUI2)
 				ExitLoop
-		EndSwitch
-	WEnd
-EndFunc
-
-
-Func GUI_Settings()
-	Local $SettingsFullPath = $SettingsPath & $fNameOverlaySettings
-
-	Local $Team1 = IniRead($SettingsFullPath, "Teams", "Team1", "Team1")
-	Local $Team2 = IniRead($SettingsFullPath, "Teams", "Team2", "Team2")
-
-	Local $hGUI2 = GUICreate("Settings", 250, 200, (@DesktopWidth/2) - (250/2), (@DesktopHeight/2) - (200/2))
-
-	GUICtrlCreateLabel("Team1:", 15, 15)
-	Local $Team1Input = GUICtrlCreateInput($Team1, 60, 11, 135)
-
-	GUICtrlCreateLabel("Team2:", 15, 40)
-	Local $Team2Input = GUICtrlCreateInput($Team2, 60, 36, 135)
-
-	Local $TransparencyCB = GUICtrlCreateCheckbox("Transparency", 15, 80, 120, 20)
-	If IniRead($SettingsFullPath, "Overlay", "Transparency", "0") == "1" Then GUICtrlSetState($TransparencyCB, $GUI_CHECKED)
-
-	Local $BorderedTextCB = GUICtrlCreateCheckbox("Bordered Text", 15, 100, 120, 20)
-	If IniRead($SettingsFullPath, "Overlay", "BorderedText", "0") == "1" Then GUICtrlSetState($BorderedTextCB, $GUI_CHECKED)
-
-	Local $AutoUpdateScoreCB = GUICtrlCreateCheckbox("Update score automatically", 15, 120, 150, 20)
-	If IniRead($SettingsFullPath, "Overlay", "AutoUpdateScore", "1") == "1" Then GUICtrlSetState($AutoUpdateScoreCB, $GUI_CHECKED)
-
-	Local $PatternScanCB = GUICtrlCreateCheckbox("Pattern Scan", 15, 140, 150, 20)
-	If IniRead($SettingsFullPath, "Overlay", "PatternScan", "0") == "1" Then GUICtrlSetState($PatternScanCB, $GUI_CHECKED)
-
-	GUISetState()
-
-	While 1
-
-		Switch GUIGetMsg()
-			Case $GUI_EVENT_CLOSE
-				IniWrite($SettingsFullPath, "Teams", "Team1", GUICtrlRead($Team1Input))
-				IniWrite($SettingsFullPath, "Teams", "Team2", GUICtrlRead($Team2Input))
-				GUIDelete($hGUI2)
-				ExitLoop
-			Case $TransparencyCB
-				If BitAND(GUICtrlRead($TransparencyCB), $GUI_CHECKED) = $GUI_CHECKED Then
-					IniWrite($SettingsFullPath, "Overlay", "Transparency", 1)
-				Else
-					IniWrite($SettingsFullPath, "Overlay", "Transparency", 0)
-				EndIf
-			Case $BorderedTextCB
-				If BitAND(GUICtrlRead($BorderedTextCB), $GUI_CHECKED) = $GUI_CHECKED Then
-					IniWrite($SettingsFullPath, "Overlay", "BorderedText", 1)
-				Else
-					IniWrite($SettingsFullPath, "Overlay", "BorderedText", 0)
-				EndIf
-			Case $AutoUpdateScoreCB
-				If BitAND(GUICtrlRead($AutoUpdateScoreCB), $GUI_CHECKED) = $GUI_CHECKED Then
-					IniWrite($SettingsFullPath, "Overlay", "AutoUpdateScore", 1)
-				Else
-					IniWrite($SettingsFullPath, "Overlay", "AutoUpdateScore", 0)
-				EndIf
-			Case $PatternScanCB
-				If BitAND(GUICtrlRead($PatternScanCB), $GUI_CHECKED) = $GUI_CHECKED Then
-					IniWrite($SettingsFullPath, "Overlay", "PatternScan", 1)
-				Else
-					IniWrite($SettingsFullPath, "Overlay", "PatternScan", 0)
-				EndIf
 		EndSwitch
 	WEnd
 EndFunc
