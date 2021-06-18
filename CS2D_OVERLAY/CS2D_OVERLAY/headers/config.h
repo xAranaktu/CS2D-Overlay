@@ -40,8 +40,8 @@ public:
         float container_width = 60.0f;
 
         bool auto_update = true;
-        std::string team1_name = "Team Red";
-        std::string team2_name = "Team Blue";
+        std::string team1_name = "Team Bad Guys";
+        std::string team2_name = "Team Good Guys";
     } score;
 
     struct Misc {
@@ -54,6 +54,7 @@ public:
     int Load(char* szSection, char* szKey, int iDefaultValue);
     std::string Load(char* szSection, char* szKey, const char* iDefaultValue);
     void Save(char* szSection, char* szKey, int iValue);
+    void Save(char* szSection, char* szKey, float fValue, float mul = 1.0f);
     void Save(char* szSection, char* szKey, const char* sValue);
     void Save(char* szSection, char* szKey, std::string sValue);
 private:

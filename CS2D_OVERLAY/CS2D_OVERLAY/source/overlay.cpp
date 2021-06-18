@@ -38,35 +38,68 @@ void Overlay::ShowMenu(bool* p_open) {
 #endif
     if (ImGui::CollapsingHeader("Config")) {
         if (ImGui::TreeNode("Score")) {
-            ImGui::InputFloat("Height", &g_OverlayCFG.score.height, 1.0f, 480, "%.0f");
-            ImGui::InputFloat("X margin", &g_OverlayCFG.score.x_margin, 1.0f, 600, "%.0f");
-            ImGui::InputFloat("Y margin", &g_OverlayCFG.score.y_margin, 1.0f, 600, "%.0f");
+            if (ImGui::InputFloat("Height", &g_OverlayCFG.score.height, 1.0f, 480, "%.0f")) {
+                g_OverlayCFG.Save("Overlay", "ScoreHeight", g_OverlayCFG.score.height);
+            }
+            if (ImGui::InputFloat("X margin", &g_OverlayCFG.score.x_margin, 1.0f, 600, "%.0f")) {
+                g_OverlayCFG.Save("Overlay", "ScoreXMargin", g_OverlayCFG.score.x_margin);
+            }
+            if (ImGui::InputFloat("Y margin", &g_OverlayCFG.score.y_margin, 1.0f, 600, "%.0f")) {
+                g_OverlayCFG.Save("Overlay", "ScoreYMargin", g_OverlayCFG.score.y_margin);
+            }
 
-            ImGui::InputText("Team Name TT", &g_OverlayCFG.score.team1_name);
-            ImGui::InputText("Team Name CT", &g_OverlayCFG.score.team2_name);
+            if (ImGui::InputText("Team Name TT", &g_OverlayCFG.score.team1_name)) {
+                g_OverlayCFG.Save("Overlay", "Team1", g_OverlayCFG.score.team1_name);
+            }
+            if (ImGui::InputText("Team Name CT", &g_OverlayCFG.score.team2_name)) {
+                g_OverlayCFG.Save("Overlay", "Team2", g_OverlayCFG.score.team2_name);
+            }
 
-            ImGui::Checkbox("Auto Update Score", &g_OverlayCFG.score.auto_update);
+            if (ImGui::Checkbox("Auto Update Score", &g_OverlayCFG.score.auto_update)) {
+                g_OverlayCFG.Save("Overlay", "AutoUpdateScore", static_cast<int>(g_OverlayCFG.score.auto_update));
+            }
 
             ImGui::TreePop();
         }
         if (ImGui::TreeNode("Player Bar")) {
-            ImGui::InputFloat("Width", &g_OverlayCFG.playerbar.width, 1.0f, 2000, "%.0f");
-            ImGui::InputFloat("Height", &g_OverlayCFG.playerbar.height, 1.0f, 480, "%.0f");
-            ImGui::InputFloat("X margin", &g_OverlayCFG.playerbar.x_margin, 1.0f, 600, "%.0f");
-            ImGui::InputFloat("Y margin", &g_OverlayCFG.playerbar.y_margin, 1.0f, 600, "%.0f");
+            if (ImGui::InputFloat("Width", &g_OverlayCFG.playerbar.width, 1.0f, 2000, "%.0f")) {
+                g_OverlayCFG.Save("PlayerBar", "Width", g_OverlayCFG.playerbar.width);
+            }
+            if (ImGui::InputFloat("Height", &g_OverlayCFG.playerbar.height, 1.0f, 480, "%.0f")) {
+                g_OverlayCFG.Save("PlayerBar", "Height", g_OverlayCFG.playerbar.height);
+            }
+            if (ImGui::InputFloat("X margin", &g_OverlayCFG.playerbar.x_margin, 1.0f, 600, "%.0f")) {
+                g_OverlayCFG.Save("PlayerBar", "XMargin", g_OverlayCFG.playerbar.x_margin);
+            }
+            if (ImGui::InputFloat("Y margin", &g_OverlayCFG.playerbar.y_margin, 1.0f, 600, "%.0f")) {
+                g_OverlayCFG.Save("PlayerBar", "YMargin", g_OverlayCFG.playerbar.y_margin);
 
-            ImGui::InputFloat("Spacing", &g_OverlayCFG.playerbar.spacing, 1.0f, 30, "%.0f");
+            }
 
-            ImGui::InputFloat("HP Height (%)", &g_OverlayCFG.playerbar.hp_height_perc, 0.01f, 0.1f, "%.2f");
-            ImGui::InputFloat("Arm Height (% of HP)", &g_OverlayCFG.playerbar.arm_height_perc, 0.01f, 0.1f, "%.2f");
+            if (ImGui::InputFloat("Spacing", &g_OverlayCFG.playerbar.spacing, 1.0f, 30, "%.0f")) {
+                g_OverlayCFG.Save("PlayerBar", "Spacing", g_OverlayCFG.playerbar.spacing);
+            }
 
-            ImGui::InputFloat("Text Extra Width", &g_OverlayCFG.playerbar.extra_text_width, 1.0f, 5.0f, "%.0f");
+            if (ImGui::InputFloat("HP Height (%)", &g_OverlayCFG.playerbar.hp_height_perc, 0.01f, 0.1f, "%.2f")) {
+                g_OverlayCFG.Save("PlayerBar", "HPHeight", g_OverlayCFG.playerbar.hp_height_perc, 100.0f);
+            }
+            if (ImGui::InputFloat("Arm Height (% of HP)", &g_OverlayCFG.playerbar.arm_height_perc, 0.01f, 0.1f, "%.2f")) {
+                g_OverlayCFG.Save("PlayerBar", "ArmHeight", g_OverlayCFG.playerbar.arm_height_perc, 100.0f);
+            }
+
+            if (ImGui::InputFloat("Text Extra Width", &g_OverlayCFG.playerbar.extra_text_width, 1.0f, 5.0f, "%.0f")) {
+                g_OverlayCFG.Save("PlayerBar", "ExtraTextWidth", g_OverlayCFG.playerbar.extra_text_width);
+            }
             ImGui::TreePop();
         }
 
         if (ImGui::TreeNode("Misc")) {
-            ImGui::InputFloat("Weapon Scale", &g_OverlayCFG.misc.weapon_texture_scale, 0.1f, 1.0f, "%.1f");
-            ImGui::InputInt("Max Players", &g_OverlayCFG.misc.max_players);
+            if (ImGui::InputFloat("Weapon Scale", &g_OverlayCFG.misc.weapon_texture_scale, 0.1f, 1.0f, "%.1f")) {
+                g_OverlayCFG.Save("Misc", "WeaponTextureScale", g_OverlayCFG.misc.weapon_texture_scale, 10.0f);
+            }
+            if (ImGui::InputInt("Max Players", &g_OverlayCFG.misc.max_players)) {
+                g_OverlayCFG.Save("Misc", "MaxPlayers", g_OverlayCFG.misc.max_players);
+            }
             ImGui::TreePop();
         }
     }
