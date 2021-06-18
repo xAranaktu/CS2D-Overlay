@@ -200,12 +200,6 @@ Func CreateSettings($f)
 		DirCreate($f)
     EndIf
 
-	IniWrite($f & $fNameOverlaySettings, "Teams", "Team1", "")
-	IniWrite($f & $fNameOverlaySettings, "Teams", "Team2", "")
-	IniWrite($f & $fNameOverlaySettings, "Overlay", "Transparency", "0")
-	IniWrite($f & $fNameOverlaySettings, "Overlay", "BorderedText", "0")
-	IniWrite($f & $fNameOverlaySettings, "Overlay", "AutoUpdateScore", "1")
-
 	IniWrite($f & $fNameLauncherSettings, "CS2D", "Path", "NoPathDefined")
 	IniWrite($f & $fNameLauncherSettings, "CS2D", "Resolution", "1920x1080")
 	IniWrite($f & $fNameLauncherSettings, "CS2D", "Window_Mode", "fullscreen")
