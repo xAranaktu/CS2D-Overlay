@@ -99,7 +99,7 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
         Sleep(50);
         if (GetAsyncKeyState(VK_END)) {
             g_Overlay.can_draw = false;
-            Sleep(1000);
+            Sleep(250);
             break;
         }
 
@@ -108,19 +108,16 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
         }
 
         if (GetAsyncKeyState(VK_F6) & 1) {
-            scoreTT += 1;
+            g_Overlay.bonus_score_tt += 1;
         }
 
         if (GetAsyncKeyState(VK_F7) & 1) {
-            scoreCT += 1;
+            g_Overlay.bonus_score_ct += 1;
         }
 
         if (GetAsyncKeyState(VK_F8) & 1) {
-            Team1Score = 0;
-            Team2Score = 0;
-            scoreTT = 0;
-            scoreCT = 0;
-            bScoreSaved = false;
+            g_Overlay.bonus_score_tt = 0;
+            g_Overlay.bonus_score_ct = 0;
         }
 
         if (GetAsyncKeyState(VK_F9) & 1) {
@@ -146,6 +143,18 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
                 );
             }
 #endif
+        }
+
+        if (GetAsyncKeyState(VK_F10) & 1) {
+            auto tmp_teamname = g_OverlayCFG.score.team1_name;
+            g_OverlayCFG.score.team1_name = g_OverlayCFG.score.team2_name;
+            g_OverlayCFG.score.team2_name = tmp_teamname;
+        }
+
+        if (GetAsyncKeyState(VK_F11) & 1) {
+            auto tmp_score = g_Overlay.bonus_score_tt;
+            g_Overlay.bonus_score_tt = g_Overlay.bonus_score_ct;
+            g_Overlay.bonus_score_ct = tmp_score;
         }
 
     }

@@ -100,8 +100,14 @@ void Overlay::ShowMenu(bool* p_open) {
     
     }
     if (ImGui::CollapsingHeader("Hotkeys")) {
+        ImGui::Text("Increase TT Bonus Score - [F6]");
+        ImGui::Text("Increase CT Bonus Score - [F7]");
+        ImGui::Text("Reset Both Teams Bonus Score - [F8]");
         ImGui::Text("Show Menu - [F9]");
+        ImGui::Text("Swap Team Names - [F10]");
+        ImGui::Text("Swap Bonus Score - [F11]");
         ImGui::Text("Show Overlay - [ALT]");
+        ImGui::Text("Eject DLL - [END]");
     }
 
     ImGui::EndGroup();
