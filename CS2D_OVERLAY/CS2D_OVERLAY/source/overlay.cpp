@@ -15,6 +15,24 @@ void Overlay::Init() {
 
 void Overlay::HandleDraw() {
     if (!can_draw) return;
+
+#ifndef _DEBUG
+    Tpl* localPlayer = PlayerManager::GetLocalPlayer();
+    if (Validator::ObjIsValid(localPlayer)) {
+        if (localPlayer->m_team != TEAM::TEAM_SPECTATOR) {
+            g_FeatureManager.SetSpecMode(0);
+            g_FeatureManager.bNoFlash = false;
+            g_FeatureManager.ChangeNoFlash();
+            g_FeatureManager.bNoFow = false;
+            g_FeatureManager.ChangeNoFOW();
+
+            return;
+        }
+    }
+    else {
+        return;
+    }
+#endif
     
     ImGui::GetIO().MouseDrawCursor = show_menu;
 
