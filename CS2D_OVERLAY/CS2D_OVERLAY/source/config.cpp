@@ -21,7 +21,7 @@ void OverlayCFG::Init() {
     playerbar.spacing = static_cast<float>(Load("PlayerBar", "Spacing", 2));
     playerbar.hp_height_perc = static_cast<float>(Load("PlayerBar", "HPHeight", 50)) / 100.0f;
     playerbar.arm_height_perc = static_cast<float>(Load("PlayerBar", "ArmHeight", 15)) / 100.0f;
-    playerbar.extra_text_width = static_cast<float>(Load("PlayerBar", "ExtraTextWidth", 2));
+    playerbar.extra_text_width = static_cast<float>(Load("PlayerBar", "ExtraTextWidth", 10));
 
     misc.weapon_texture_scale = static_cast<float>(Load("Misc", "WeaponTextureScale", 20)) / 10.0f;
     misc.max_players = Load("Misc", "MaxPlayers", 32);
