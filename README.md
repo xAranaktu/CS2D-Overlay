@@ -23,8 +23,6 @@
 ---
 **How to use:**
 
-[![IMAGE ALT TEXT HERE](https://i.imgur.com/MUWMVRn.jpg)](https://www.youtube.com/watch?v=ppSLAltnleA)
-
 1. Make sure the "Overlay Launcher.exe" and the "CS2D_OVERLAY.dll" files aren't blocked by your antivirus. I recommend to add whole CS2D Overlay folder to exclusions.
 2. Run "Overlay Launcher.exe" (As administrator)
 3. Run the game
