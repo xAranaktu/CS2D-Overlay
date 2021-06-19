@@ -1,53 +1,35 @@
 ## CS2D Overlay ##
-![alt text](https://i.imgur.com/yfTfI1B.gif)
-![alt text](https://i.imgur.com/cJvaVmM.jpg)
+![alt text](https://i.imgur.com/iWYpiAM.jpeg)
 
 ---
 **Features:**
 
- - Free look
+ - Displays player hp, armor, weapon, money, KDA
+ - Specmode change (Nothing, Everything, Team Only)
  - No Flash
  - No Fow
- - X-ray
  - Automatically updating match score
- - Showing damage dealt by each player
----
-**Useful hotkeys:**
 
-- **ALT key** - Show/hide overlay
-- **INSERT key** - Free look on specmode
-- **X key** - X-ray
-- **Caps Lock key** - Damage dealt 
-- **PAGE UP key** - No fow
-- **PAGE Down key** - No flash
-- **END key** - Close CS2D immediately
+---
+**hotkeys:**
+
 - **F6 key** - Increase Terrorist score by 1
 - **F7 key** - Increase Counter-Terrorist score by 1
 - **F8 key** - Reset both team score.
 - **F9 key** - Show/hide overlay menu.
+- **ALT key** - Show/hide overlay
+- **END key** - Eject the CS2D_Overlay.dll from the game process.
 
 ---
 **How to use:**
 
 [![IMAGE ALT TEXT HERE](https://i.imgur.com/MUWMVRn.jpg)](https://www.youtube.com/watch?v=ppSLAltnleA)
 
-1. Install csp_text.ttf font. (You will find it in "fonts" folder, you need to do it only once)
+1. Make sure the "Overlay Launcher.exe" and the "CS2D_OVERLAY.dll" files aren't blocked by your antivirus. I recommend to add whole CS2D Overlay folder to exclusions.
 2. Run "Overlay Launcher.exe" (As administrator)
-3. Press "Advanced Settings" button and locate "CS2D.exe" on your HDD (you can change resolution and windowed mode if you wish)
-4. Press "Start CS2D" button.
-5. Enter the server
-6. Press "Alt key" to show overlay. **You will able to see overlay only if you are on spectator.**
-
----
-**Settings explanation**
-
-![alt text](https://i.imgur.com/DD4ujRR.png)
-
-- **Team1 & Team2** - Team names that face each other.
-- **Transparency** - This option will make health bars transparent. It may have negative impact on fps.
-- **Bordered Text** - Check it to draw border around text. It may have negative impact on fps.
-- **Update score automatically** - As it says. It will update match score automatically in the bar on the top of the screen.
-- **Pattern scan** - This option define how we will hook D3D9 functions. Check it if you have any problems with overlay.
+3. Run the game
+4. Enter the server
+5. Press "Alt key" to show overlay. **You will able to see overlay only if you are on spectator.**
 
 ---
 **Advanced Settings explanation**
@@ -65,15 +47,9 @@
 	- **Delay** - Injection delay. We don't want to inject .dll before game loads D3D9 functions.
 
 ---
-**Known Bugs**
-
-- "Transparency" makes health bars disappear completely.
-- Damage dealt by HE grenades is not counting as damage dealt by player.
-
----
 **Fixing problems**
 
-If you have any problems write on [github](https://github.com/xAranaktu/CS2D-Overlay/issues) or [in thread on cs2d.net](https://cs2d.net/viewtopic.php?f=871&t=6869)
+If you have any problems write on [github](https://github.com/xAranaktu/CS2D-Overlay/issues)
 
 ---
 **Credits**
