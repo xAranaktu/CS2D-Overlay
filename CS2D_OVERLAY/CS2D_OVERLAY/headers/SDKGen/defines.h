@@ -27,6 +27,10 @@ typedef struct TBank;
 typedef struct TBankDecl;
 typedef struct Tpl;
 typedef struct TplDecl;
+typedef struct Tpro;
+typedef struct TproDecl;
+typedef struct TLightSource;
+typedef struct TLightSourceDecl;
 
 // TODO Add definitions for
 typedef struct Object;

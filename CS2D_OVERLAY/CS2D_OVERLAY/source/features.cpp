@@ -8,8 +8,10 @@
 
 FeatureManager::FeatureManager() {}
 FeatureManager::~FeatureManager() {
+#ifndef _DEBUG
         // War spec mode
         SetSpecMode(0);
+#endif
 
         bNoFlash = false;
         ChangeNoFlash();

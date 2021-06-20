@@ -11,13 +11,13 @@
       <ID>2</ID>
       <Description>"COOL"</Description>
       <Options moHideChildren="1"/>
-      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <LastState Value="" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
           <ID>0</ID>
           <Description>"Patch_IsDebuggerPresent"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 //code from here to '[DISABLE]' will be used to enable the cheat
@@ -55,7 +55,7 @@ ret
         <CheatEntry>
           <ID>273</ID>
           <Description>"globalalloc"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 //code from here to '[DISABLE]' will be used to enable the cheat
@@ -70,7 +70,6 @@ globalalloc(fakecls, 4, 0x897E04)
             <CheatEntry>
               <ID>274</ID>
               <Description>"fakecls"</Description>
-              <LastState Value="0" RealAddress="001F0000"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>fakecls</Address>
@@ -86,9 +85,53 @@ globalalloc(fakecls, 4, 0x897E04)
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
+          <ID>297</ID>
+          <Description>"Camera"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Value="" Activated="1" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>300</ID>
+              <Description>"Xi"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>898D4C</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>301</ID>
+              <Description>"Yi"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>898D50</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>302</ID>
+          <Description>"Cursor"</Description>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>303</ID>
+              <Description>"X"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>897CB4 </Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>304</ID>
+              <Description>"Y"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>897CB8</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
           <ID>4</ID>
           <Description>"Invalid Entity"</Description>
-          <LastState Value="0" RealAddress="007C7BC0"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>7C7BC0</Address>
@@ -96,7 +139,6 @@ globalalloc(fakecls, 4, 0x897E04)
         <CheatEntry>
           <ID>5</ID>
           <Description>"Clock Min"</Description>
-          <LastState Value="0" RealAddress="00897F10"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>897F10</Address>
@@ -104,7 +146,6 @@ globalalloc(fakecls, 4, 0x897E04)
         <CheatEntry>
           <ID>6</ID>
           <Description>"Clock Sec"</Description>
-          <LastState Value="16" RealAddress="00897F14"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>897F14</Address>
@@ -112,7 +153,6 @@ globalalloc(fakecls, 4, 0x897E04)
         <CheatEntry>
           <ID>7</ID>
           <Description>"pLocalPlayer"</Description>
-          <LastState Value="11E13CC0" RealAddress="00897E04"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -121,7 +161,6 @@ globalalloc(fakecls, 4, 0x897E04)
             <CheatEntry>
               <ID>8</ID>
               <Description>"name"</Description>
-              <LastState RealAddress="12B516FC"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>String</VariableType>
               <Length>6</Length>
@@ -134,9 +173,86 @@ globalalloc(fakecls, 4, 0x897E04)
                 <Offset>C</Offset>
               </Offsets>
             </CheatEntry>
+            <CheatEntry>
+              <ID>294</ID>
+              <Description>"m_x"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>897E04</Address>
+              <Offsets>
+                <Offset>1D4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>295</ID>
+              <Description>"m_y"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>897E04</Address>
+              <Offsets>
+                <Offset>1D8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>306</ID>
+              <Description>"m_tilex"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>897E04</Address>
+              <Offsets>
+                <Offset>1E4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>305</ID>
+              <Description>"m_tiley"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>897E04</Address>
+              <Offsets>
+                <Offset>1E8</Offset>
+              </Offsets>
+            </CheatEntry>
           </CheatEntries>
         </CheatEntry>
       </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>296</ID>
+      <Description>"AAAA"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>281</ID>
+          <Description>"Minimap pos"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>86FA28</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>307</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Float</VariableType>
+      <Address>897A24</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>308</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>897A20</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>309</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Float</VariableType>
+      <Address>897A34 </Address>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols>

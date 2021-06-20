@@ -122,27 +122,6 @@ DWORD WINAPI mainFunc(LPVOID lpModule)
 
         if (GetAsyncKeyState(VK_F9) & 1) {
             g_Overlay.show_menu = !g_Overlay.show_menu;
-#ifdef _DEBUG
-            Tpl* localPlayer = PlayerManager::GetLocalPlayer();
-            if (Validator::ObjIsValid(localPlayer)) {
-                logger.Write(
-                    LOG_INFO,
-                    "localPlayer 0x%08lX",
-                    localPlayer
-                );
-                
-                //logger.Write(LOG_INFO, "usgn: %d", localPlayer->m_usgnid);
-                logger.Write(LOG_INFO, "ammo: %d", localPlayer->decl->m_Tpl_getammo(localPlayer));
-                //logger.Write(LOG_INFO, "hp: %d", cInt::Get(localPlayer->m_health));
-            }
-            else {
-                logger.Write(
-                    LOG_INFO,
-                    "Invalid - localPlayer 0x%08lX",
-                    localPlayer
-                );
-            }
-#endif
         }
 
         if (GetAsyncKeyState(VK_F10) & 1) {

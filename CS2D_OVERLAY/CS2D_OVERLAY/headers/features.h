@@ -7,6 +7,10 @@ public:
     };
     int current_specmode = 0;
 
+    bool bESPItem = false;
+    bool bESPPlayer = false;
+    bool bESPProjectiles = false;
+
     bool bNoFlash = false;
     bool bNoFow = false;
     DWORD patch_noflash_addr = 0;

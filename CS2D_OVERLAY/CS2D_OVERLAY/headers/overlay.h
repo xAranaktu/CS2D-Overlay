@@ -19,8 +19,9 @@ public:
     bool can_draw = false;
     bool show_menu = false;
     bool show_demo = false;
-
     bool show_overlay = false;
+
+    bool show_debug = false;
 
     class WeaponInfo {
     public:
@@ -95,10 +96,13 @@ public:
     void HandleDraw();
 
     void ShowMenu(bool* p_open);
-
-    
+    void DrawESPPlayers();
+    void DrawESPItems();
+    void DrawESPProjectiles();
 
     void DrawOverlay();
+
+    void DrawDebug();
 private:
     WeaponInfo GetWeaponInfo(int weapon_id);
 

@@ -40,6 +40,12 @@ void Overlay::HandleDraw() {
     if (show_demo) ImGui::ShowDemoWindow(&show_demo);
 
     if (show_overlay)   DrawOverlay();
+
+    if (g_FeatureManager.bESPPlayer)            DrawESPPlayers();
+    if (g_FeatureManager.bESPItem)              DrawESPItems();
+    if (g_FeatureManager.bESPProjectiles)       DrawESPProjectiles();
+
+    if (show_debug)     DrawDebug();
 }
 
 void Overlay::ShowMenu(bool* p_open) {
@@ -55,6 +61,7 @@ void Overlay::ShowMenu(bool* p_open) {
     }
 #endif
     if (ImGui::CollapsingHeader("Config")) {
+
         if (ImGui::TreeNode("Score")) {
             if (ImGui::InputFloat("Height", &g_OverlayCFG.score.height, 1.0f, 480, "%.0f")) {
                 g_OverlayCFG.Save("Overlay", "ScoreHeight", g_OverlayCFG.score.height);
@@ -79,6 +86,7 @@ void Overlay::ShowMenu(bool* p_open) {
 
             ImGui::TreePop();
         }
+
         if (ImGui::TreeNode("Player Bar")) {
             if (ImGui::InputFloat("Width", &g_OverlayCFG.playerbar.width, 1.0f, 2000, "%.0f")) {
                 g_OverlayCFG.Save("PlayerBar", "Width", g_OverlayCFG.playerbar.width);
@@ -129,6 +137,7 @@ void Overlay::ShowMenu(bool* p_open) {
             ImGui::TreePop();
         }
         ImGui::Checkbox("Show Overlay", &show_overlay);
+        ImGui::Checkbox("Show Debug", &show_debug);
     }
     if (ImGui::CollapsingHeader("Extra Features")) {
         if (ImGui::BeginCombo("Spec Mode", g_FeatureManager.specmodes.at(g_FeatureManager.current_specmode).c_str())) {
@@ -148,6 +157,14 @@ void Overlay::ShowMenu(bool* p_open) {
             g_FeatureManager.ChangeNoFlash();
         if (ImGui::Checkbox("No FOW",   &g_FeatureManager.bNoFow))
             g_FeatureManager.ChangeNoFOW();
+
+        if (ImGui::TreeNode("ESP")) {
+            ImGui::Checkbox("Players", &g_FeatureManager.bESPPlayer);
+            ImGui::Checkbox("Items", &g_FeatureManager.bESPItem);
+            ImGui::Checkbox("Projectiles", &g_FeatureManager.bESPProjectiles);
+
+            ImGui::TreePop();
+        }
     
     }
     if (ImGui::CollapsingHeader("Hotkeys")) {
@@ -163,6 +180,216 @@ void Overlay::ShowMenu(bool* p_open) {
 
     ImGui::EndGroup();
     ImGui::End();
+}
+
+
+void Overlay::DrawESPPlayers() {
+    auto pPlayersList = PlayerManager::GetPlayersList();
+    auto type_enum = pPlayersList->decl->m_TList_ObjectEnumerator(pPlayersList);
+
+    // No players
+    if (!type_enum->decl->m_TListEnum_HasNext(type_enum)) return;
+
+    ImGuiIO& io = ImGui::GetIO();
+    auto displaysz_x = io.DisplaySize.x;
+    auto displaysz_y = io.DisplaySize.y;
+
+    auto draw_list = ImGui::GetBackgroundDrawList();
+
+    auto draw_box = true;
+    auto box_color = ImGui::GetColorU32(IM_COL32(0, 125, 255, 230));
+    auto box_thickness = 4.0f;
+
+    ImVec2 box_size = ImVec2(64.0f + box_thickness, 64.0f + box_thickness);
+
+    while (type_enum->decl->m_TListEnum_HasNext(type_enum)) {
+        Object* next_object = type_enum->decl->m_TListEnum_NextObject(type_enum);
+        if (!Validator::ObjIsValid(next_object))
+            continue;
+
+        Tpl* pPlayer = reinterpret_cast<Tpl*>(next_object);
+
+        auto hp = PlayerManager::GetHP(pPlayer);
+
+        if (hp == 0)
+            continue;
+
+        if (draw_box) {
+            Vector2 tmp_w2s_pos = Camera::W2S(Vector2(pPlayer->m_x, pPlayer->m_y));
+            ImVec2 w2s_pos = ImVec2(tmp_w2s_pos.x, tmp_w2s_pos.y);
+
+            float offset_center = (box_size.x / 2) - (box_thickness / 2);
+
+            ImVec2 box_pos = ImVec2(
+                w2s_pos.x - offset_center,
+                w2s_pos.y - offset_center
+            );
+
+            draw_list->AddRect(
+                box_pos,
+                ImVec2(box_pos.x + box_size.x, box_pos.y + box_size.y),
+                box_color,
+                0.0f,
+                0,
+                box_thickness
+            );
+        }
+    }
+
+}
+void Overlay::DrawESPItems() {
+    auto pItemsList = ItemManager::GetItemsList();
+    auto type_enum = pItemsList->decl->m_TList_ObjectEnumerator(pItemsList);
+
+    ImGuiIO& io = ImGui::GetIO();
+    auto displaysz_x = io.DisplaySize.x;
+    auto displaysz_y = io.DisplaySize.y;
+
+    auto draw_list = ImGui::GetBackgroundDrawList();
+
+    auto draw_box = true;
+    auto box_color = ImGui::GetColorU32(IM_COL32(186, 92, 9, 230));
+    auto box_thickness = 4.0f;
+    ImVec2 box_size = ImVec2(64.0f + box_thickness, 64.0f + box_thickness);
+
+    while (type_enum->decl->m_TListEnum_HasNext(type_enum)) {
+        Object* next_object = type_enum->decl->m_TListEnum_NextObject(type_enum);
+        if (!Validator::ObjIsValid(next_object))
+            continue;
+
+        Titem* pItem = reinterpret_cast<Titem*>(next_object);
+
+        if (pItem->m_visible != 1)
+            continue;
+
+        if (draw_box) {
+            Vector2 tmp_w2s_pos = Camera::W2S(Vector2(
+                static_cast<float>(32 * pItem->m_x + 16), 
+                static_cast<float>(32 * pItem->m_y + 16)
+            ));
+            ImVec2 w2s_pos = ImVec2(tmp_w2s_pos.x, tmp_w2s_pos.y);
+
+            float offset_center = (box_size.x / 2) - (box_thickness / 2);
+
+            ImVec2 box_pos = ImVec2(
+                w2s_pos.x - offset_center,
+                w2s_pos.y - offset_center
+            );
+
+            draw_list->AddRect(
+                box_pos,
+                ImVec2(box_pos.x + box_size.x, box_pos.y + box_size.y),
+                box_color,
+                0.0f,
+                0,
+                box_thickness
+            );
+        }
+    }
+}
+
+void Overlay::DrawESPProjectiles() {
+    auto pProjectilesList = ProjectileManager::GetGroundProjectilesList();
+    auto type_enum = pProjectilesList->decl->m_TList_ObjectEnumerator(pProjectilesList);
+
+    ImGuiIO& io = ImGui::GetIO();
+    auto displaysz_x = io.DisplaySize.x;
+    auto displaysz_y = io.DisplaySize.y;
+
+    auto draw_list = ImGui::GetBackgroundDrawList();
+
+    auto draw_box = true;
+    auto box_color = ImGui::GetColorU32(IM_COL32(128, 0, 0, 230));
+    auto move_color = ImGui::GetColorU32(IM_COL32(128, 0, 128, 230));
+    auto text_color = ImGui::GetColorU32(IM_COL32(66, 245, 236, 255));
+    auto box_thickness = 4.0f;
+    ImVec2 box_size = ImVec2(64.0f + box_thickness, 64.0f + box_thickness);
+
+    while (type_enum->decl->m_TListEnum_HasNext(type_enum)) {
+        Object* next_object = type_enum->decl->m_TListEnum_NextObject(type_enum);
+        if (!Validator::ObjIsValid(next_object))
+            continue;
+
+        Tpro* pProjectile = reinterpret_cast<Tpro*>(next_object);
+
+        //char aaa[256];
+        //sprintf(
+        //    aaa, "%d moveto(%0.f, %0.f), xy(%0.f, %0.f)", 
+        //    pProjectile->m_domove, 
+        //    pProjectile->m_movetox, pProjectile->m_movetoy,
+        //    pProjectile->m_x, pProjectile->m_y
+        //);
+        //draw_list->AddText(csp_small, g_OverlayCFG.fontsize.menu, ImVec2(20.0f, 120.0f), text_color, aaa, 0, 0.0f, 0);
+
+        if (draw_box) {
+            Vector2 tmp_w2s_pos = Camera::W2S(Vector2(
+                pProjectile->m_x,
+                pProjectile->m_y
+            ));
+            ImVec2 w2s_pos = ImVec2(tmp_w2s_pos.x, tmp_w2s_pos.y);
+
+            float offset_center = (box_size.x / 2) - (box_thickness / 2);
+
+            ImVec2 box_pos = ImVec2(
+                w2s_pos.x - offset_center,
+                w2s_pos.y - offset_center
+            );
+
+            draw_list->AddRect(
+                box_pos,
+                ImVec2(box_pos.x + box_size.x, box_pos.y + box_size.y),
+                box_color,
+                0.0f,
+                0,
+                box_thickness
+            );
+
+            auto m_typ = pProjectile->m_typ;
+
+            // Draw timer if Smoke or Flare or Gas or Molotov
+            if (m_typ == 53 || m_typ == 54 || m_typ == 72 || m_typ == 73) {
+                char time_text[16];
+                sprintf(time_text, "%0.f", pProjectile->m_time);
+                draw_list->AddText(csp_small, g_OverlayCFG.fontsize.menu, ImVec2(box_pos.x + 5.0f, box_pos.y + 5.0f), text_color, time_text, 0, 0.0f, 0);
+            }
+        }
+    }
+
+
+    pProjectilesList = ProjectileManager::GetFlyingProjectilesList();
+    type_enum = pProjectilesList->decl->m_TList_ObjectEnumerator(pProjectilesList);
+
+    while (type_enum->decl->m_TListEnum_HasNext(type_enum)) {
+        Object* next_object = type_enum->decl->m_TListEnum_NextObject(type_enum);
+        if (!Validator::ObjIsValid(next_object))
+            continue;
+
+        Tpro* pProjectile = reinterpret_cast<Tpro*>(next_object);
+
+        if (draw_box) {
+            Vector2 tmp_w2s_pos = Camera::W2S(Vector2(
+                pProjectile->m_x,
+                pProjectile->m_y
+            ));
+            ImVec2 w2s_pos = ImVec2(tmp_w2s_pos.x, tmp_w2s_pos.y);
+
+            float offset_center = (box_size.x / 2) - (box_thickness / 2);
+
+            ImVec2 box_pos = ImVec2(
+                w2s_pos.x - offset_center,
+                w2s_pos.y - offset_center
+            );
+
+            draw_list->AddRect(
+                box_pos,
+                ImVec2(box_pos.x + box_size.x, box_pos.y + box_size.y),
+                box_color,
+                0.0f,
+                0,
+                box_thickness
+            );
+        }
+    }
 }
 
 void Overlay::TextCenter(std::string text) {
@@ -183,10 +410,10 @@ void Overlay::TextCenter(std::string text) {
 
 void Overlay::DrawOverlay() {
     auto pPlayersList = PlayerManager::GetPlayersList();
-    TLink* pPlayerEntity = pPlayersList->m__head->m__succ;
+    auto type_enum = pPlayersList->decl->m_TList_ObjectEnumerator(pPlayersList);
 
     // No players
-    if (reinterpret_cast<DWORD>(pPlayerEntity) == reinterpret_cast<DWORD>(pPlayerEntity->m__value)) return;
+    if (!type_enum->decl->m_TListEnum_HasNext(type_enum)) return;
 
     //
     int countCT = 0;
@@ -198,11 +425,6 @@ void Overlay::DrawOverlay() {
     char window_title_armor[30];
     char window_title_text[30];
     char window_title_weapon[30];
-
-    // conv
-    size_t nameSize = 0;
-    size_t convertedChars = 0;
-    char sName[256];
 
     char sHP[5];
     char sAmmo[16];
@@ -360,15 +582,12 @@ void Overlay::DrawOverlay() {
     ImGui::PopFont();
 
     // Draw Player Bars
-    for (int i = 1; i <= max_players; i++) {
-        if (!Validator::ObjIsValid(pPlayerEntity))
-            break;
-
-        Tpl* pPlayer = reinterpret_cast<Tpl*>(pPlayerEntity->m__value);
-
-        pPlayerEntity = pPlayerEntity->decl->m_TLink_NextLink(pPlayerEntity);
-        if (!Validator::ObjIsValid(pPlayer))
+    while (type_enum->decl->m_TListEnum_HasNext(type_enum)) {
+        Object* next_object = type_enum->decl->m_TListEnum_NextObject(type_enum);
+        if (!Validator::ObjIsValid(next_object))
             continue;
+
+        Tpl* pPlayer = reinterpret_cast<Tpl*>(next_object);
 
         auto hp = PlayerManager::GetHP(pPlayer);
 
@@ -376,6 +595,7 @@ void Overlay::DrawOverlay() {
             continue;
 
         auto playerid = pPlayer->m_id;
+        std::string player_name = PlayerManager::GetName(pPlayer);
 
         // Unique Window names
         sprintf(window_title_container, "PBarCont%d", playerid);
@@ -391,10 +611,6 @@ void Overlay::DrawOverlay() {
         // Convert Armor
         auto armor = PlayerManager::GetArmor(pPlayer);
         float farmor = static_cast<float>(armor);
-
-        // Convert Name
-        nameSize = pPlayer->m_name->length + 1;
-        wcstombs_s(&convertedChars, sName, nameSize, pPlayer->m_name->buf, pPlayer->m_name->length);
 
         // Convert Ammo
         auto ammo = PlayerManager::GetAmmo(pPlayer);
@@ -504,7 +720,7 @@ void Overlay::DrawOverlay() {
         if (m_team == TEAM::TEAM_TT) {
             ImGui::Text(sHP);
             ImGui::SetCursorPos(ImVec2(cur_pos.x + hp_text_sz.x, cur_pos.y));
-            ImGui::Text(sName);
+            ImGui::Text(player_name.c_str());
         }
         else if (m_team == TEAM::TEAM_CT) {
             //auto ct_hp_sz = ImGui::CalcTextSize(sHP);
@@ -512,9 +728,9 @@ void Overlay::DrawOverlay() {
             ImGui::SetCursorPos(ImVec2(cur_pos.x + bar_w - hp_text_sz.x - style_pad_x, cur_pos.y));
             ImGui::Text(sHP);
 
-            auto name_size = ImGui::CalcTextSize(sName);
+            auto name_size = ImGui::CalcTextSize(player_name.c_str());
             ImGui::SetCursorPos(ImVec2(cur_pos.x + bar_w - hp_text_sz.x - name_size.x - style_pad_x - 10.0f, cur_pos.y));
-            ImGui::Text(sName);
+            ImGui::Text(player_name.c_str());
         }
         ImGui::EndChild();
         ImGui::EndGroup();
@@ -617,6 +833,60 @@ void Overlay::DrawWeapon(Tpl* pPlayer, int team) {
         ImGui::Image(ptexture, weapon_texture_size, ImVec2(1, 0), ImVec2(0, 1));
     }
 
+}
+
+void Overlay::DrawDebug() {
+    auto draw = ImGui::GetBackgroundDrawList();
+
+    std::string observed_player_name = PlayerManager::GetName(
+        PlayerManager::GetPlayerByID(PlayerManager::GetObservedPlayerID())
+    );
+
+    std::string first_name = PlayerManager::GetName(
+        PlayerManager::GetPlayerByID(1)
+    );
+
+    std::string invalid_name = PlayerManager::GetName(
+        PlayerManager::GetPlayerByID(127)
+    );
+
+    // Debug text
+    ImVec2 debug_text_pos = ImVec2(10.0f, 60.0f);
+    auto debug_text_color = ImGui::GetColorU32(IM_COL32(66, 245, 236, 255));
+    float next_row = g_OverlayCFG.fontsize.menu + 4.0f;
+
+    char debugtext1[255];
+    sprintf(debugtext1, "Camera %d, %d", Camera::GetX(), Camera::GetY());
+    draw->AddText(csp_small, g_OverlayCFG.fontsize.menu, debug_text_pos, debug_text_color, debugtext1, 0, 0.0f, 0);
+    debug_text_pos.y += next_row;
+
+    char debugtext2[255];
+    sprintf(debugtext2, "Cursor %0.f, %0.f", Screen::GetCursorX(), Screen::GetCursorY());
+    draw->AddText(csp_small, g_OverlayCFG.fontsize.menu, debug_text_pos, debug_text_color, debugtext2, 0, 0.0f, 0);
+    debug_text_pos.y += next_row;
+
+    Tpl* p2 = PlayerManager::GetPlayerByID(2);
+    Tpl* p3 = PlayerManager::GetPlayerByID(3);
+
+    if (!Validator::ObjIsValid(p2) || !Validator::ObjIsValid(p3)) {
+        return;
+    }
+
+    Vector2 tmp = Camera::W2S(Vector2(p2->m_x, p2->m_y));
+    ImVec2 p2_poss = ImVec2(tmp.x, tmp.y);
+
+    tmp = Camera::W2S(Vector2(p3->m_x, p3->m_y));
+    ImVec2 p3_poss = ImVec2(tmp.x, tmp.y);
+
+    char debugtext3[255];
+    sprintf(debugtext3, "P2 Pos: %.0f, %.0f", p2->m_x, p2->m_y);
+    draw->AddText(csp_small, g_OverlayCFG.fontsize.menu, debug_text_pos, debug_text_color, debugtext3, 0, 0.0f, 0);
+    debug_text_pos.y += next_row;
+
+    char debugtext4[255];
+    sprintf(debugtext4, "P3: %.0f, %.0f", p3_poss.x, p3_poss.y);
+    draw->AddText(csp_small, g_OverlayCFG.fontsize.menu, debug_text_pos, debug_text_color, debugtext4, 0, 0.0f, 0);
+    debug_text_pos.y += next_row;
 }
 
 Overlay g_Overlay;
