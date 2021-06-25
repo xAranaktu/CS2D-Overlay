@@ -11,7 +11,7 @@
  - Flare & Smoke timers
  - Automatically updating match score
 
-![ b](demo/nade-timer.gif)
+![](demo/nade-timer.gif)
 
 ---
 **hotkeys:**
