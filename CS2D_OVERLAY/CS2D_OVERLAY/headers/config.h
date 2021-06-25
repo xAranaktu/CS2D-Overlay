@@ -44,10 +44,30 @@ public:
         std::string team2_name = "Team Good Guys";
     } score;
 
+    struct ESP {
+        float timer_box_rounding = 20.0f;
+        float timer_box_sz = 35.0f;
+        float timer_x_offset = -25.0f;
+        float timer_y_offset = -25.0f;
+        float timertext_x_offset = 8.0f;
+        float timertext_y_offset = 10.0f;
+    } ESP;
+
     struct Misc {
         int max_players = 32;
         float weapon_texture_scale = 2.0f;
     } misc;
+
+    struct Tester {
+        float box_rounding = 20.0f;
+        float timer_box_sz = 35.0f;
+        float timer_x_offset = -25.0f;
+        float timer_y_offset = -25.0f;
+        float timertext_x_offset = 8.0f;
+        float timertext_y_offset = 10.0f;
+    } tester;
+
+
 
     void Init();
 

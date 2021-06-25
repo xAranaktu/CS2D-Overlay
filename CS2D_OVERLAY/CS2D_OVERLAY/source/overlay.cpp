@@ -118,6 +118,19 @@ void Overlay::ShowMenu(bool* p_open) {
             }
             ImGui::TreePop();
         }
+#ifdef _DEBUG
+        if (ImGui::TreeNode("_DEBUG")) {
+            ImGui::InputFloat("box_rounding", &g_OverlayCFG.tester.box_rounding, 1.0f, 10.0f, "%.0f");
+            ImGui::InputFloat("timer_box_sz", &g_OverlayCFG.tester.timer_box_sz, 1.0f, 10.0f, "%.0f");
+            ImGui::InputFloat("timer_x_offset", &g_OverlayCFG.tester.timer_x_offset, 1.0f, 10.0f, "%.0f");
+            ImGui::InputFloat("timer_y_offset", &g_OverlayCFG.tester.timer_y_offset, 1.0f, 10.0f, "%.0f");
+            ImGui::InputFloat("timertext_x_offset", &g_OverlayCFG.tester.timertext_x_offset, 1.0f, 10.0f, "%.0f");
+            ImGui::InputFloat("timertext_y_offset", &g_OverlayCFG.tester.timertext_y_offset, 1.0f, 10.0f, "%.0f");
+        
+            ImGui::TreePop();
+        }
+#endif // _DEBUG
+
 
         if (ImGui::TreeNode("Misc")) {
             if (ImGui::InputFloat("Weapon Scale", &g_OverlayCFG.misc.weapon_texture_scale, 0.1f, 1.0f, "%.1f")) {
@@ -159,8 +172,8 @@ void Overlay::ShowMenu(bool* p_open) {
             g_FeatureManager.ChangeNoFOW();
 
         if (ImGui::TreeNode("ESP")) {
-            ImGui::Checkbox("Players", &g_FeatureManager.bESPPlayer);
-            ImGui::Checkbox("Items", &g_FeatureManager.bESPItem);
+            //ImGui::Checkbox("Players", &g_FeatureManager.bESPPlayer);
+            //ImGui::Checkbox("Items", &g_FeatureManager.bESPItem);
             ImGui::Checkbox("Projectiles", &g_FeatureManager.bESPProjectiles);
 
             ImGui::TreePop();
@@ -298,10 +311,11 @@ void Overlay::DrawESPProjectiles() {
 
     auto draw_list = ImGui::GetBackgroundDrawList();
 
-    auto draw_box = true;
+    auto draw_box = false;
     auto box_color = ImGui::GetColorU32(IM_COL32(128, 0, 0, 230));
     auto move_color = ImGui::GetColorU32(IM_COL32(128, 0, 128, 230));
     auto text_color = ImGui::GetColorU32(IM_COL32(66, 245, 236, 255));
+    auto timer_bg_color = ImGui::GetColorU32(IM_COL32(0, 0, 0, 255));
     auto box_thickness = 4.0f;
     ImVec2 box_size = ImVec2(64.0f + box_thickness, 64.0f + box_thickness);
 
@@ -321,65 +335,50 @@ void Overlay::DrawESPProjectiles() {
         //);
         //draw_list->AddText(csp_small, g_OverlayCFG.fontsize.menu, ImVec2(20.0f, 120.0f), text_color, aaa, 0, 0.0f, 0);
 
-        if (draw_box) {
-            Vector2 tmp_w2s_pos = Camera::W2S(Vector2(
-                pProjectile->m_x,
-                pProjectile->m_y
-            ));
-            ImVec2 w2s_pos = ImVec2(tmp_w2s_pos.x, tmp_w2s_pos.y);
+        Vector2 tmp_w2s_pos = Camera::W2S(Vector2(
+            pProjectile->m_x,
+            pProjectile->m_y
+        ));
+        ImVec2 w2s_pos = ImVec2(tmp_w2s_pos.x, tmp_w2s_pos.y);
 
-            float offset_center = (box_size.x / 2) - (box_thickness / 2);
+        float offset_center = (box_size.x / 2) - (box_thickness / 2);
 
-            ImVec2 box_pos = ImVec2(
-                w2s_pos.x - offset_center,
-                w2s_pos.y - offset_center
+        ImVec2 box_pos = ImVec2(
+            w2s_pos.x - offset_center,
+            w2s_pos.y - offset_center
+        );
+
+        ImVec2 text_box_pos = ImVec2(
+            box_pos.x + g_OverlayCFG.ESP.timer_x_offset,
+            box_pos.y + g_OverlayCFG.ESP.timer_y_offset
+        );
+
+        ImVec2 text_box_end = ImVec2(
+            text_box_pos.x + g_OverlayCFG.ESP.timer_box_sz,
+            text_box_pos.y + g_OverlayCFG.ESP.timer_box_sz
+        );
+
+        ImVec2 text_box_text_pos = ImVec2(
+            text_box_pos.x + g_OverlayCFG.ESP.timertext_x_offset,
+            text_box_pos.y + g_OverlayCFG.ESP.timertext_y_offset
+        );
+
+        // Draw timer if Smoke or Flare or Gas or Molotov
+        auto m_typ = pProjectile->m_typ;
+        if (m_typ == 53 || m_typ == 54 || m_typ == 72 || m_typ == 73) {
+            char time_text[16];
+            sprintf(time_text, "%0.f", pProjectile->m_time);
+
+            draw_list->AddRectFilled(
+                text_box_pos,
+                text_box_end,
+                timer_bg_color,
+                g_OverlayCFG.ESP.timer_box_rounding
             );
-
-            draw_list->AddRect(
-                box_pos,
-                ImVec2(box_pos.x + box_size.x, box_pos.y + box_size.y),
-                box_color,
-                0.0f,
-                0,
-                box_thickness
-            );
-
-            auto m_typ = pProjectile->m_typ;
-
-            // Draw timer if Smoke or Flare or Gas or Molotov
-            if (m_typ == 53 || m_typ == 54 || m_typ == 72 || m_typ == 73) {
-                char time_text[16];
-                sprintf(time_text, "%0.f", pProjectile->m_time);
-                draw_list->AddText(csp_small, g_OverlayCFG.fontsize.menu, ImVec2(box_pos.x + 5.0f, box_pos.y + 5.0f), text_color, time_text, 0, 0.0f, 0);
-            }
+            draw_list->AddText(csp_small, g_OverlayCFG.fontsize.menu, text_box_text_pos, text_color, time_text, 0, 0.0f, 0);
         }
-    }
-
-
-    pProjectilesList = ProjectileManager::GetFlyingProjectilesList();
-    type_enum = pProjectilesList->decl->m_TList_ObjectEnumerator(pProjectilesList);
-
-    while (type_enum->decl->m_TListEnum_HasNext(type_enum)) {
-        Object* next_object = type_enum->decl->m_TListEnum_NextObject(type_enum);
-        if (!Validator::ObjIsValid(next_object))
-            continue;
-
-        Tpro* pProjectile = reinterpret_cast<Tpro*>(next_object);
 
         if (draw_box) {
-            Vector2 tmp_w2s_pos = Camera::W2S(Vector2(
-                pProjectile->m_x,
-                pProjectile->m_y
-            ));
-            ImVec2 w2s_pos = ImVec2(tmp_w2s_pos.x, tmp_w2s_pos.y);
-
-            float offset_center = (box_size.x / 2) - (box_thickness / 2);
-
-            ImVec2 box_pos = ImVec2(
-                w2s_pos.x - offset_center,
-                w2s_pos.y - offset_center
-            );
-
             draw_list->AddRect(
                 box_pos,
                 ImVec2(box_pos.x + box_size.x, box_pos.y + box_size.y),
@@ -390,6 +389,42 @@ void Overlay::DrawESPProjectiles() {
             );
         }
     }
+
+
+    //pProjectilesList = ProjectileManager::GetFlyingProjectilesList();
+    //type_enum = pProjectilesList->decl->m_TList_ObjectEnumerator(pProjectilesList);
+
+    //while (type_enum->decl->m_TListEnum_HasNext(type_enum)) {
+    //    Object* next_object = type_enum->decl->m_TListEnum_NextObject(type_enum);
+    //    if (!Validator::ObjIsValid(next_object))
+    //        continue;
+
+    //    Tpro* pProjectile = reinterpret_cast<Tpro*>(next_object);
+
+    //    if (draw_box) {
+    //        Vector2 tmp_w2s_pos = Camera::W2S(Vector2(
+    //            pProjectile->m_x,
+    //            pProjectile->m_y
+    //        ));
+    //        ImVec2 w2s_pos = ImVec2(tmp_w2s_pos.x, tmp_w2s_pos.y);
+
+    //        float offset_center = (box_size.x / 2) - (box_thickness / 2);
+
+    //        ImVec2 box_pos = ImVec2(
+    //            w2s_pos.x - offset_center,
+    //            w2s_pos.y - offset_center
+    //        );
+
+    //        draw_list->AddRect(
+    //            box_pos,
+    //            ImVec2(box_pos.x + box_size.x, box_pos.y + box_size.y),
+    //            box_color,
+    //            0.0f,
+    //            0,
+    //            box_thickness
+    //        );
+    //    }
+    //}
 }
 
 void Overlay::TextCenter(std::string text) {
