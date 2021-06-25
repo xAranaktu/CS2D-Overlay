@@ -8,7 +8,10 @@
  - Specmode change (Nothing, Everything, Team Only)
  - No Flash
  - No Fow
+ - Flare & Smoke timers
  - Automatically updating match score
+
+![ b](demo/nade-timer.gif)
 
 ---
 **hotkeys:**
